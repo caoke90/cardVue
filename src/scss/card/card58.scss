@@ -1,0 +1,12 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card58 {
+    fieldset {
+        @include line(1px,0,0,0,$bd-cl);
+        text-align: center;
+        font-size: $f12;
+    }
+    legend{
+        padding:0 P2R(20px);
+    }
+}

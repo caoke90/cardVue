@@ -1,0 +1,38 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card7 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding-bottom: P2R(14px);
+        }
+    }
+	header{
+		height: P2R(40px);
+		line-height: P2R(40px);
+        @include line(0,0,1px,0,$bd-cl);
+	}
+    header h2{
+        font-size: $f17;
+        color: $cl-a;
+    }
+    article{
+        color: $cl-a;
+        font-size: $f15;
+        line-height: P2R(20px);
+        padding: P2R(14px) 0 0 0;
+        @include cutword(3);
+        .card-more{
+            color: $cl-l;
+            &:before{
+                content: "…";
+                color:$cl-a;
+            }
+        }
+    }
+    footer{
+	margin-top:  P2R(10px);
+	color: $cl-c;
+	font-size: $f12;
+    }
+}

@@ -1,0 +1,125 @@
+/*SVG拼图 16px为基准单位,因为拼图四周有一个单位大小的间隔，所以这里是48px*/
+
+.m-icon {
+	display: inline-block;
+	vertical-align: top;
+	background-image: url("sprite.svg");
+	background-size: 3em auto;
+	width: 1em;
+	height: 1em;
+}
+
+.m-icon-yellowv {
+	background-position: -1em -1em;
+}
+
+.m-icon-bluev {
+	background-position: -1em -4em;
+}
+
+.m-icon-club {
+	background-position: -1em -7em;
+}
+
+.m-icon-vgirl {
+	background-position: -1em -10em;
+}
+
+.m-icon-male {
+	background-position: -1em -13em;
+}
+
+.m-icon-female {
+	background-position: -1em -16em;
+}
+
+.m-icon-vip {
+	background-position: -1em -19em;
+}
+
+.m-icon-nvip {
+	background-position: -1em -22em;
+}
+
+.m-icon-like {
+	background-position: -1em -25em;
+}
+
+.m-icon-liked {
+	background-position: -1em -28em;
+}
+
+.m-icon-warn {
+	background-position: -1em -31em;
+}
+
+.m-icon-vipl1 {
+	background-position: -1em -34em;
+}
+
+.m-icon-vipl2 {
+	background-position: -1em -37em;
+}
+
+.m-icon-vipl3 {
+	background-position: -1em -40em;
+}
+
+.m-icon-vipl4 {
+	background-position: -1em -43em;
+}
+
+.m-icon-vipl5 {
+	background-position: -1em -46em;
+}
+
+.m-icon-vipl6 {
+	background-position: -1em -49em;
+}
+
+.m-icon-goldv {
+	background-position: -1em -52em;
+}
+
+.m-icon-vipl7 {
+	background-position: -1em -55em;
+}
+
+.m-icon-share {
+	background-position: -1em -58em;
+}
+
+.m-icon-shareH {
+	background-position: -1em -61em;
+}
+
+.m-icon {
+	font-size: 14px;
+}
+
+.m-icon-large {
+	font-size: 22px;
+}
+
+.m-icon-warn {
+	font-size: 18px;
+}
+
+
+/*金V*/
+
+.m-icon-goldv {
+	position: relative;
+}
+
+.m-icon-goldv::after {
+	content: ' ';
+	display: block;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-image: url("goldv.png");
+	background-size: 1em auto;
+	background-position: 0 -10000px;
+	animation: sprite 2s steps(15) 3 backwards;
+}

@@ -1,0 +1,22 @@
+/**
+ * card panel
+ */
+.m-panel {
+    // box-shadow: 0 1px 2px -1px rgba(black,0.1);
+    //@include border(border-top,1px,solid,$bd-cl);
+    //@include border(border-bottom,1px,solid,$bd-cl);
+    @include line(1px,0,1px,0,$bd-cl);
+    background:$card-bg;
+}
+.m-bar-panel{
+	background-color: $bb-bg;
+	box-shadow: inset 0 1px 0 0 #fff,0 -2px 2px -1px rgba(black,0.15);
+}
+.m-line-panel{
+	background-color: $lb-bg ;
+	@include border(border-top,1px,solid,$bd-cl);
+}
+/*配合class="m-in-panel m-panel"，可消除上边框，实现类似card11的需求目的*/
+.m-in-panel > .m-panel{
+	border-top: 0 !important;
+}

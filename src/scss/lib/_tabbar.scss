@@ -1,0 +1,57 @@
+/**
+ * tab bar
+ */
+
+.m-tab-bar{
+	position: fixed;
+	z-index: $layerLV1;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	>div{
+		height: P2R(45px);
+		line-height: P2R(45px);
+	}
+	.m-ctrl-box{
+		border:0;
+		.m-diy-btn{
+			.#{$front-icon-font}-bars {
+				font-size: P2R(12px);
+			}
+		  	h4{
+			  font-size: $f15;
+			}
+		}
+		.m-add-box {
+			.#{$front-icon-font}{
+				font-size: P2R(14px);
+			}
+		}
+	}
+	.nav-box {
+		font-size:P2R(20px) ;
+		.nav-ctrl{
+			display: inline-block;
+			color: #707070;
+			text-align: center;
+			margin: 0 P2R(12px);
+		}
+	}
+	.page-box {
+		.m-box-col {
+			&+.m-box-col{
+				@include border(border-left,1px,solid,$bd-cl);
+			}
+			.#{$front-icon-font}{
+				font-size: P2R(12px);
+				margin: 0 0 0 P2R(7px);
+			}
+			color: $cl-c;
+			font-size: $f14;
+
+		}
+		.m-cur {
+			color: $cl-l;
+		}
+	}
+}

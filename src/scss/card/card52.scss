@@ -1,0 +1,30 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card52 {
+	.card-title{
+		height: P2R(40px);
+		line-height: P2R(40px);
+		font-size: $f17;
+		color: $cl-a;
+        margin-left:$gap;
+        margin-bottom: 0 - P2R(10px);
+	}
+    //均分栅格 上下内间距,左右内间距,列间距,行间距。
+    @include col(P2R(10px),$gap,P2R(8px),P2R(8px));
+    .m-auto-box {
+    	.m-text-box{
+            position: relative;
+            margin:P2R(7px) 0 0 0;
+    		h3{				
+				font-size: $f15;
+				height: P2R(42px);
+    		}
+    		h4{
+				.txta{
+					color: $cl-y;
+					margin: 0 P2R(8px) 0 0;
+				}
+    		}
+    	}
+    }
+}

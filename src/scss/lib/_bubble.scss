@@ -1,0 +1,24 @@
+/**
+ * m-bubble
+ */
+
+.m-bubble {
+    display: inline-block;
+    vertical-align: middle;
+}
+.m-bubble-red {
+	padding: 0 P2R(5px);
+	height: P2R(16px);
+	line-height: P2R(16px);
+	border-radius: P2R(10px);
+	background: $bred;
+	color: #fff;
+	font-size: P2R(10px);
+	text-align: center;
+}
+.m-bubble-red-s {
+	width: P2R(8px);
+	height: P2R(8px);
+	border-radius: 50%;
+	background:  $bred;
+}

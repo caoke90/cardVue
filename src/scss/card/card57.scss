@@ -1,0 +1,81 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card57 {
+  .card-wrap{
+    .card-main{
+      margin: 0;
+      padding: P2R(10px) 0;
+    }
+  }
+  .box-right{
+    text-align: right;
+    color:$cl-c;
+    line-height: 1.25;
+    padding: P2R(6px) 0 0;
+    .intro-row{
+      &:first-child{
+        font-size: $f11;
+      }
+      &:nth-child(2){
+        font-size: $f10;
+      }
+    }
+  }
+  .stock-intro{
+    .m-td{
+      vertical-align: middle;
+      &:first-child{
+        font-size: P2R(42px);
+      }
+      &:nth-child(2){
+        font-size: $f12;
+        line-height: 1.25;
+      }
+    }
+  }
+  .stock-rise {
+     color:$cl-r;
+  }
+  .stock-fall{
+    color: $cl-g;
+  }
+  .stock-null{
+    color: $cl-c;
+  }
+  .num-intro {
+    width: 100%;
+    margin:P2R(20px) 0 0;
+    .m-td {
+      width: 25%;
+      &:last-child {
+        text-align: right;
+      }
+      &:nth-child(2){
+        .num-box{
+          margin:0 0 0 33.3%;
+          transform: translateX(-33.3%);
+        }
+      }
+      &:nth-child(3){
+        .num-box{
+          margin:0 0 0 66.7%;
+          transform: translateX(-66.7%);
+        }
+      }
+    }
+    .num-box{
+      display: inline-block;
+      text-align: center;
+      div:first-child{
+        font-size: $f15;
+        color: $cl-a;
+        margin: 0 0 P2R(5px) 0;
+      }
+      div:nth-child(2){
+        font-size: $f12;
+        color: $cl-c;
+      }
+    }
+  }
+
+}

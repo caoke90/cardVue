@@ -1,0 +1,48 @@
+/**
+ * tab
+ */
+.m-top-bar{
+	position: fixed;
+	z-index: $layerLV1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: $tp-bg;
+	height: P2R(44px);
+	.nav-ctrl {
+	 	color: $cl-b;
+		font-size: $f15;
+	 	text-align: center;
+	 	display: inline-block;
+	 	padding:0 P2R(10px) ;
+	 	.#{$front-icon-font}{
+	 		vertical-align: top;
+	 		font-size: P2R(20px);
+	 	}
+	 }
+	.nav-left,
+	.nav-right,
+	.nav-main {
+		position: absolute;
+		line-height: P2R(44px);
+	}
+	.nav-left{
+		left: 0;
+	}
+	.nav-right{
+		right: 0;
+	}
+	.nav-main {
+		left: 0;
+		right: 0;
+		top: 0;
+		right: 0;
+		text-align: center;
+		font-size: $f18;
+		color: $cl-a;
+		h3 {
+			display: inline-block;
+			max-width: 12rem;
+		}
+	}
+}

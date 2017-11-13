@@ -1,0 +1,15 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card23 {
+	height: P2R(50px);
+    h3 {
+    	font-size: $f15;
+    	color: $cl-a;
+    	margin-bottom: P2R(7px);
+    	font-weight: 700;
+    }
+    h4 {
+    	font-size: $f12;
+    	color: $cl-c;
+    }
+}

@@ -1,0 +1,80 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card11 {
+    > .card-title{
+        margin: P2R(10px) 0 P2R(5px) $gap;
+        font-size: $f14;
+        color: $cl-b;
+    }
+    .loading-box{
+        text-align: center;
+        padding: P2R(12px) 0;
+        font-size: $f12;
+        color: $cl-c;
+    }
+	.card {
+        &:not(.card9){
+            margin-bottom: 0;
+            margin-top: -1px;
+            // &.m-panel:not(:first-child){
+            //     border-top: none;
+            // }
+        }
+    }
+    &.ctype-1{
+        .card {
+            &:not(.card9):not(.card59){
+                &.m-panel{
+                    border:0;
+                    &:first-of-type{
+                        @include line(1px,0,0,0,$bd-cl);
+                        .card-wrap{
+                            border-top: 0;
+                        }
+                    }
+                    &:last-of-type{
+                        @include line(0,0,1px,0,$bd-cl);
+                        .card-wrap{
+                            border-bottom: 0;
+                        }
+                    }
+                }
+                .card-wrap{
+                    @include line(1px,0,1px,0,$bd-cl);
+                }
+            }
+        }
+    }
+    &.ctype-3{
+        .card {
+            &.m-panel{
+                border:0;
+                &:first-of-type{
+                    @include line(1px,0,0,0,$bd-cl);
+                }
+                &:last-of-type{
+                    @include line(0,0,1px,0,$bd-cl);
+                }
+            }
+        }
+    }
+    .card42 {
+        &+ .card9 {
+            margin-top:-1px;
+            position: relative;
+        }
+        &.m-panel-nobd{
+            +.card {
+              margin-top: P2R(-10px);
+            }
+            .card-wrap{
+                border-bottom: 0!important;
+            }
+            &+ .card {
+                .card-wrap{
+                    border-top: 0;
+                }
+            }
+        }
+    }
+}

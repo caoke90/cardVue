@@ -1,0 +1,20 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card21 {
+    //均分栅格 上下内间距,左右内间距,列间距,行间距。
+    @include col(P2R(10px),$gap,P2R(8px),P2R(10px));
+            
+	.m-text-box{
+        text-align: center;
+		h3 {
+            font-size: $f15;
+            margin: P2R(10px) 0 0 0;
+        }
+        h4 {
+            font-size: $f12;
+            color: $cl-c;
+            margin: P2R(6px) 0 0 0;
+            line-height: normal;
+        }
+	}
+}

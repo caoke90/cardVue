@@ -1,0 +1,25 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card27 {
+    header{
+        margin: 0 $gap;
+    }
+    h3{
+        padding: P2R(10px) 0;
+        font-size: $f15;
+        color: $cl-a;
+    }
+    .m-text-box {
+        font-size: $f14;
+        color: $cl-c;
+        line-height: 1.5;
+        padding: P2R(8px) 0;
+    }
+    .m-img-box {
+        position: relative;
+        padding-bottom: 290/592 *100%;
+        img {
+            position: absolute;
+        }
+    }
+}

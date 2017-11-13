@@ -1,0 +1,16 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card17 {
+	.card-wrap{
+		.card-main{
+			margin-bottom: -1px;
+		}
+	}	    
+    .m-item-box{
+        /*调用itembox组件,参看sasscore*/
+        @include itembox(P2R(44px),P2R(44px),left,0 P2R(8px) 0 P2R(12px),P2R(6px),P2R(6px),0,0,$f16,0);
+        .m-diy-btn{
+            justify-content:left;
+        }
+    }   
+}

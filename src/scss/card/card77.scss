@@ -1,0 +1,99 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+
+
+.card77 {
+    position: relative;
+    &:before{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 2px;
+    }
+    &.type-1{
+        &:before{
+            background-color: #62c40d;
+        }
+    }
+    &.type-2{
+        &:before{
+            background-color: #ffb200;
+        }
+    }
+    &.type-3{
+        &:before{
+            background-color: #ff7b1c;
+        }
+    }
+    &.type-4{
+        &:before{
+            background-color: #fe5653;
+        }
+    }
+    &.type-5{
+        &:before{
+            background-color: #9f87f9;
+        }
+    }
+    &.type-6{
+        &:before{
+            background-color: #3d96f0;
+        }
+    }
+    &.type-7{
+        &:before{
+            background-color: #0ec0ee;
+        }
+    }
+    &.type-8{
+        &:before{
+            background-color: #22c78f;
+        }
+    }
+    .card-wrap{
+        .card-main{
+            margin: 0;
+        }
+    }
+    height: P2R(84px);
+	.m-btn{
+        height: P2R(22px);
+        line-height: P2R(22px);
+        min-width: P2R(45px);
+        font-size: $f11;
+    }
+    .game-time{
+        font-size: $f17;
+        color: $cl-c;
+        margin-right: P2R(14px);
+    }
+    .box-main{
+        h3{
+            font-size: $f17;
+            display: inline-block;
+            margin-right: P2R(7px);
+        }
+        span{
+            font-size: $f14;
+            color: $cl-b;
+        }
+    }
+    .box-plus{
+        font-size: $f12;
+        color: $cl-c;
+        margin-top: P2R(12px);
+        .vs{
+            margin:0 P2R(7px);
+        }
+        .m-img-box{
+            width: P2R(19px);
+            height: P2R(12px);
+            margin-right: P2R(5px);
+        }
+    }
+    .#{$button}-white{
+        background: #fff;
+    }
+}

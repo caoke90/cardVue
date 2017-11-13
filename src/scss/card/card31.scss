@@ -1,0 +1,38 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card31 {
+    overflow: hidden;
+    &.on-search{
+        .card-wrap {
+            .card-main {
+                padding-right: P2R(45px);
+            }
+        }
+        .search-cancel{
+            transform: translateX(0);
+        }
+    }
+    background-color: #e3e4e6;
+    .card-wrap{
+        .card-main{
+            margin: 0 P2R(-4px);
+            padding: P2R(8px) 0;
+            transition: padding 0.2s ease-out;
+            position: relative;
+        }
+    }
+    .m-search {
+        background-color: #fff;
+        @include border(border,1px,solid,#dcdcdc);
+    }
+    .search-cancel{
+        font-size: $f16;
+        color: $cl-b;
+        position: absolute;
+        top:0;
+        bottom: 0;
+        right: 0;
+        transform: translateX(130%);
+        transition:transform  0.2s ease-in;
+    }
+}

@@ -1,0 +1,26 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card6 {
+    a {
+        display: block;
+        font-size: $f14;
+        line-height: P2R(38px);
+        text-align: center;
+        .#{$front-icon-font} {
+            vertical-align: top;
+            font-size: $f12;
+        }
+        &.color-gray{
+            color: $cl-c;
+        }
+        &.color-orange{
+            color: $cl-y;
+        }
+        &.color-red{
+            color: $cl-r;
+        }
+        &.color-blue{
+            color: $cl-l;
+        }
+    }
+}

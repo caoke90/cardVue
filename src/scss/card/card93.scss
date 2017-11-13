@@ -1,0 +1,31 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card93 {
+	.card-wrap{
+        height: P2R(42px);
+        .card-main{
+            margin: 0;
+        }
+    }
+    .box-left{
+        font-size: 0;
+        min-width: 0;
+        .main-link{
+            font-size: $f14;
+            color: $cl-a;
+            min-width: 0;
+        }
+    }
+		.m-avatar-box{
+			.m-img-box{
+				width: P2R(26px);
+				height: P2R(26px);
+				margin-right: P2R(9px);
+			}
+		}
+		.box-right{
+			font-size: $f12;
+			color: $cl-c;
+			margin-left: P2R(12px);
+		}
+}

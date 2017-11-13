@@ -1,0 +1,91 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card41 {
+    [class^=m-auth]{
+        display: inline-block;
+        padding: 0 P2R(4px);
+        height: P2R(16px);
+        line-height: P2R(16px);
+        border-radius: P2R(10px);
+        border-width: 1px;
+        border-style: solid;
+        white-space: nowrap;
+        font-size: $f9;
+        vertical-align: middle;
+    }
+    .m-auth-bluev{
+        background: #c6e7ff;
+        border-color: #5fb2f1;
+        color: #024cdd;
+    }
+    .m-auth-yellowv{
+        background: #ffe5b8;
+        border-color: #f0ba64;
+        color: #ff4123;
+    }
+    .m-auth-vip{
+        background: #fc683b;
+        border-color: #f44b25;
+        color: #fff;
+    }
+    .#{$imageIcon} {
+        vertical-align: middle;
+    }
+    .m-box{
+        font-size: $f15;
+        line-height: 1.25;
+        padding: P2R(15px) 0;
+        margin-left: $gap;
+        margin-right: $gap;
+    }
+    .box-left{
+        width: P2R(64px);
+        color: $cl-c;
+    }
+    .rel-box {
+        @include col(0,0,P2R(8px),0);
+    }
+    .rel-intro {
+        color: $cl-b;
+        margin-top: P2R(5px);
+    }
+    .works-box{
+        @include col(0,0,P2R(6px),0);
+        .m-text-box{
+            text-align: center;
+    		h3 {
+                font-size: $f13;
+                margin: P2R(10px) 0 0 0;
+            }
+    	}
+        &.card-more{
+	        .m-auto-box{
+	            &:nth-of-type(3) {
+	                .m-img-box{
+	                    position: relative;
+	                    &::before{
+	                        font-family: "marvelfont";
+	                        content:"\E000";
+	                        font-size: P2R(32px);
+	                        color: #c8c8c8;
+	                        position: absolute;
+	                        left: 50%;
+	                        top: 50%;
+	                        transform:translate(-50%,-50%);
+	                        z-index: 99;
+	                    }
+	                    &::after{
+	                        content: "";
+	                        position: absolute;
+	                        left: 0;
+	                        top: 0;
+	                        right: 0;
+	                        bottom: 0;
+	                        background: rgba(0,0,0,0.5);
+	                    }
+	                }
+	            }
+	        }
+        }
+    }
+}

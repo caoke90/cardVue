@@ -1,0 +1,41 @@
+.m-guide {
+	position: absolute;
+	z-index: $layerLV1;
+	background: rgba($cl-y,0.9);
+	font-size: $f16;
+	font-style: oblique;
+	color: $cl-w;
+	padding: P2R(12px);
+	border-radius: P2R(5px);
+	[class^="m-arr"] {
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-width: P2R(10px);
+		border-style: solid;
+	}
+	.m-arr-left{
+		border-color: transparent rgba($cl-y,0.9) transparent transparent;
+		top: 50%;
+		left: 0;
+		transform: translate(-100%,-50%);
+	}
+	.m-arr-right{
+		border-color: transparent transparent transparent rgba($cl-y,0.9);
+		top: 50%;
+		right: 0;
+		transform: translate(100%,-50%);
+	}
+	.m-arr-top{
+		border-color: transparent transparent rgba($cl-y,0.9) transparent;
+		top: 0;
+		left: P2R(20px);
+		transform: translate(0,-100%);
+	}
+	.m-arr-bottom{
+		border-color: rgba($cl-y,0.9) transparent transparent transparent;
+		bottom: 0;
+		left: P2R(20px);
+		transform: translate(0,100%);
+	}
+}

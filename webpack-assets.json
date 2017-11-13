@@ -1,0 +1,20 @@
+{
+  "marvel": {
+    "js": "//conchfairy.sinajs.cn/cardVue/js/marvel.810cad06.js",
+    "css": "//conchfairy.sinajs.cn/cardVue/css/marvel.fce92bb8.css"
+  },
+  "main": {
+    "js": "//conchfairy.sinajs.cn/cardVue/js/main.7bd076d9.js",
+    "css": "//conchfairy.sinajs.cn/cardVue/css/main.e19c7960.css"
+  },
+  "demo": {
+    "js": "//conchfairy.sinajs.cn/cardVue/js/demo.ba48b50a.js",
+    "css": "//conchfairy.sinajs.cn/cardVue/css/demo.2d5bd143.css"
+  },
+  "manifest": {
+    "js": "//conchfairy.sinajs.cn/cardVue/js/manifest.543855e8.js"
+  },
+  "metadata": {
+    "version": ""
+  }
+}

@@ -1,0 +1,20 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+
+
+.card83 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+        }
+    }
+    font-size: $f14;
+    line-height: P2R(34px);
+    a{
+        color: $cl-l;
+    }          
+    .box-right{
+        color: $cl-c;
+        font-size: $f12;
+    }    
+}

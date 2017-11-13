@@ -1,0 +1,23 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card29 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(10px) 0;
+        }
+    }
+    .card-title{
+        font-size: $f14;
+        color: $cl-a;
+        margin: 0 0 P2R(10px) 0;
+    }
+    .m-img-box{
+        position: relative;
+        height: 0;
+        padding-bottom: 180/592 *100%;
+        img {
+            position: absolute;
+        }
+    }
+}

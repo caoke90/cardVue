@@ -1,0 +1,85 @@
+/**
+ * tip layer
+ */
+.m-tips{
+	font-size: $f14;
+  text-align: center;
+  height: P2R(32px);
+  line-height: P2R(32px);
+  position: relative;
+  .#{$front-icon-font}-arrow-right,
+  .#{$front-icon-font}-close{
+    position: absolute;
+    right: P2R(10px);
+    top:50%;
+    transform:translate(0,-50%);
+    color: #fff;
+    font-size: $f12;
+  }
+  &.m-tips-music{
+    text-align: left;
+    .m-img-box{
+      width: P2R(32px);
+      vertical-align: top;
+    }
+    .main-link{
+      font-size: $f13;
+      margin: 0 0 0 P2R(12px);
+      vertical-align: top;
+    }
+    .sub-link {
+      font-size: $f13;
+      opacity: 0.7;
+      vertical-align: top;
+    }
+    .#{$front-icon-font}-chart{
+      font-size: P2R(20px);
+      vertical-align: top;
+      margin: 0 0 0 P2R(9px);
+    }
+  }
+  &.m-tips-tp{
+    font-size: $f12;
+    .#{$front-icon-font}{
+      font-size: $f18;
+      vertical-align: middle;
+    }
+    .m-loading{
+      vertical-align: middle;
+      font-size: (20/37)*P2R(16px);
+    }
+    .main-link{
+      margin:0 0 0 P2R(11px);
+    }
+  }
+  &.m-tips-tps{
+    font-size: $f11;
+    .#{$front-icon-font}{
+      vertical-align: top;
+      margin: 0 P2R(5px) 0 0;
+    }
+  }
+}
+
+@mixin tip($color,$color-bg) {
+  color: $color;
+  background: $color-bg;
+}
+
+$tip-types: (
+	(ltyellow #f48800 #feeddb)
+	(yellow #fffefe #fdab57)
+  (red #fff #fd7d66)
+  (pink #fff linear-gradient(to bottom, #ce8a92 0%,#cf978f 100%))
+  (tp #7c7c7c transparent)
+  (tps #bfbfbf transparent)
+)!default;
+
+@each $tip-type in $tip-types {
+  $type:  nth($tip-type, 1);
+  $color: nth($tip-type, 2);
+  $color-bg: nth($tip-type, 3);
+  .m-tips-#{$type} {
+	@include tip($color,$color-bg);
+  }
+}

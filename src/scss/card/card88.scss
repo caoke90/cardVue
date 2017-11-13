@@ -1,0 +1,108 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+
+.card88 {
+    //均分栅格 上下内间距,左右内间距,列间距,行间距。
+    @include col(0,0,P2R(8px),P2R(10px));
+
+    .m-auto-box {
+        .m-panel {
+            border: 0;
+        }
+
+        .#{$button}-media {
+            position: absolute;
+            z-index: 9;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 4.4rem;
+        }
+
+        .live-intro {
+            position: absolute;
+            left: $gap;
+            top: P2R(10px);
+            z-index: $layerLV1;
+            padding: P2R(2px);
+            background: rgba(black,0.4);
+            border-radius: P2R(16px);
+            color: $cl-w;
+            .live-tag {
+                display: inline-block;
+                width: P2R(24px);
+                height: P2R(24px);
+                line-height: P2R(24px);
+                vertical-align: middle;
+                border-radius: 50%;
+                font-size: P2R(8px);
+                color: $cl-w;
+                text-align: center;
+                background: rgba(#e52a2a,0.8);
+            }
+            .live-data {
+              display: inline-block;
+              vertical-align: middle;
+              padding: 0 P2R(5px);
+            }
+            .live-num {
+              font-size: P2R(8px);
+              margin-bottom: P2R(4px);
+            }
+            .live-time {
+              font-size: P2R(7px);
+            }
+        }
+
+        article {
+            padding-bottom: P2R(10px);
+            > .m-img-box {
+                position: relative;
+                margin-bottom: P2R(20px);
+            }
+
+            .m-avatar-box {
+                position: absolute;
+                z-index: 9;
+                bottom: P2R(-21px);
+                left: P2R(9px);
+                right: 0;
+
+                .m-img-box {
+                    width: P2R(30px);
+                    height: P2R(30px);
+                    border: 2px solid $cl-w;
+                }
+
+                .m-text-box {
+                    margin-left: P2R(9px);
+                    margin-top: P2R(12px);
+
+                    h3 {
+                        color: $cl-b;
+                        font-size: $f14;
+                    }
+                }
+
+                .#{$imageIcon} {
+                    @include icsize(10px);
+                }
+            }
+
+            > .m-text-box {
+                padding: P2R(8px) P2R(9px);
+
+                h3 {
+                    font-size: $f15;
+                    line-height: 1.2;
+                    height: P2R(34px);
+                }
+
+                h4 {
+                    bottom: P2R(8px);
+                }
+            }
+        }
+
+    }
+}

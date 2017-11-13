@@ -1,0 +1,46 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card42 {
+  position: relative;
+  &::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: P2R(3px);
+    background-color: $cl-y;
+  }
+  .card-wrap{
+    height: P2R(36px);
+    .card-main{
+      margin: 0;
+    }
+  }
+  .box-left{
+    font-size: 0;
+    .main-link{
+      color: $cl-b;
+      font-size: $f14;
+    }
+  }
+  .box-right{
+    .sub-link {
+      font-size: $f12;
+      color: $cl-c;
+      margin-right: P2R(8px);
+      max-width: 5rem;
+    }
+    .#{$front-icon-font}-arrow-right{
+      width: P2R(12px);
+      height: P2R(12px);
+      line-height: P2R(12px);
+      text-align: center;
+      background-color: $cl-y;
+      border-radius: P2R(2px);
+      color: #FFF;
+      font-size: P2R(8px);
+      font-weight: 700;
+    }
+  }
+}

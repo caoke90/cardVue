@@ -1,0 +1,65 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card22 {
+	position: relative;
+    &.type-2 {
+        .m-img-box{
+            li {
+                height: 0;
+                padding-bottom: 50%;
+            }
+        }
+        .m-sld-dot {
+            bottom: P2R(8px);
+        }
+    }
+    .m-img-box {
+        overflow: hidden;
+        vertical-align: top;
+        img {
+            height: auto;
+        }
+        ul{
+            width: 100%;
+            white-space: nowrap;
+            font-size: 0;
+        }
+        li{
+            display: inline-block;
+            position: relative;
+            width: 100%;
+            section{
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,.5);
+                color: #fff;
+                height: P2R(30px);
+                line-height: P2R(30px);
+                padding: 0 P2R(12px);
+                font-size: $f18;
+            }
+        }
+        .text-bar {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: P2R(30px);
+            line-height: P2R(30px);
+            background: rgba(black,0.5);
+            span {
+                display: block;
+                color: $cl-w;
+                font-size: $f18;
+                padding: 0 P2R(10px);
+            }
+        }
+    }
+    .m-sld-dot{
+        position: absolute;
+        right: P2R(12px);
+        bottom: P2R(6px);
+    }
+}

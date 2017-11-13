@@ -1,0 +1,32 @@
+/**
+ * tip layer
+ */
+.m-popup{
+	position: fixed;
+	z-index: $layerLV3;
+	left: 50%;
+	top: 50%;
+	transform:translate(-50%,-50%);
+	width: P2R(120px);
+	height: P2R(120px);
+	color: #fff;
+	background: $pp-bg;
+	text-align: center;
+	border-radius: P2R(5px);
+	.m-box{
+		height: 100%;
+	}
+	header{
+		margin: 0 0 P2R(9px) 0;
+		font-size: 0;
+	}
+	.#{$front-icon-font}{
+		color: #fff;
+		font-size: P2R(37px);
+		vertical-align: top;
+	}
+	h3{
+		font-size: $f14;
+		line-height: 1.43;
+	}
+}

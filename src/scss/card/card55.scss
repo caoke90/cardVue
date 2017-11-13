@@ -1,0 +1,42 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card55 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(10px) 0;
+        }
+    }
+	.m-img-box{
+        @include imgsize(P2R(70px),P2R(70px));
+        margin: 0 P2R(16px) 0 0;
+        position: relative;
+    }
+    .rank-box{
+        h4{
+            font-size: $f12;
+            color: $cl-a;
+            em{
+                color: $cl-y;
+                margin: 0 P2R(8px) 0 0;
+            }
+            &:first-child{
+                font-size: $f16;
+                color: $cl-a;
+                margin: 0 0 P2R(8px) 0;
+                em{
+                    color: $cl-r;
+                }
+            }
+            &:nth-child(2){
+                margin: 0 0 P2R(6px) 0;
+            }
+        }
+        em {
+            display: inline-block;
+            width: P2R(14px);
+            height: P2R(14px);
+            font-style: oblique;
+        }
+    }
+}

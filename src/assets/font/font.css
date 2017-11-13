@@ -1,0 +1,76 @@
+/** font icon */
+/** fontface */
+@font-face { font-family: "marvelfont"; src: url("marvelfont.woff") format("woff"); font-weight: normal; font-style: normal; }
+
+.m-font { font-family: "marvelfont"; display: inline-block; -webkit-font-smoothing: antialiased; }
+
+/*arrow right chart 1*/
+.m-font-arrow-right::before { content: "\E000"; }
+
+.m-font-dot-more::before { content: "\E001"; }
+
+.m-font-download::before { content: "\E002"; }
+
+.m-font-comment::before { content: "\E003"; }
+
+.m-font-forward::before { content: "\E004"; }
+
+.m-font-star { position: relative; }
+
+.m-font-star::before { content: "\E005"; }
+
+.m-font-star::after { content: "\E005"; position: absolute; left: 0; top: 0; z-index: 1; }
+
+.m-font-follow::before { content: "\E006"; }
+
+.m-font-followed::before { content: "\E007"; }
+
+.m-font-arrow-down::before { content: "\E008"; }
+
+.m-font-check::before { content: "\E009"; }
+
+.m-font-close::before { content: "\E00A"; }
+
+.m-font-exchange::before { content: "\E00B"; }
+
+.m-font-minus::before { content: "\E00C"; }
+
+.m-font-plus::before { content: "\E00D"; }
+
+.m-font-repeat::before { content: "\E00E"; }
+
+.m-font-play::before { content: "\E00F"; }
+
+.m-font-stop::before { content: "\E010"; }
+
+.m-font-down::before { content: "\E011"; }
+
+.m-font-up::before { content: "\E012"; }
+
+.m-font-chart::before { content: "\E013"; }
+
+.m-font-up-s::before { content: "\E014"; }
+
+.m-font-search::before { content: "\E015"; }
+
+.m-font-bars::before { content: "\E016"; }
+
+.m-font-arrow-left::before { content: "\E017"; }
+
+.m-font-wb::before { content: "\E018"; }
+
+.m-font-wbmsg::before { content: "\E019"; }
+
+.m-font-share::before { content: "\E019"; }
+
+.m-font-wc::before { content: "\E01A"; }
+
+.m-font-warn::before { content: "\E01B"; }
+
+.m-font-wcmms::before { content: "\E01C"; }
+
+.m-font-line-check::before { content: "\E01D"; }
+
+.m-font-line-close::before { content: "\E01E"; }
+
+.m-font-live::before { content: "\E01F"; }

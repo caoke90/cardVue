@@ -1,0 +1,121 @@
+/**
+ * pop layer
+ */
+.m-pop{
+	position: absolute;
+	z-index: $layerLV3;
+	&.m-pop-s{
+		@include border(border,1px,solid,$pop-s-bd);
+		border-radius: P2R(3px);
+		background: $pop-s-bg;
+		-webkit-filter: drop-shadow(0px 1px 1px rgba(black,.2));
+		&:after{
+			content:"";
+			position: absolute;
+			z-index: 8;
+			width:P2R(10px);
+			height: P2R(10px);
+			background: $pop-s-bg;
+			@include border(border-top,1px,solid,$pop-s-bd);
+			@include border(border-left,1px,solid,$pop-s-bd);
+			border-radius: P2R(1px) 0 0 0;
+			transform-origin: 0 0;
+			transform: rotate(-135deg);
+			left: 50%;
+			bottom: P2R(-10px)*1.414/2*3 - P2R(-3px);
+		}
+		ul{
+			padding: P2R(2px) P2R(5px);
+			background: $pop-s-bg;
+			border-radius: P2R(3px);
+			position: relative;
+			z-index: 9;
+
+		}
+		li{
+			min-width: P2R(49px);
+			text-align: center;
+			&+li{
+				@include border(border-top,1px,solid,$pop-s-line);
+			}
+			a {
+				display: block;
+				height: P2R(37px);
+				line-height: P2R(37px);
+				color: $cl-a;
+				font-size: $f14;
+				border-radius: P2R(3px);
+				margin:P2R(3px) 0;
+				&:active{
+					background:#ededed;
+				}
+			}
+		}
+	}
+	&.m-pop-lt{
+		background: $pop-lt-bg;
+		box-shadow: 0 0 4px rgba(black,0.12);
+		padding:0 P2R(14px) P2R(16px) P2R(14px);
+		border-radius: P2R(5px);
+		color:$cl-a;
+		header{
+			line-height: P2R(46px);
+			font-size: $f18;
+		}
+		section{
+			@include border(border-top,1px,solid,$pop-lt-line);
+			@include border(border-bottom,1px,solid,$pop-lt-line);
+			font-size:$f15;
+
+			.gp-list{
+				max-height: P2R(200px);
+				overflow-y:auto;
+				overflow-x:hidden;
+				-webkit-overflow-scrolling : touch;
+				li{
+					&:last-child{
+					border:none;
+					}
+				}
+			}
+			a {
+				color:$cl-a;
+			}
+			.#{$front-icon-font}-plus{
+				vertical-align: top;
+				margin:0 P2R(7px) 0 0;
+			}
+			ul{
+				width: P2R(238px);
+				margin:0 P2R(-5px) ;
+				padding:0 P2R(5px) ;
+			}
+			li{
+				@include border(border-bottom,1px,solid,$pop-lt-line);
+				a,label{
+					display: block;
+					height: P2R(36px);
+					line-height: P2R(36px);
+					margin: P2R(3px) P2R(-5px);
+					padding:0 P2R(5px);
+					-webkit-touch-callout: none;
+ 					-webkit-user-select: none;
+					&:active{
+						background: #f2f2f2;
+					}
+				}
+				.m-checkbox{
+					span{
+						position: absolute;
+						right: P2R(5px);
+						top: 50%;
+						transform:translateY(-50%);
+					}
+				}
+			}
+		}
+		.m-btm-btns{
+			margin:P2R(15px) 0 0 0 ;
+		}
+	}
+}

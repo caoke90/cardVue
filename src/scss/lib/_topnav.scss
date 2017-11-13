@@ -1,0 +1,71 @@
+/**
+ * tab
+ */
+.m-top-nav{
+	position: fixed;
+	z-index: $layerLV1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: $card-bg;
+	height: P2R(37px);
+	box-sizing: border-box;
+	@include border(border-bottom,1px,solid,$bd-cl);
+	.nav-main{
+		overflow: hidden;
+		width: 1px;
+		&::before{
+			content: "";
+			position: absolute;
+			z-index: 9;
+			width: P2R(12px);
+			left: 0;
+			top: 0;
+			bottom: 0;
+			background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
+		}
+	}
+	.scroll-box{
+		overflow: auto;
+		&::-webkit-scrollbar {
+    		display: none;
+		}
+		-webkit-overflow-scrolling : touch;
+	}
+	.nav-item{
+		white-space: nowrap;
+		padding: 0 P2R(8px);
+		li{
+			display: inline-block;
+			font-size: $f16;
+			line-height: P2R(37px);
+			padding: 0 P2R(9px);
+			span{
+				display: block;
+				padding: 0 P2R(4px);
+			}
+			&.m-cur{
+				span{
+					color: $cl-y ;
+		 			box-shadow:inset 0 -2px 0 0 $cl-y;
+				}
+		 	}
+		}
+	}
+	.nav-plus {
+		width: P2R(39px);
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			width: P2R(8px);
+			transform:translateX(-100%);
+			-webkit-mask: -webkit-linear-gradient(top, transparent, #000 45%, #000 55%, transparent 100%);
+			@include border(border-right,1px,solid,#ccc);
+			box-shadow:inset -3px 0 3px rgba(black,.11);
+		}
+	}
+}

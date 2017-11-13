@@ -1,0 +1,18 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card32 {
+	.card-wrap{
+        height: P2R(44px);
+        .card-main{
+            margin: 0; 
+        }
+    }
+    .box-left {
+        font-size: 0;
+    	.main-link{
+	        font-size: $f16;
+	        color: $cl-a;
+	        max-width: 12rem;
+	    }
+    }
+}

@@ -1,0 +1,50 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+
+
+.card84 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+        }
+    }
+    a{
+        color: $cl-l;
+    }
+    article{
+        font-size: $f16;
+        line-height: 1.5;
+        @include col(0,0,P2R(7px),0);
+        section{
+            margin: P2R(10px) 0;
+        }
+    }
+    .media-box {
+        .#{$button}-media{
+            position: absolute;
+            z-index: 9;
+            font-size: (42/10)*1rem;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .m-auto-list{
+        .m-img-box{
+            position: relative;
+        }
+    }
+    .m-mask-type{
+        position: absolute;
+        z-index: 9;
+        right: 0;
+        bottom: 0;
+        background: rgba($cl-l,0.8);
+        border-radius:P2R(3px) 0 0 0;
+        color: #fff;
+        font-size: P2R(10px);
+        padding: P2R(4px) 0;
+        width: P2R(30px);
+        text-align: center;
+    }
+}

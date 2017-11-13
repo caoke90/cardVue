@@ -1,0 +1,30 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card36 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(10px) 0;
+        }
+    }
+	.m-img-box{
+        @include imgsize(P2R(70px),P2R(70px));
+        margin: 0 P2R(10px) 0 0;
+    }
+    .m-text-box{
+    	h4{
+    		position: relative;
+    		.txta{
+		    	color: $cl-o;
+		    	margin: 0 P2R(10px) 0 0;
+		    }
+		    .txtb{
+		    	text-decoration:line-through;
+		    }
+		    .txtc{
+				position: absolute;
+				right: 0;
+		    }
+    	}    	
+    }    
+}

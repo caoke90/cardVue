@@ -1,0 +1,39 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+
+
+.card85 {   
+    .card-wrap{
+        .card-main{
+            margin:0;
+            padding: P2R(10px) 0;
+        }
+    }
+    .box-left{
+        overflow: hidden;
+    }
+    .box-right{
+        margin-left: P2R(8px);
+    }
+    .m-avatar-box{
+        .m-img-box{
+            width: P2R(24px);
+            height: P2R(24px);
+            margin-right: P2R(7px);
+        }
+        .m-text-box{
+            h3{
+                font-size: $f14;
+                color: $cl-b; 
+            }
+        }
+        .#{$imageIcon}{
+            @include icsize(10px);
+        }
+    }
+    .m-ctrl-box{
+        .m-line-gradient{
+            margin:0 P2R(9px);
+        }
+    }
+}

@@ -1,0 +1,50 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card4 {
+	.card-wrap{
+        height: P2R(44px);
+        .card-main{
+            margin: 0;
+        }
+    }
+		.m-img-icon{
+			flex-shrink: 0;
+		}
+    .box-left{
+        font-size: 0;
+        min-width: 0;
+        .main-link{
+            font-size: $f16;
+            color: $cl-a;
+            min-width: 0;
+						.main-text{
+							min-width: 0;
+							display: block;
+							/*处理低版本安卓4.x不截字的问题*/
+							max-width: 10rem;
+							max-width: 100vw;
+						}
+						.sub-text{
+		            font-size: $f12;
+		            color: $cl-c;
+		            margin-left:P2R(4px);
+								flex-shrink: 0;
+		        }
+        }
+    }
+    .img-icon-b{
+        margin-right: 0;
+    }
+    .m-link-icon{
+        margin-left: P2R(8px);
+        height: auto;
+				flex-shrink: 0;
+        img{
+            height: auto;
+        }
+    }
+    .m-bubble-red-s{
+				flex-shrink: 0;
+        margin-left: P2R(8px);
+    }
+}

@@ -1,0 +1,34 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+
+.card19 {
+    .card-wrap {
+        .card-main {
+            margin-bottom: -1px;
+            /* autoprefixer: off */
+            display: flex;
+            flex-wrap: wrap;
+        }
+    }
+    .m-item-box {
+        /*调用itembox组件,参看sasscore*/
+        @include itembox(auto,1,center,P2R(10px) 0 P2R(14px),P2R(16px),P2R(16px),P2R(36px),P2R(36px),$f12,P2R(7px) 0 0 0);
+        min-height: P2R(56px);
+        display: inline-flex;
+        align-items: center;
+        .m-diy-btn {
+            flex-direction: column;
+            position: relative;
+            height: 100%;
+            h3 {
+                font-size: $f15;
+                color: $cl-a;
+                margin-bottom: 0;
+                font-weight: 700;
+                + h4 {
+                    color: $cl-c;
+                }
+            }
+        }
+    }
+}

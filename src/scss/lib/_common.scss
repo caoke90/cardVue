@@ -1,0 +1,367 @@
+/**
+ * common
+ */
+html{
+    background:$baseBgColor;
+    font-size:$baseFontSize;
+}
+a {
+    color: $cl-l;
+}
+
+.card {
+    margin-bottom: P2R(9px);
+    .card-wrap{
+        margin-left: $gap;
+        margin-right: $gap;
+        height: 100%;
+        .card-main{
+            box-sizing:border-box;
+            margin-left: 0-$gap;
+            margin-right: 0-$gap;
+            height: 100%;
+            >.m-box{
+                height: 100%;
+            }
+        }
+    }
+    .box-right .#{$front-icon-font}-arrow-right {
+        font-size: $f14;
+        width: P2R(10px);
+        color: $cl-c;
+    }
+}
+.m-img-icon,
+.link-text,
+.main-link,
+.sub-link{
+    display: inline-block;
+    vertical-align: middle;
+}
+.m-active{
+    background-color: $bd-cl!important;
+    position: relative;
+    z-index: 2;
+}
+.m-img-box{
+    display: inline-block;
+    width: 100%;
+    img{
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+        object-fit: cover;
+    }
+}
+.m-text-cut{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.m-text-cut-2{
+    @include cutword(2);
+}
+.m-img-icon{
+    margin-right: P2R(10px);
+    @include imgsize(P2R(24px),P2R(24px));
+    font-size: 0;
+    img {
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+    }
+}
+.m-link-icon {
+    margin-left:P2R(4px);
+    display: inline-block;
+    vertical-align: middle;
+    @include imgsize(P2R(24px),P2R(14px));
+    font-size: 0;
+    img{
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+    }
+}
+
+.m-line-gradient{
+    -webkit-mask: -webkit-linear-gradient(top, transparent, #000 30%, #000 70%, transparent 100%);
+    //@include border(border-right,1px,solid,$bd-cl);
+    @include fixborder(1px,null,$bd-cl);
+    height: P2R(24px);
+}
+/*点评星星元素*/
+.m-star-box{
+    display: inline-block;
+    position: relative;
+    font-size: P2R(16px);
+    line-height: 1;
+    color: $star-base;
+    .star-value{
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        overflow: hidden;
+        white-space: nowrap;
+        .#{$front-icon-font}-star{
+             color: $star-check;
+        }
+    }
+
+    .#{$front-icon-font}-star{
+        vertical-align: top;
+        font-size: 1em;
+    }
+}
+/*点评星星另一种表现形式*/
+.m-star-full{
+    color: $star-check;
+}
+.m-star-null{
+    color: $star-base;
+}
+.m-star-half{
+    color: $star-base;
+    &::after{
+        width: 50%;
+        color: $star-check;
+        overflow: hidden;
+    }
+}
+/*image and text box*/
+.m-text-box{
+        h3{
+            font-size: $f16;
+            color: $cl-a;
+            line-height: 1.4;
+            &.txt-cut{
+                line-height: normal;
+            }
+            .#{$imageIcon}{
+                vertical-align: P2R(-2px);
+            }
+        }
+        h4{
+            font-size: $f12;
+            color: $cl-b;
+            line-height: 1.5;
+            &:last-child{
+                color: $cl-c;
+            }
+        }
+        &>*{
+            margin: 0 0 P2R(6px) 0;
+        }
+        &>:last-child{
+            margin: 0;
+        }
+    }
+
+.m-btn-box {
+    .m-diy-btn{
+        flex-direction: column;
+        img {
+            @include imgsize(P2R(24px),P2R(24px));
+            vertical-align: top;
+        }
+        .#{$front-icon-font}{
+            font-size: P2R(24px);
+        }
+        h4{
+            font-size: $f10;
+            margin: P2R(4px) 0 0 0;
+        }
+    }
+}
+.box-right{
+    &.m-btn-box{
+        color: $cl-l;
+        margin-left:P2R(12px);
+        width: P2R(52px);
+    }
+}
+
+
+/*follow btn*/
+.m-add-box {
+        color: $cl-y;
+        text-align: center;
+        display: inline-block;
+        &.#{$button}{
+            width: P2R(37px);
+            min-width: 0;
+            height: P2R(33px);
+            line-height: P2R(33px);
+            vertical-align: top;
+            .#{$front-icon-font} {
+               font-size: P2R(20px);
+            }
+        }
+        &.m-add-text{
+            width: auto;
+            color: $cl-y;
+            font-size: $f12;
+            padding: 0 P2R(10px);
+            height: P2R(27px);
+            line-height: P2R(27px);
+            .#{$front-icon-font} {
+                font-size: P2R(12px);
+                vertical-align: top;
+            }
+        }
+        h4{
+            font-size: $f10;
+        }
+        .#{$front-icon-font}{
+            color: $cl-y;
+            font-size: P2R(28px);
+        }
+        &.m-add-al {
+            color: $cl-c;
+            .#{$front-icon-font}{
+                color: $cl-c;
+            }
+        }
+        &.m-add-each{
+             color: $cl-g;
+            .#{$front-icon-font}{
+                color: $cl-g;
+            }
+        }
+}
+
+.m-sld-dot {
+    li{
+        display: inline-block;
+        width: P2R(8px);
+        height: P2R(8px);
+        border-radius: 50%;
+        background: rgba(255,255,255,0.9);
+        box-shadow: 0 0 1px rgba(0,0,0,0.1);
+        margin: 0 0 0 P2R(4px);
+        &.cur{
+            background: #FF8200;
+        }
+    }
+}
+
+.m-ctrl-box {
+    .m-diy-btn{
+        color: $cl-c;
+        height: 100%;
+        img{
+            @include imgsize(P2R(18px),P2R(18px))
+        }
+        h4{
+            font-size: $f13;
+            display: inline-block;
+            margin-top:0;
+            margin-left: P2R(4px);
+            a {
+                color: $cl-l;
+            }
+        }
+    }
+    .#{$front-icon-font}{
+        font-size: P2R(16px);
+        vertical-align: middle;
+    }
+    .#{$imageIcon}{
+        @include icsize(16px);
+        vertical-align: middle;
+    }
+}
+footer{
+    &.m-ctrl-box{
+        @include line(1px,0,0,0,$bd-cl);
+        height: P2R(34px);
+    }
+}
+
+
+.m-btm-btns{
+		.m-box-col{
+			margin-right: P2R(10px);
+			&:last-child{
+				margin: 0;
+			}
+		}
+		a{
+			width: 100%;
+		}
+	}
+/*处理头像圆角 icsize控制处理不同设备的V标适配*/
+.m-avatar-box{
+    .m-img-box{
+        &::before{
+            content: "";
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            @include border(border,1px,solid,$avt-cl);
+            border-radius: 50%;
+        }
+
+        border-radius: 50%;
+        position: relative;
+        img{
+            border-radius: 50%;
+        }
+        .#{$imageIcon}{
+            position: absolute;
+            z-index: 3;
+            right: P2R(-1px);
+            bottom: P2R(-1px);
+        }
+    }
+    &.m-col-4 {
+        .#{$imageIcon}{
+            @include icsize(18px);
+        }
+    }
+    &.m-col-7 {
+        .#{$imageIcon}{
+            @include icsize(10px);
+        }
+    }
+}
+/*遮罩层*/
+.m-mask{
+    position: fixed;
+    z-index: 996;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(black,0.6);
+}
+/*控制图片容器内图形尺寸*/
+[class*=m-imghold]{
+    height: 0;
+    //overflow: hidden;
+    position: relative;
+    > img {
+        z-index: 0;
+        height: 100%;
+        position: absolute;
+    }
+}
+.m-imghold-square{
+    padding-bottom: 100%;
+}
+.m-imghold-wide{
+    padding-bottom: 56.25%;
+}
+/*解决低版本安卓不支持object-fit属性*/
+.m-img-fix {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

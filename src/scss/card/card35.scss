@@ -1,0 +1,22 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card35 {
+    //均分栅格 上下内间距,左右内间距,列间距,行间距。
+    @include col(P2R(10px),$gap,P2R(7px),P2R(7px));
+    .m-auto-box {
+    	.m-text-box{
+            margin: P2R(7px) 0 0 0;
+    		h3{
+                text-align: center;
+                font-size: $f15;
+            }
+            h4{
+                text-align: center;
+            }
+    	}
+        .m-img-box{
+            height: 0;
+            padding-bottom: 100%;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card54 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(15px) 0 P2R(10px);
+        }
+    }
+	.m-img-box{
+        @include imgsize(P2R(34px),P2R(34px));
+        margin: 0 P2R(12px) 0 0;
+    }
+    .m-text-box{
+        h3{
+            font-size: $f15;
+            margin:0 0 P2R(3px) 0;
+        }
+        .m-star-box{
+            font-size: P2R(12px);
+            vertical-align: top;
+        }
+    }
+    header{
+        aside{
+            .#{$imageIcon}{
+                vertical-align: middle;
+            }
+            .like-num{
+                font-size: $f12;
+                color: $cl-c;
+                margin: 0 0 0 P2R(3px);
+            }
+        }
+    }
+    article{
+        margin: P2R(8px) 0 0 0;
+        font-size: $f17;
+        color: $cl-a;
+        line-height: 1.4;
+    }
+    footer {
+        margin: P2R(4px) 0 0 0;
+        a{
+            color: $cl-l;
+            font-size: $f12;
+        }
+    }
+}

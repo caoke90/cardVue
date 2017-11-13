@@ -1,0 +1,147 @@
+.f-fz12{
+	font-size: 0.75rem;
+}
+.f-fz13{
+	font-size: 0.8125rem;
+}
+.f-fz14{
+	font-size: 0.875rem;
+}
+.f-fz15{
+	font-size: 0.9375rem;
+}
+.f-fz16{
+	font-size: 1rem;
+}
+.f-fz18{
+	font-size: 1.125rem;
+}
+.f-fz20{
+	font-size: 1.25rem;
+}
+.f-fc-a{
+	color:#939393;
+}
+.f-fc-b{
+	color:#5184bc;
+}
+.f-fc-c{
+	color:#fff;
+}
+.f-fc-d{
+	color:#636363;
+}
+.f-fc-e{
+	color:#e14123;
+}
+.f-fc-f{
+	color:#ff8504;
+}
+.f-fc-g{
+	color:#507daf;
+}
+.f-fc-h{
+	color:#828282;
+}
+.f-fc-i{
+	color:#FF8200;
+}
+.f-bg-a{
+	background-color: #e6e6e6;
+}
+.f-fbtn-wh{
+	width:4.375rem;
+}
+.f-txt-center{
+	text-align: center;
+}
+.f-txt-left{
+	text-align: left;
+}
+.f-txt-right{
+	text-align: right;
+}
+.f-ftxt-left{
+	text-align: left;
+	width:100%;
+}
+.f-ftxt-right{
+	text-align: right;
+	width:100%;
+}
+.f-ftxt-center{
+	text-align: center;
+	width:100%;
+}
+.f-va-mid{
+	vertical-align: middle;
+}
+.f-h2{
+	line-height: 1.5;
+	padding-left:0.75rem;
+	padding-right:0.75rem;
+}
+.f-tips{
+	height:2.5rem;
+	line-height: 2.5rem;
+	& a,span{
+		vertical-align: middle;
+	}
+}
+.f-spacing{
+	padding:0 0.75rem;
+}
+.f-wz-desc{
+	line-height: 1.2;
+}
+.f-btn-box .m-btn{
+	font-size: 1.0625rem;
+}
+.f-right-icon{
+	display: inline-block;
+    border: solid 0.1875rem #d0d0d0;
+    border-radius: 999px;
+    border-radius: 50%;
+    position: relative;
+    width: 5.5rem;
+    height: 5.5rem;
+    .m-font-check{
+    	position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    -webkit-transform: translate(-50%,-50%);
+	    transform: translate(-50%,-50%);
+	    -webkit-transform-origin: 0 0;
+	    transform-origin: 0 0;
+	    font-size: 2.75rem;
+	    color: #d0d0d0;
+	    font-weight: lighter;
+    }
+}
+.f-phone-icon{
+	width: 5.5rem;
+    height: 5.5rem;
+    display: inline-block;
+    img{
+    	width:100%;
+    	height:100%;
+    }
+}
+.f-amaz-icon{
+	display: inline-block;
+    width: 6rem;
+    height: 6rem;
+    img{
+    	width:100%;
+    	height:100%;
+    }
+}
+.f-amaz-icon2{
+	display:inline-block;
+	width:5.5rem;
+	height:5.5rem;
+	img{
+		width:100%;
+    	height:100%;
+	}
+}

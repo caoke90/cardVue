@@ -1,0 +1,29 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card38 {
+    .card-wrap{
+        .card-main{
+            .rank-box{
+                height: P2R(66px)
+            }
+        }
+    }            
+    .rank-value {
+    	display: inline-block;
+    	width: P2R(35px);
+    	height: P2R(17px);
+    	text-align: center;
+    	line-height: P2R(17px);
+        @include border(border,1px,solid,$cl-y);
+		font-size: $f12;
+		color: $cl-y;
+		border-radius: P2R(10px);
+		margin: 0 P2R(8px) 0 0;
+    }
+    .m-star-box{
+        font-size: P2R(26px);
+    	.#{$front-icon-font}-star{
+    		margin:0 P2R(8px);
+    	}
+    }
+}

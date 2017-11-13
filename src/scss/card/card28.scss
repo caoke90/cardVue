@@ -1,0 +1,17 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card28 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(10px) 0;
+        }
+    }
+	.m-img-box{
+        @include imgsize(P2R(70px),P2R(70px));
+        margin: 0 P2R(10px) 0 0;
+        .#{$imageIcon}{
+            @include icsize(16px);
+        }
+    }
+}

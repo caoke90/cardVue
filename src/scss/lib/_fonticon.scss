@@ -1,0 +1,118 @@
+/**
+ * font icon
+ */
+@import "fontface";
+.#{$front-icon-font}{
+	font-family: '#{$font-family-name}';
+    display:inline-block;
+    //color:$baseFontIconColor;
+    -webkit-font-smoothing:antialiased;
+}
+/*arrow right chart 1*/
+.#{$front-icon-font}-arrow-right{
+	&::before{content:"\E000";}
+}
+.#{$front-icon-font}-dot-more{
+    &::before{content:"\E001";}
+}
+.#{$front-icon-font}-download{
+    &::before{content:"\E002";}
+}
+.#{$front-icon-font}-comment{
+    &::before{content:"\E003";}
+}
+.#{$front-icon-font}-forward{
+    &::before{content:"\E004";}
+}
+.#{$front-icon-font}-star{
+    position: relative;
+    &::before{content:"\E005";}
+    &::after{
+        content:"\E005";
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 1;
+    }
+}
+.#{$front-icon-font}-follow{
+    &::before{content:"\E006";}
+}
+.#{$front-icon-font}-followed{
+    &::before{content:"\E007";}
+}
+.#{$front-icon-font}-arrow-down{
+    &::before{content:"\E008";}
+}
+.#{$front-icon-font}-check{
+    &::before{content:"\E009";}
+}
+.#{$front-icon-font}-close{
+    &::before{content:"\E00A";}
+}
+.#{$front-icon-font}-exchange{
+    &::before{content:"\E00B";}
+}
+.#{$front-icon-font}-minus{
+    &::before{content:"\E00C";}
+}
+.#{$front-icon-font}-plus{
+    &::before{content:"\E00D";}
+}
+.#{$front-icon-font}-repeat{
+    &::before{content:"\E00E";}
+}
+.#{$front-icon-font}-play{
+    &::before{content:"\E00F";}
+}
+.#{$front-icon-font}-stop{
+    &::before{content:"\E010";}
+}
+.#{$front-icon-font}-down{
+    &::before{content:"\E011";}
+}
+.#{$front-icon-font}-up{
+    &::before{content:"\E012";}
+}
+.#{$front-icon-font}-chart{
+    &::before{content:"\E013";}
+}
+.#{$front-icon-font}-up-s{
+    &::before{content:"\E014";}
+}
+.#{$front-icon-font}-search{
+    &::before{content:"\E015";}
+}
+.#{$front-icon-font}-bars{
+    &::before{content:"\E016";}
+}
+.#{$front-icon-font}-arrow-left{
+    &::before{content:"\E017";}
+}
+.#{$front-icon-font}-wb{
+    &::before{content:"\E018";}
+}
+.#{$front-icon-font}-wbmsg{
+    &::before{content:"\E019";}
+}
+.#{$front-icon-font}-share{
+    &::before{content:"\E019";}
+}
+.#{$front-icon-font}-wc{
+    &::before{content:"\E01A";}
+}
+.#{$front-icon-font}-warn{
+    &::before{content:"\E01B";}
+}
+.#{$front-icon-font}-wcmms{
+    &::before{content:"\E01C";}
+}
+.#{$front-icon-font}-line-check{
+    &::before{content:"\E01D";}
+}
+.#{$front-icon-font}-line-close{
+    &::before{content:"\E01E";}
+}
+.#{$front-icon-font}-live{
+    &::before{content:"\E01F";}
+}

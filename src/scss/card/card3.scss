@@ -1,0 +1,71 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card3 {
+	.card-title{
+		padding-top: P2R(10px);
+        margin: 0 $gap;
+		font-size: $f14;
+		color: $cl-a;
+	}
+    //均分栅格 上下内间距,左右内间距,列间距,行间距。
+    @include col(P2R(10px),$gap,P2R(4px),P2R(10px));
+    .m-auto-list{
+       position: relative;
+    }
+    .card-icon{
+        position: absolute;
+        z-index: 9;
+        width: P2R(36px);
+        height: P2R(36px);
+        top:0;
+        left: 0;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .m-auto-box {
+    	.m-text-box{
+            text-align: center;
+    		h3 {
+                font-size: $f13;
+                margin: P2R(10px) 0 0 0;
+            }
+            h4 {
+                font-size: $f12;
+                color: $cl-c;
+                margin: P2R(6px) 0 0 0;
+                line-height: normal;
+            }
+    	}
+    }
+    &.card-more{
+        .m-auto-box{
+            &:nth-of-type(4) {
+                .m-img-box{
+                    position: relative;
+                    &::before{
+                        font-family: "marvelfont";
+                        content:"\E000";
+                        font-size: P2R(32px);
+                        color: #c8c8c8;
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform:translate(-50%,-50%);
+                        z-index: 99;
+                    }   
+                    &::after{    
+                        content: "";        
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0,0,0,0.5);
+                    }
+                }
+            }
+        }
+    }
+}

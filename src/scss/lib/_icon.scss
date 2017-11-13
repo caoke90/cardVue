@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+/*SVG拼图 16px为基准单位,因为拼图四周有一个单位大小的间隔，所以这里是48px*/
+$spriteWidth:P2M(48px);
+$spriteHeight:auto;
+
+
+
+.#{$imageIcon} {
+    display: inline-block;
+    vertical-align: top;
+    @include svgGet('#{$imageIconPath}', 'svg', $spriteWidth,$spriteHeight);
+    width: P2M(16px);
+    height: P2M(16px);
+}
+
+
+
+
+$sprite: yellowv bluev club vgirl male female vip nvip like liked warn vipl1 vipl2 vipl3 vipl4 vipl5 vipl6 goldv vipl7 share shareH !default;
+
+
+@each $icon in $sprite {
+    .#{$imageIcon}-#{$icon} {
+        background-position:P2M(-16px) P2M(-16px)-((index($sprite,$icon)-1)*P2M(48px));
+    }
+}
+
+
+@mixin ic($device){
+	$sizes:(
+		(#{$imageIcon} 14px)
+		(#{$imageIcon}-large 22px)
+		(#{$imageIcon}-warn 18px)
+	);
+
+	@each $size in $sizes {
+		$type:  nth($size, 1);
+	  	$vl: nth($size, 2);
+		.#{$type} {
+	        font-size: ceil($vl*$device);
+	    }
+	}
+}
+
+@include ic(1);
+
+/*金V*/
+$pngwidth : 42px;
+$basewidth : 16px;
+$stepframes : 15;
+$stepcount : 3;
+$stepduration : 2s;
+
+.#{$imageIcon}-goldv {
+	position: relative;
+}
+.#{$imageIcon}-goldv::after {
+	content: ' ';
+	display: block;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-image: url('../../img/goldv.png');
+	background-size: P2M($basewidth) auto;
+	background-position: 0 -10000px;
+	animation: sprite $stepduration steps($stepframes) $stepcount backwards;
+}
+
+@keyframes sprite {
+   from { background-position: 0 0; }
+   to   { background-position: 0 P2M(-$pngwidth*$stepframes*$basewidth/$pngwidth); }
+}

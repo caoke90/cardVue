@@ -1,0 +1,329 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card9 {
+
+    &.card-vip{
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: contain;
+    }
+    .widget-cover {
+        width: 100%;
+        height: 0;
+        padding-bottom: 80/140 * 100%;
+        position: absolute;
+        left: 0;
+        top: P2R(-7px);
+        z-index: 99;
+        background-size: cover;
+    }
+    &.weibo-member{
+        .weibo-top{
+            .m-text-box {
+                h3{
+                    color: $cl-o;
+                }
+            }
+        }
+    }
+    &.recently-weibo{
+        .weibo-top{
+            .m-text-box {
+                h4{
+                    .time{
+                        color: $cl-y;
+                    }
+                }
+            }
+        }
+    }
+    > .card-wrap{
+        padding-top:P2R(15px);
+    }
+    .card-title{
+        margin-top:P2R(-15px);
+        margin-bottom: P2R(15px);
+        padding: 0 $gap;
+        height: P2R(35px);
+        line-height: P2R(35px);
+        font-size: $f14;
+        position: relative;
+        //color: $cl-l;
+        @include line(0,0,1px,0,$bd-cl);
+        .m-ctrl-box {
+            display: inline-block;
+            img {
+                @include imgsize(P2R(14px),P2R(14px));
+            }
+        }
+        aside{
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            color: $cl-c;
+            font-size: $f14;
+            padding: 0 $gap;
+        }
+    }
+    .weibo-top {
+        padding: 0 $gap;
+        .m-img-box{
+            @include imgsize(P2R(38px),P2R(38px))
+        }
+        .m-text-box{
+            margin-left:P2R(12px);
+            h3{
+                font-size: $f15;
+                margin: 0;
+            }
+            h4{
+                color: $cl-c;
+            }
+        }
+        aside{
+            color: $cl-c;
+            font-size: $f14;
+            padding-top: P2R(5px);
+            min-width: P2R(40px);
+            text-align: right;
+        }
+    }
+    .weibo-main{
+        .weibo-text{
+            line-height: 1.5;
+            word-wrap : break-word;
+        }
+        .url-icon{
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: P2R(2px);
+            img{
+                @include imgsize(P2R(16px),P2R(16px))
+            }
+        }
+        a{
+            color: $cl-l;
+        }
+        .feed-mark{
+            position: absolute;
+            background-color: rgba($cl-l,0.75);
+            right: 0;
+            bottom: 0;
+            border-radius:P2R(2px) 0 0 0 ;
+            padding: P2R(2px);
+            color: #fff;
+            font-size: $f10;
+        }
+
+        .weibo-og{
+            font-size: $f17;
+            color: $cl-a;
+            padding:$gap;
+        }
+        .weibo-media{
+            &:empty{
+              display: none;
+            }
+            margin-top:P2R(10px);
+            .m-auto-list{
+                li{
+                    display: inline-block;
+                    vertical-align: top;
+                }
+            }
+            > img{
+                vertical-align: top;
+                max-width: P2R(150px);
+            }
+        }
+        .media-a{
+            margin-bottom: P2R(-8px);
+            .m-auto-list{
+               max-width: P2R(220px);
+                li{
+                    margin: 0 P2R(5px) P2R(5px) 0;
+                }
+                .m-img-box{
+                    @include imgsize(P2R(96px),P2R(96px));
+                }
+            }
+        }
+        .media-b{
+            margin: P2R(10px) P2R(-2px) P2R(-6px);
+            .m-auto-list{
+                max-width: P2R(460px);
+                .m-auto-box{
+                    width: 33.33%;
+                }
+            }
+            @include col(0,0,P2R(4px),P2R(4px));
+        }
+        .media-c{
+            max-height: P2R(150px);
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+        }
+    }
+    .card{
+        margin: 0;
+        &.m-panel{
+            box-shadow: none;
+            @include line(1px,1px,1px,1px,#f0f0f0);
+            background-color: #f8f8f8;
+        }
+        .card-wrap{
+            .card-main{
+                padding: 0;
+                margin: 0 (-$gap);
+            }
+        }
+        .m-img-box{
+            @include imgsize(P2R(70px),P2R(70px));
+        }
+        .card-main > .m-box > .m-box-col{
+            margin: 0 P2R(10px);
+            overflow: hidden;
+        }
+        .m-text-box{
+            h3{
+                margin: 0;
+            }
+            h4{
+                margin: 0;
+            }
+        }
+        &.article-card{
+            height: P2R(80px);
+            .feed-mark{
+                @include imgsize(P2R(26px),P2R(26px));
+                top: 0;
+                left: 0;
+                padding: 0;
+            }
+            .m-img-box{
+                @include imgsize(P2R(102px),P2R(80px));
+                overflow: hidden;
+                position: relative;
+                img{
+                    width: auto;
+                    height: 100%;
+                    max-width: none;
+                }
+            }
+            .m-text-box{
+                h3,h4:first-of-type{
+                    margin-bottom: P2R(2px);
+                }
+            }
+        }
+    }
+    .weibo-rp{
+        background-color:#f7f7f7 ;
+        margin-top:P2R(-4px);
+        padding: $gap;
+        .weibo-text{
+            font-size: $f15;
+            color: $cl-b;
+            line-height: 1.6;
+        }
+        .card{
+            &.m-panel{
+                background-color: #fff;
+            }
+        }
+    }
+    .top-article{
+        @include line(1px,1px,1px,1px,$bd-cl);
+        &+ .top-article{
+            border-top: 0;
+        }
+        background-color: #fff;
+        .m-img-box{
+            height: P2R(175px);
+            vertical-align: top;
+            overflow: hidden;
+            position: relative;
+            .article-mark{
+                position: absolute;
+                z-index: 10;
+                width: P2R(25px);
+                height: P2R(25px);
+                right: P2R(5px);
+                top: P2R(5px);
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .article-by{
+                font-size: $f15;
+                color: #fff;
+                text-shadow:1px 1px rgba(0,0,0,.5);
+                position: absolute;
+                left: P2R(12px);
+                bottom: P2R(10px);
+            }
+            &::after{
+                content:"";
+                position: absolute;
+                z-index: 9;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 80%,rgba(0,0,0,0.1) 100%);
+            }
+            > img{
+                min-width: 100%;
+                min-height:  P2R(175px);
+            }
+        }
+        .article-des{
+            height: P2R(58px);
+            padding: 0 P2R(12px);
+            h3{
+                font-size: $f16;
+            }
+            h4{
+                font-size: $f12;
+                color: $cl-c;
+                margin-top: P2R(5px);
+            }
+        }
+    }
+    .forward-report {
+        text-align: center;
+        margin-bottom: P2R(3px);
+        .m-img-box{
+            position: relative;
+            height: 0;
+            padding-bottom: 90/336 *100%;
+            img{
+                position: absolute;
+                left: 0;
+            }
+        }
+        .report-tag{
+            position: absolute;
+            width: 77/351 * 100%;
+            height: 0;
+            padding-bottom: 82/351 * 100%;
+            top: 0;
+            left: 10/351 * 100%;
+            background-size: cover;
+        }
+        h3 {
+            font-size: $f18;
+            margin-top: P2R(12px);
+        }
+        h4 {
+            font-size: $f12;
+            color: $cl-c;
+            margin-top: P2R(6px);
+        }
+    }
+
+}

@@ -1,0 +1,81 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card59 {
+    //均分栅格 上下内间距,左右内间距,列间距,行间距。
+    @include col(0,0,P2R(8px),P2R(10px));
+    .m-auto-box {
+        .m-panel{
+            border: 0;
+        }
+        .m-mask-type{
+            position: absolute;
+            z-index: 9;
+            right: 0;
+            top: 0;
+            background: rgba($cl-l,0.8);
+            border-radius: 0 0 0 P2R(3px);
+            color: #fff;
+            font-size: P2R(10px);
+            padding: P2R(4px) 0;
+            width: P2R(30px);
+            text-align: center;
+        }
+        .#{$button}-media{
+            position: absolute;
+            z-index: 9;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+    	article{
+            >.m-img-box{
+                position: relative;
+            }
+            .m-avatar-box{
+                position: absolute;
+                z-index: 9;
+                bottom: P2R(6px);
+                left: P2R(9px);
+                right: 0;
+                .m-img-box {
+                    width: P2R(24px);
+                    height: P2R(24px);
+                }
+                .m-text-box{
+                    margin-left:P2R(9px);
+                    h3{
+                        color: #fff;
+                        font-size: $f14;
+                    }
+                }
+                .#{$imageIcon}{
+                    @include icsize(8px);
+                }
+            }
+	    	>.m-text-box{
+                padding:P2R(8px) P2R(9px);
+	    		h3{
+					font-size: $f15;
+                    line-height: 1.2;
+                    height: P2R(34px);
+	    		}
+	    		h4{
+                    bottom: P2R(8px);
+	    		}
+	    	}
+	    }
+        .m-ctrl-box{
+            margin:0 P2R(10px);
+            .m-diy-btn {
+                justify-content: flex-start;
+            }
+            .#{$front-icon-font}-dot-more {
+                font-size: $f15;
+                color: $cl-c;
+            }
+            h4{
+                font-size: $f12;
+            }
+        }
+    }
+}

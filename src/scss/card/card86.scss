@@ -1,0 +1,29 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+
+
+.card86 {
+    >.card-wrap {
+      >.card-main {
+        padding: P2R(10px) 0;
+      }
+    }
+    .item-list {
+      font-size: 0;
+      margin-left: $gap;
+      white-space: nowrap;
+      overflow: auto;
+  		&::-webkit-scrollbar {
+      		display: none;
+  		}
+  		-webkit-overflow-scrolling : touch;
+      .card {
+        margin: 0;
+      }
+      li {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: P2R(5px);
+      }
+    }
+}

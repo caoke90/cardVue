@@ -1,0 +1,28 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card25 {
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(10px) 0;
+        }
+    }
+	.m-img-box{
+        @include imgsize(P2R(50px),P2R(50px));
+        margin: 0 P2R(10px) 0 0;
+    }
+    .score-box{
+    	font-family: "HelveticaNeue-Light";
+    	display: table-cell;
+    	vertical-align: middle;
+    	text-align: center;
+    	background-color: #fe9400;
+    	color: #fff;
+    	@include imgsize(P2R(50px),P2R(50px));
+        font-size: P2R(16px);
+        &::first-letter{
+            font-size: P2R(32px);
+            vertical-align: text-top;
+        }
+    }
+}

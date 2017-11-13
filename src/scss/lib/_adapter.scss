@@ -1,0 +1,26 @@
+/**
+ * adapter
+ */
+
+
+
+@include device(iPlus){
+	html{
+        font-size: $iPlus*$baseFontSize;
+    }
+	@include ic($iPlus);
+}
+@include device(iPad){
+	html{
+        font-size: $iPad*$baseFontSize;
+    }
+    @include ic($iPad);
+}
+@include device(Max){
+	.m-container-max{
+		width: 750px;
+		margin: 0 auto;
+	}
+}
+
+

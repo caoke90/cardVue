@@ -1,0 +1,27 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+.card53 {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right top;
+    .card-wrap{
+        .card-main{
+            margin: 0;
+            padding: P2R(10px) 0;
+        }
+    }
+    .m-text-box h4 {
+        color: #FFF;
+    }
+	.m-img-box{
+        @include imgsize(P2R(70px),P2R(70px));
+        margin: 0 P2R(10px) 0 0;
+        position: relative;
+    }
+    .m-btn-box {
+        color: #f00;
+        img {
+            width: auto;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+/**
+ * fontface
+ */
+
+ // @font-face {
+ //     font-family: '#{$font-family-name}';
+ //     src: url('#{$font-file-path}.woff2') format('woff2'),
+ //          url('#{$font-file-path}.woff') format('woff'),
+ //          url('#{$font-file-path}.svg') format('svg'),
+ //          url('#{$font-file-path}.ttf') format('truetype');
+ //     font-weight: normal;
+ //     font-style: normal;
+ // }
+
+ @font-face {
+     font-family: '#{$font-family-name}';
+     src: url('#{$font-file-path}.woff') format('woff');
+     font-weight: normal;
+     font-style: normal;
+ }

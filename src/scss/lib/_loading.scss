@@ -1,0 +1,65 @@
+/**
+ * loading
+ */
+
+$loading-size: P2R(16px) !default;
+$loading-canvas: P2M(37px);
+$loading-linewidth: P2M(1.5px);
+$loading-lineheight: P2M(8px);
+$loading-linenum: 12;
+$loading-time: 1.1s;
+
+.m-loading{
+	font-size: $loading-size;
+	position: relative;
+	display: inline-block;
+	width: $loading-canvas;
+	height:  $loading-canvas;
+    span{
+	    position: absolute;
+	    will-change: background-color;
+	    left: ($loading-canvas - $loading-linewidth)/2;
+	    bottom: 0;
+	    width: $loading-linewidth;
+	    height: $loading-lineheight;
+	    border-radius: P2M(4px);
+	    background-color: transparent;
+	    transform-origin: center  ($loading-lineheight - $loading-canvas/2);
+	    $animation-delay: 0s;
+		$blade-rotation: 0deg;
+		-webkit-backface-visibility:hidden;
+		@for $i from 1 through $loading-linenum{
+	      &:nth-child(#{$i}){
+		        animation-delay: $animation-delay;
+		        transform: rotate($blade-rotation);
+		        $blade-rotation: $blade-rotation + (360/$loading-linenum);
+		        $animation-delay: $animation-delay + $loading-time/($loading-linenum - 1);
+		    }
+	    }
+	}
+}
+
+@mixin loading($type,$loading-color){
+	span{
+		animation: loading-fade-#{$type} $loading-time infinite linear;
+	}
+	@keyframes loading-fade-#{$type}{
+	  0%{
+	    background-color: $loading-color;
+	    }
+	  100%{
+	    background-color: rgba(white,0);
+	   	}
+	}
+}
+$loading-types:(
+	(dark #5c5c5c)
+	(light #fff)
+	)!default;
+ @each $loading-type in $loading-types {
+	$type:  nth($loading-type, 1);
+  	$loading-color: nth($loading-type, 2);
+  	.m-loading-#{$type} {
+		@include loading($type,$loading-color)
+  	}
+ }

@@ -1,0 +1,29 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card2 {
+	.card-wrap{
+        height: P2R(50px);
+    }
+    h3 {
+    	font-size: $f15;
+    	color: $cl-a;
+    	margin-bottom: P2R(7px);
+    	font-weight: 700;
+    }
+    h4 {
+    	font-size: $f12;
+    	color: $cl-c;
+    }
+    .m-box-col:first-child h4{
+        width: P2R(32px);
+        line-height: 1.25;
+    }
+    .#{$front-icon-font}-dot-more {
+        font-size: P2R(32px);
+        line-height: P2R(18px);
+        margin:P2R(-1px) 0 P2R(5px);
+    }
+}
+.grid-demo {
+    @include col(0,0,P2R(16px),P2R(10px));
+}

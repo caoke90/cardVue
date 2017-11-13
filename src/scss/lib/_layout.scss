@@ -1,0 +1,111 @@
+/**
+ * layout
+ */
+.m-box{
+	display:flex;
+}
+.m-box-col{
+	flex:1;
+	width: 100%;
+	display: block;
+	min-width: 0;
+}
+.m-box-center-a {
+	display:flex;
+	align-items: center;
+}
+.m-box-center {
+	display:flex;
+	justify-content: center;
+}
+.m-box-dir {
+	flex-direction: column;
+}
+.m-tb {
+	display: table;
+	box-sizing:border-box;
+    // border-collapse: collapse;
+}
+.m-thd{
+    display: table-header-group;
+}
+.m-tbd{
+    display: table-row-group;
+}
+.m-tr {
+	display: table-row;
+}
+.m-td {
+	display: table-cell;
+}
+
+
+.m-item-list{
+    overflow: hidden;
+    font-size: 0;
+    margin-bottom: -1px;
+}
+.m-item-box{
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top;
+    position: relative;
+    font-size: 0;
+    color: $cl-a;
+    &::before,&::after{
+        content: "";
+        position: absolute;
+    }
+    &::before{
+        right: 0;
+        top: P2R(16px);
+        bottom: P2R(16px);
+        // @include border(border-right,1px,solid,$bd-cl);
+        @include fixborder(1px,null,$bd-cl);
+    }
+    &::after{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: P2R(16px);
+        right: P2R(16px);
+        // @include border(border-bottom,1px,solid,$bd-cl);
+        @include fixborder(null,1px,$bd-cl);
+    }
+    @at-root .m-no-break &{
+        &::before,&::after{
+            background-color: transparent;
+        }
+    }
+}
+
+
+.m-auto-list{
+    overflow: hidden;
+    font-size: 0;
+}
+.m-auto-box{
+    display: inline-block;
+    vertical-align: top;
+    box-sizing:border-box;
+}
+
+$gridColumns: 10;
+
+@for $i from 1 through $gridColumns {
+    .m-col-#{$i} {
+        .m-item-box,.m-auto-box{
+        	width: 100% / $i
+        }
+        .m-item-box:nth-of-type(#{$i}n){
+	         &::before{
+	            display: none;
+	         }
+    	}
+    }
+}
+
+
+[class*="m-col"] {
+	overflow: hidden;
+}

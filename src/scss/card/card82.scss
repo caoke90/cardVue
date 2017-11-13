@@ -1,0 +1,163 @@
+@import "../lib/sassCore";
+@import "../lib/var";
+$medal-gold : #ff9600;
+$medal-silver : #8995a1;
+$medal-copper : #c87c65;
+
+$medal-gold-bg : #ffdc1e;
+$medal-gold-text : #c56f00;
+$medal-silver-bg : #dedfe4;
+$medal-silver-text : #585d73;
+$medal-copper-bg : #e5b59e;
+$medal-copper-text : #6f4632;
+
+.card82 {
+    &:not(:last-of-type) .m-tb:not(.type-0),
+    &:not(:last-of-type) .m-box{
+        position: relative;
+        &::after{
+            content: "";
+            position: absolute;
+            z-index: 6;
+            bottom: 0;
+            left: P2R(40px);
+            right: 0;
+            @include line(0,0,1px,0,$bd-cl);
+        }
+    }
+    
+	.m-tb{
+        width: 100%;
+    }
+    .m-td{
+        vertical-align: middle;
+        white-space: nowrap;
+        &:nth-last-child(-n+4){
+            width: P2R(42px);
+            text-align: center;
+        }
+        &:last-child{
+            padding-right: P2R(4px);
+        }
+        .m-text-cut{
+            display: inline-block;
+            max-width: 4.5rem;
+            line-height: P2R(25px);
+            vertical-align: middle;
+        }
+    }
+    .tag-type{
+        display: inline-block;
+        width: P2R(20px);
+        height: P2R(20px);
+        line-height: P2R(20px);
+        font-size: $f12;
+        border-radius: 50%;
+    }
+    .m-thd{
+        .m-td {
+            padding-top: P2R(12px);
+            &:nth-child(3){
+                .tag-type{
+                    background-color : $medal-gold-bg;
+                    color : $medal-gold-text;
+                }                    
+            }
+            &:nth-child(4){
+                .tag-type{
+                    background-color : $medal-silver-bg;
+                    color : $medal-silver-text;
+                }                    
+            }
+            &:nth-child(5){
+                .tag-type{
+                    background-color : $medal-copper-bg;
+                    color : $medal-copper-text;
+                }                    
+            }
+            &:nth-child(6){
+                .tag-type{
+                    font-size: $f14;
+                    color: $cl-c;
+                }
+            }
+        }
+
+    }
+    .m-tbd{
+        .m-td {
+            padding-top: P2R(15px);
+            padding-bottom: P2R(15px);
+            font-size: $f14;
+            &:first-child{
+                padding-left: P2R(15px);
+                width: P2R(40px);
+                font-size: $f18;
+                box-sizing: border-box;
+            }
+            &:nth-child(2){
+                font-size: $f16;
+            }
+            &:nth-child(3){
+                color: $medal-gold;
+            }
+            &:nth-child(4){
+                color: $medal-silver;
+            }
+            &:nth-child(5){
+                color: $medal-copper;
+            }
+        }      
+    }
+    .m-img-box{
+        display: inline-block;
+        vertical-align: middle;
+        width: P2R(40px);
+        height: P2R(25px);
+        margin-right: P2R(8px);
+    }
+    /*type2*/
+    .m-box{
+        padding-left: P2R(40px);
+    }
+    .box-left{
+        padding-top: P2R(16px);
+        padding-bottom: P2R(10px);
+    }
+    .box-main{
+        margin-bottom: P2R(10px);
+        font-size: $f16;
+    }
+    .m-img-box{
+        &.img-box-b{
+            width: auto;
+            height: P2R(17px);
+            margin-left: P2R(8px);
+            margin-right: 0;
+            img{
+            	width: auto;
+            }
+        }
+    }
+    .intro-text{
+        margin-right: P2R(8px);
+        b{
+           color: $cl-y; 
+        }
+    }
+    .box-plus{
+        font-size: $f12;
+        color: $cl-c;
+    }
+    .box-right.m-btn-box{
+        color: $cl-y;
+    }
+}
+
+@media screen and (max-width: 320px){
+	.card82 {
+		.box-main{
+	        font-size: $f13;
+	    }
+	}
+}

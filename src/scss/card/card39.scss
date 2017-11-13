@@ -1,0 +1,19 @@
+@import"../lib/sassCore";
+@import"../lib/var";
+.card39 {
+    .card-wrap{
+        .card-main{
+            position: relative;
+            font-size: P2R(20px);
+            img{
+                width: 100%;
+            }
+            .#{$button}-media{
+                position: absolute;
+                left: 50%;
+                top:50%;
+                transform:translate(-50%,-50%);
+             }
+        }
+    }
+}
