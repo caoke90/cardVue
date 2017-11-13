@@ -130,7 +130,7 @@
         Bus.downTarget=e.target;
         Bus.downRoot=this;
         Bus.downBox= this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downRoot)
-
+		e.preventDefault();
       },
       mouseup:function (e) {
         if (!Bus.downBox) {
