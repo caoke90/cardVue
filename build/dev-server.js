@@ -72,11 +72,10 @@ Object.keys(mockUrl).forEach(function(url) {
 
     var options = {
       target: mock.replace(/(http:\/\/[^/]+)\/.+/,"$1")
-      ,changeOrigin: true, ws: true,
-      pathRewrite:{
-        url:mock.replace(/http:\/\/[^/]+\//,"/")
-      }
+      ,changeOrigin: true,
+      pathRewrite:{}
     };
+    options.pathRewrite[url]=mock.replace(/http:\/\/[^/]+\//,"/")
     app.use(proxyMiddleware(options.filter || url, options));
   }else{
     var filepath=path.join(__dirname,"../mock"+mock)
