@@ -1,11 +1,11 @@
 <!--可移动、可调整大小的图片-->
 <template>
-  <a :href="card.openurl||'javascript:void(0);'"><img :style="{width:card.style.width,height:card.style.height}" :src="card.src"></a>
+  <a :href="card.openurl||'javascript:void(0);'"><img :style="{width:card.width,height:card.height}" :src="card.src"></a>
 </template>
 
 <script>
   export default{
-    name:"moveimg",
+    name:"card13",
     props:['card']
   };
 

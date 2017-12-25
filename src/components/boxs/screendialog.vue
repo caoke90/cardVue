@@ -10,13 +10,13 @@
 </template>
 
 <script>
-  import 'vux/src/styles/close.less';
+
   //slider
   import xDialog from 'vux/src/components/x-dialog'
 
 
   export default{
-    name:"screendialog",
+    name:"card11",
     props:['card'],
     data:function () {
       return {

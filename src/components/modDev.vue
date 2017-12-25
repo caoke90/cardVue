@@ -4,13 +4,13 @@
     <box v-if="Array.isArray(card.card_group)" :mid="_uid" :card="card" :contain="contain">
       <div v-if="contain=='children'" style="left:0;background:#ddd;position: relative;z-index: 2;font-size: 12px;" slot="drag1">
         <mt-button style="cursor:pointer;opacity: 0.5" type="danger" size="small">box</mt-button>
-        <span>{{card.help}}</span>
+        <span>{{helpJSON[card.card_type].help}}</span>
       </div>
     </box>
     <card v-else :mid="_uid" :card="card" :contain="contain">
       <div v-if="contain=='children'" style="left: 0;background:#ddd;position: relative;z-index: 2;" slot="drag1">
         <mt-button style="cursor:pointer;opacity: 0.5" type="primary" size="small">card</mt-button>
-        <span>{{card.help}}</span>
+        <span>{{helpJSON[card.card_type].help}}</span>
       </div>
 
     </card>
@@ -25,6 +25,7 @@
     props:['card','contain'],
     data:function () {
       return {
+        helpJSON:require("./helpJSON"),
         hover:false
       }
     },

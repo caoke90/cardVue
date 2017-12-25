@@ -1,0 +1,215 @@
+
+module.exports={
+  "card1":{
+    "help":"card1，可编辑的属性类型",
+    // "demo_url":require("../assets/img/none.png"),
+    //数据映射
+    "dataMap":{
+      "imgUrl":"imgUrl",
+      "Rem":"Rem",
+      "Number":"Number",
+      "String":"String",
+      "Object":"Object",
+      "Array":"Array",
+      "Selector":"Selector",
+      "ArrayimgUrl":"ArrayimgUrl",
+    },
+
+    "editHelp":{
+      "imgUrl":"图片",
+      "Rem":"Rem相对单位",
+      "Number":"数字",
+      "String":"字符",
+      "Object":"子对象",
+      "Array":"数组",
+      "Selector":"选是否",
+      "ArrayimgUrl":"imgUrl的数组",
+    },
+    //属性类型
+    "propsType":{
+      "imgUrl":"imgUrl",
+      "Rem":"Rem",
+      "Number":"Number",
+      "String":"String",
+      "Array.String":"String",
+      "Array.Number":"Number",
+      "Array.Rem":"Rem",
+      "Array.imgUrl":"imgUrl",
+      "Array.Selector":"Selector",
+      "Array.SelectorOptions":[{key: true, value: '是'}, {key: false, value: '否'}],
+      "Object.String":"String",
+      "Object.Number":"Number",
+      "Object.Rem":"Rem",
+      "Object.imgUrl":"imgUrl",
+      "Object.Selector":"Selector",
+      "Object.SelectorOptions":[{key: true, value: '是'}, {key: false, value: '否'}],
+
+      "ArrayimgUrl":"imgUrl",
+      "Selector":"Selector",
+      "SelectorOptions":[{key: true, value: '是'}, {key: false, value: '否'}],
+    },
+  },
+  "card13":{
+    "help":"card13,可移动、可调整大小的图片",
+    "demo_url":require("../assets/demoimg/card13.png"),
+    //数据映射
+    "dataMap":{
+      "src":"src",
+      "openurl":"openurl",
+      "width":"width",
+      "height":"height",
+    },
+    "editHelp":{
+      "src":"图片",
+      "openurl":"跳转",
+      "width":"宽度",
+      "height":"高度",
+    },
+    //属性类型
+    "propsType":{
+      "src":"imgUrl",
+      "width":"Rem",
+      "height":"Rem",
+    },
+  },
+  "card10":{
+    "help":"card10,一个空的容器，可以在里面放入卡片",
+  },
+  "card11":{
+    "help":"card11,非全屏动画3秒后消失",
+    "demo_url":require("../assets/demoimg/card11.png"),
+    //数据映射
+    "dataMap":{
+      "src":"src",
+    },
+    "editHelp":{
+      "src":"图片的地址"
+    },
+    //属性类型
+    "propsType":{
+      "src":"imgUrl",
+    },
+  },
+
+  "card3":{
+    "help": "card3,可滑动、可调大小的轮播图",
+    "demo_url":require("../assets/demoimg/card3.png"),
+    //数据映射
+    "dataMap":{
+      "defaultIndex":"defaultIndex",
+      "height":"height",
+      "pic_items":"pic_items",
+    },
+    //属性说明
+    "editHelp":{
+      "defaultIndex":"默认显示第几张图",
+      "height":"高度",
+      "pic_items":"src:\"图片\",\n" +
+      "        openurl:\"跳转\""
+    },
+    //属性类型
+    "propsType":{
+      "defaultIndex":"Number",
+      "height":"Rem",
+      "pic_items.src":"imgUrl",
+    },
+  },
+  "card2":{
+    "help": "card2,4张图片和文字",
+    "demo_url":require("../assets/demoimg/card2.png"),
+    //数据映射
+    "dataMap":{
+      "pic_items":"pic_items",
+    },
+    "editHelp":{
+      "pic_items":"src:\"图片\",openurl:\"跳转\",txt:\"文字\""
+    },
+    //属性类型
+    "propsType":{
+      "pic_items.src":"imgUrl",
+    },
+  },
+  "demo":{
+    "help":"demo，可编辑的属性类型",
+    "demo_url":require("../assets/img/none.png"),
+    //数据映射
+    "dataMap":{
+      "imgUrl":"imgUrl",
+      "Rem":"Rem",
+      "Number":"Number",
+      "String":"String",
+      "Object":"Object",
+      "Array":"Array",
+      "Selector":"Selector",
+      "ArrayimgUrl":"ArrayimgUrl",
+    },
+
+    "editHelp":{
+      "imgUrl":"图片",
+      "Rem":"Rem相对单位",
+      "Number":"数字",
+      "String":"字符",
+      "Object":"子对象",
+      "Array":"数组",
+      "Selector":"选是否",
+      "ArrayimgUrl":"imgUrl的数组",
+    },
+    "noDel":true,
+    "noSave":true,
+    //属性类型
+    "propsType":{
+      "imgUrl":"imgUrl",
+      "Rem":"Rem",
+      "Number":"Number",
+      "String":"String",
+      "Array.String":"String",
+      "Array.Number":"Number",
+      "Array.Rem":"Rem",
+      "Array.imgUrl":"imgUrl",
+      "Array.Selector":"Selector",
+      "Array.SelectorOptions":[{key: true, value: '是'}, {key: false, value: '否'}],
+      "Object.String":"String",
+      "Object.Number":"Number",
+      "Object.Rem":"Rem",
+      "Object.imgUrl":"imgUrl",
+      "Object.Selector":"Selector",
+      "Object.SelectorOptions":[{key: true, value: '是'}, {key: false, value: '否'}],
+
+      "ArrayimgUrl":"imgUrl",
+      "Selector":"Selector",
+      "SelectorOptions":[{key: true, value: '是'}, {key: false, value: '否'}],
+    },
+  },
+  "page":{
+    "help": "页面信息",
+    //数据映射
+    "dataMap":{
+      "name":"name",
+      "recommend":"recommend",
+      "topic":"topic",
+      "pic":"pic",
+    },
+    "noDel":true,
+    "editHelp":{
+      "name":"标题",
+      "recommend":"测试专题",
+      "topic":"默认",
+      "pic":"测试专题",
+    },
+    //属性类型
+    "propsType":{
+      "name":"String",
+      "recommend":"String",
+      "topic":"String",
+      "pic":"imgUrl",
+    },
+  },
+  "card9":{
+    "help":"微博card9",
+    "demo_url":require("../assets/demoimg/card9.png"),
+    "dataMap":{
+      "weibo_info.url":"url"
+    },
+    "editHelp":{}
+  }
+}

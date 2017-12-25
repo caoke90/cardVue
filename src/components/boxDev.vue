@@ -1,22 +1,19 @@
 <template>
-  <div draggable="true" :bid="this._uid">
+  <div :bid="this._uid" style="min-height: 2em;">
     <slot name="drag1"></slot>
     <div v-if="contain!='children'" style="left: -52px;height: 0;position: relative;z-index: 2;opacity: 0.9" slot="drag1">
       <mt-button cardType="box" style="cursor:pointer" type="danger" size="small">box</mt-button>
     </div>
-    <!--在左边显示的样子,开屏动画-->
-    <div v-if="card.card_type=='screenimg'&&contain=='children'">
-
+    <!--在中间显示的样子-->
+    <div v-if="helpItem&&helpItem.demo_url" style="max-height: 100px;overflow: scroll;">
+      <img :src="helpItem.demo_url"/>
     </div>
-    <div v-else-if="card.card_type=='screendialog'&&contain=='children'">
-
-    </div>
-    <component v-else :is="page_type" :card="card" ></component>
+    <component v-else :is="page_type" :card="card" :helpItem="helpItem" ></component>
   </div>
 </template>
 
 <script>
-
+  const helpJSON=require("./helpJSON")
   const component = require.context('./boxs', false, /\.vue$/);
 
   const requireAll = context => context.keys().map(context);
@@ -26,19 +23,20 @@
     compo[name]=item;
   });
   export default{
+    data:()=>{
+      return {
+        helpItem:null
+      }
+    },
     props:['card','contain'],
     components:compo,
     computed: {
       page_type: function () {
-        let type = 'box1';
+        let type = 'box';
 
         if (this.card && this.card.card_type) {
-          if(typeof this.card.card_type=="string"){
-            type=this.card.card_type;
-          }else{
-            type="box"+this.card.card_type;
-          }
-
+          type="card"+(""+this.card.card_type).replace(/\D+/g,"");
+          this.helpItem=helpJSON[type]
         }
         return type;
       }

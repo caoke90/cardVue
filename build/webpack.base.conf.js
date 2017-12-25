@@ -12,7 +12,6 @@ module.exports = {
   entry: {
     demo: './src/demo.js',
     main: './src/main.js',
-    marvel: './src/marvel.js',
   },
   output: {
     path: config.build.assetsRoot,

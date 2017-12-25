@@ -8,12 +8,13 @@
     #app{
       max-width:750px;
       margin: 0 auto;
+      cursor: pointer;
     }
   </style>
 <body>
 <div id="app" class="m-container-max">
   <%list.forEach(function(item){%>
-  <div><a href="<%=item.childCompilationOutputName%>"><%=item.childCompilationOutputName%></a><span><%item.options.extra%></span></div>
+  <div><a href="<%=item.key%>"><%=item.key%></a></div>
   <%})%>
 
 </div>

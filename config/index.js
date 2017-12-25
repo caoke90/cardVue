@@ -25,7 +25,7 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 8082,
+    port: 8081,
     autoOpenBrowser: true,
     assetsSubDirectory: 'cardVue',//项目url路径
     assetsPublicPath: '/',//域名的根目录

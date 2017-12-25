@@ -31,18 +31,27 @@ Vue.component('card', require("./components/cardDev.vue"));
 //公用的ajax
 import ajax from '@/common/ajax';
 Vue.use(ajax);
+//查看大图
+import './common/moviePic';
+//引入字体
+import '@/assets/font/font.css';
+import '@/assets/font/sprite.css';
 
-Vue.use(require('./filters'));
+import 'vux/src/styles/close.less';
+import 'vux/src/styles/1px.less';
+
 import mvImg  from './marvel/components/img.vue'
-Vue.component(mvImg.name, mvImg);
+Vue.component("mvImg", mvImg);
+Vue.use(require('./filters'));
+
 const app = new Vue({
 
   name: 'App',
 
-  render: h => h(require("./views/main")),
-  created(){
-
-  }
+  components: {
+    "router-view": require('./views/main.vue'),
+    "mv-modal": require('./marvel/components/pswp.vue')
+  },
 }).$mount('#app');
 
 

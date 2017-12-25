@@ -8,7 +8,7 @@
     data() {
       return {};
     },
-    name: 'emptybox',
+    name: "card10",
     props: ['card'],
     components: {
     },

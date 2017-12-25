@@ -17,14 +17,13 @@
     components:compo,
     computed: {
       page_type: function () {
-        let type = 'box1';
+        let type = 'box';
         if (this.card && this.card.card_type) {
           if(typeof this.card.card_type=="string"){
             type=this.card.card_type;
           }else{
-            type="box"+this.card.card_type;
+            type="card"+this.card.card_type;
           }
-
         }
         return type;
       }

@@ -1,7 +1,6 @@
 <template>
 
-  <component v-if="page_type=='weibo'" :is="page_type" :item="card" :cid="this._uid"></component>
-  <component v-else :is="page_type" :card="card" :cid="this._uid"></component>
+  <component :is="page_type" :card="card" :cid="this._uid"></component>
 
 </template>
 
@@ -11,10 +10,10 @@
 
   const requireAll = context => context.keys().map(context);
   const compo={
-    "weibo":require("./weibo/weibo.vue")
+    "card9":require("./weibo/weibo.vue")
   }
   requireAll(component).forEach((card) => {
-    const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(card.hotID)[2]).toLowerCase();
+    const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();
     compo[name]=card;
   });
   export default{
@@ -22,7 +21,7 @@
     components:compo,
     computed: {
       page_type: function () {
-        let type = 'card1';
+        let type = 'card';
         if (this.card && this.card.card_type) {
           if(typeof this.card.card_type=="string"){
             type=this.card.card_type;

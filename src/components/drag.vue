@@ -4,6 +4,7 @@
        @touchstart="mousedown"
        @touchend="mouseup"
        @mousedown="mousedown"
+       @mousemove="mousemove"
        @mouseup="mouseup">
 
     <slot></slot>
@@ -15,7 +16,7 @@
   import Bus from '../marvel/bus';
 
   export default{
-    props:['item','contain'],
+    props:['item'],
     data:function () {
       return {
         hover:true
@@ -26,22 +27,7 @@
     },
 
     methods:{
-      click:function (e) {
-        //触发编辑操作
-        if(this.contain=="mainChild"){
-          var mid=$(e.target).parents("[mid]").attr("mid")
-          if(mid){
-            var cid=$(e.target).parents("[cid]").attr("cid")
-            if(cid){
-              Bus.editCardData=this.findVue(cid,this).card;
-              Bus.$emit("edit")
-            }else{
-              Bus.editCardData=this.findVue($(e.target).parents("[mid]").attr("mid"),this).card;
-              Bus.$emit("edit")
-            }
-          }
-        }
-      },
+
       findVue:function (uid,$root) {
         if($root._uid==uid){
           return $root
@@ -57,11 +43,16 @@
       },
       //添加一个box
       addOne:function (box,upbox) {
-        if(!box.card.card_group){
-          console.log("不能添加card，需要放入box中")
-          alert("不能直接添加card，需要放入容器中")
-          return;
-        }
+//        if(!box.card.card_group){
+//          box.card={
+//            card_group:[],
+//            "card_type": "emptybox",
+//            "card_id": 0,
+//          };
+//          console.log("不能添加card，需要放入box中")
+//          alert("不能直接添加card，需要放入容器中")
+//          return;
+//        }
         console.log(box.card.card_group)
 
         var obj=JSON.parse(JSON.stringify(box.card))
@@ -75,10 +66,19 @@
           return;
         }
         if(!upbox){
-          Bus.root.mainChild.push(obj)
+          if(!box.card.card_group) {
+            Bus.root.mainChild.push({
+              card_group: [obj],
+              "card_type": "card10",
+              "card_id": 0,
+            })
+          }else{
+            Bus.root.mainChild.push(obj)
+          }
+
         }else{
           var index=Bus.root.mainChild.indexOf(upbox.card)
-          Bus.root.mainChild.splice(index+1,0,box.card)
+          Bus.root.mainChild.splice(index+1,0,obj)
         }
       },
       exchange:function (box,upbox) {
@@ -93,9 +93,9 @@
       boxAddItem:function (upbox,box,boxTarget) {
         if(boxTarget){
           var index=upbox.card.card_group.indexOf(boxTarget.card)
-          upbox.card.card_group.splice(index+1,0,box.card)
+          upbox.card.card_group.splice(index+1,0,JSON.parse(JSON.stringify(box.card)))
         }else{
-          upbox.card.card_group.push(box.card)
+          upbox.card.card_group.push(JSON.parse(JSON.stringify(box.card)))
         }
       },
       boxDel:function (upbox,box) {
@@ -116,27 +116,95 @@
         //更新
         upbox.card.card_group=[].concat(upbox.card.card_group)
       },
-
+      click:function (e) {
+        //触发编辑操作
+        var cContain=$(e.target).parents("[contain]").attr("contain")
+        if(cContain=="mainChild"){
+          var mid=$(e.target).parents("[mid]").attr("mid")
+          if(mid){
+            var cid=$(e.target).parents("[cid]").attr("cid")
+            if(cid){
+              //选中了卡片
+              Bus.parentCardArr=this.findVue(mid, this.$root).card.card_group;
+              Bus.root.editCardData=this.findVue(cid,this.$root).card;
+              Bus.root.editCardData.cardId=cid
+//              Bus.$emit("edit")
+            }else{
+              //选中了容器
+              Bus.parentCardArr=Bus.root.mainChild;
+              Bus.root.editCardData=this.findVue(mid, this.$root).card;
+//              Bus.$emit("edit")
+            }
+          }
+        }
+      },
       mousedown:function (e) {
 
-//        if(Bus.downBox&&Bus.downBox.card.isPandent){
-//          console.log("我是挂件")
-//          return;
-//        }
+        Bus.dContain=$(e.target).parents("[contain]").attr("contain")
+        if(!Bus.dContain){
+          return;
+        }
         Bus.downP={
           x:e.x,
           y:e.y,
         }
         Bus.downTarget=e.target;
-        Bus.downRoot=this;
-        Bus.downBox= this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downRoot)
-		e.preventDefault();
+
+        Bus.downBox= this.findVue($(e.target).parents("[mid]").attr("mid"), this.$root)
+
+        if($(e.target).parents("[cid]").attr("cid")){
+          $("#dragbox #dragClone").remove();
+          Bus.clone=$(Bus.downTarget).parents("[cid]").clone().appendTo("#dragbox").css({
+            position:"absolute",
+            left:e.x+"px",
+            top:e.y+10+"px",
+            "z-index":100,
+            "opacity":0.5,
+            width:$(Bus.downTarget).parents("[mid]").width(),
+            height:$(Bus.downTarget).parents("[mid]").height(),
+          }).attr("id",'dragClone')
+
+        }else{
+          $("#dragbox #dragClone").remove();
+          Bus.clone=$(Bus.downTarget).parents("[mid]").clone().appendTo("#dragbox").css({
+            position:"absolute",
+            left:e.x+"px",
+            top:e.y+10+"px",
+            "z-index":100,
+            "opacity":0.5,
+            width:$(Bus.downTarget).parents("[mid]").width(),
+            height:$(Bus.downTarget).parents("[mid]").height(),
+          }).attr("id",'dragClone')
+        }
+        if($(Bus.downTarget).attr("cardType")=="box"||$(Bus.downTarget).attr("cardType")=="card") {
+          e.preventDefault()
+        }
+      },
+      mousemove:function (e) {
+        if(Bus.clone){
+          Bus.clone.css({
+            transform:"translate("+[(e.x-Bus.downP.x)+"px",(e.y-Bus.downP.y)+"px"].join(",")+")"
+          })
+        }
+
       },
       mouseup:function (e) {
+
+        if(Bus.clone){
+
+          Bus.clone.remove();
+          Bus.clone=null
+        }
+
         if (!Bus.downBox) {
           return;
         }
-        console.log(e.x, e.y)
+
+        Bus.uContain=$(e.target).parents("[contain]").attr("contain")
+        if(!Bus.uContain){
+          return;
+        }
+
         Bus.upP = {
           x: e.x,
           y: e.y,
@@ -145,14 +213,14 @@
         Bus.upRoot = this;
         var dbox=Bus.downBox;
         //添加新的
-        if (Bus.downRoot.contain == "children" && Bus.upRoot.contain == "mainChild") {
+        if (Bus.dContain == "children" && Bus.uContain == "mainChild") {
           var bid = $(e.target).parents("[mid]").attr("mid")
-//          var dbox = this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downRoot)
+//          var dbox = this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downBox)
           //如果在box中
           if (bid) {
             console.log("插入一个新的")
             //获取原来的box
-            var upbox = this.findVue($(Bus.upTarget).parents("[mid]").attr("mid"), Bus.upRoot)
+            var upbox = this.findVue($(Bus.upTarget).parents("[mid]").attr("mid"), this.$root)
 
             //把box插入到upbox
             if (!dbox.card.card_group && upbox.card.card_group) {
@@ -175,8 +243,7 @@
           }
         }
         //删除
-        if (Bus.downRoot.contain == "mainChild" && Bus.upRoot.contain == "children") {
-//          var dbox = this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downRoot)
+        if (Bus.dContain == "mainChild" && Bus.uContain == "children") {
           var cid = $(Bus.downTarget).parents("[cid]").attr("cid")
 
           if(cid&&Array.isArray(dbox.card.card_group)){
@@ -188,10 +255,10 @@
         }
 
         //移动
-        if (Bus.downRoot.contain == "mainChild" && Bus.upRoot.contain == "mainChild") {
+        if (Bus.dContain == "mainChild" && Bus.uContain == "mainChild") {
 
-//          var dbox = this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downRoot)
-          var upbox = this.findVue($(Bus.upTarget).parents("[mid]").attr("mid"), Bus.upRoot)
+//          var dbox = this.findVue($(Bus.downTarget).parents("[mid]").attr("mid"), Bus.downBox)
+          var upbox = this.findVue($(Bus.upTarget).parents("[mid]").attr("mid"), this.$root)
 
           //不可移动容器内部交换
           if(dbox&&upbox&&dbox._uid==upbox._uid&&!dbox.card.isPandent){

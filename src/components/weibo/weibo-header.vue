@@ -1,62 +1,103 @@
 <template>
-  <header class="weibo-top m-box m-avatar-box">
+  <header class="weibo-title">
     <a @click="jump_url" class="m-img-box">
-      <mv-img :needlazy="true" :src="item.user.profile_image_url"></mv-img>
-      <i class="m-icon" :class='"m-icon-"+item.user.verified_color+"v"' v-if="item.user.verified_color"></i>
+      <mv-img :needlazy="true" :src="card.user.profile_image_url"></mv-img>
+      <i class="m-icon" :class='"m-icon-"+card.user.verified_color+"v"' v-if="card.user.verified_color"></i>
     </a>
-    <div class="m-box-col m-box-dir m-box-center">
+    <div class="m-box-col">
       <div class="m-text-box">
         <a @click="jump_url">
           <h3 class="m-text-cut">
-            {{item.user.name}}
-            <weibo-icon :user="item.user"></weibo-icon>
+            {{card.user.name}}
+            <weibo-icon :user="card.user"></weibo-icon>
           </h3>
         </a>
         <h4 class="m-text-cut">
-          <span class="time">{{item.created_at*1000 | fromNow}}</span>
-          <span class="from" v-if="item.source" v-html="' 来自 ' + item.source"></span>
+          <span class="time">{{card.created_at*1000 | fromNow}}</span>
+          <span class="from" v-if="card.source" v-html="' 来自 ' + card.source"></span>
         </h4>
       </div>
     </div>
-    <aside v-if="!item.title && showTriangle" @click="gomore()">
-      <i class="m-font m-font-arrow-down"></i>
-    </aside>
+
   </header>
 </template>
 <style lang="scss">
 	@import "../../scss/_sassCore";
   @import "../../scss/_var";
-  .weibo-top{
-  	   &.m-box{
-  	   display: -webkit-box;
-	   display: -webkit-flex;
-	   display: flex;
-	  }
-	  .m-box-col{
-  	    -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  flex: 1;
-  }
+  .weibo-title {
+    padding: 0 0.24rem;
+    overflow: hidden;
+    //左边定宽，右边自适应
+    .m-img-box{
+      float:left;
+      margin-right:-0.8rem;
+
+      position: relative;
+
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+        object-fit: cover;
+      }
+      .m-icon{
+        position: absolute;
+        z-index: 3;
+        right: -1px;
+        bottom: -1px;
+      }
+    }
+
+    .m-box-col{
+      float:right;width:100%;
+
+      .m-text-box{
+        font-size: 0.32rem;
+        margin-left:1.06rem;
+        .m-text-cut{
+          font-size: 0.3rem;
+        }
+        .time{
+          color: #939393;
+          margin-right: 0.11rem;
+          font-size: 0.24rem;
+        }
+        .from{
+          color: #939393;
+          font-size: 0.24rem;
+        }
+        .m-icon{
+          font-size: 0.32rem;
+          line-height: 1.5;
+        }
+        .bouser{
+          color: #ff8200;
+        }
+        .score{
+          display: inline-block;
+          height:0.32rem;
+          line-height: 0.32rem;
+          font-size: 0.24rem;
+          background: #fcce17;
+          text-align: center;
+          width: 0.92rem;
+          color: #fff;
+          border-radius: 0.18rem;
+        }
+      }
+    }
+
   }
 
-	.card9 .weibo-top .m-img-box{
-		width: P2R(40px);
-    height: P2R(40px);
-	}
-	.card9 .weibo-top .m-text-box{
-		margin-left: P2R(13px);
-	}
-	.card9 .weibo-top .m-text-box h3{
-		font-size: 16px;
-	}
-	.card9 .weibo-top .m-text-box h4{
-		font-size: 12px;
-	}
 </style>
 <script>
   import Bus from '../../marvel/bus';
   export default{
-    props: ['item', 'showTriangle', 'gomore'],
+    props: ['card'],
     data() {
       return {
       };
@@ -65,11 +106,10 @@
     },
     methods: {
       jump_url:function () {
-        Bus.$emit("openScheme",'sinaweibo://userinfo?uid='+this.item.user.id);
+        Bus.$emit("openScheme",'sinaweibo://userinfo?uid='+this.card.user.id);
       }
     },
     components: {
-      weiboVerified: require('./weibo-verified.vue'),
       weiboIcon: require('./weibo-icon.vue')
     }
   };

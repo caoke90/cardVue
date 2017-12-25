@@ -9,10 +9,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const vuxLoader = require('vux-loader')
 
 const env = config.build.env;
 const md5 = config.build.md5;
 const minify = config.build.minify;
+const assetsSubDirectory = config.build.assetsSubDirectory;
 
 const webpackConfig = merge.smart(baseWebpackConfig, {
   module: {
@@ -43,46 +45,54 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
         md5 ? 'css/[name].[contenthash:8].css' : 'css/[name].css'
       )
     }),
-    new HtmlWebpackPlugin({
-      filename: 'cardVue/marvel.html',
-      template: 'index.html',
-      inject: true,
-      hash: true,
-      chunks:["manifest","marvel"],
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'cardVue/index.html',
-      template: 'index.html',
-      inject: true,
-      hash: true,
-      chunks:["manifest","main"],
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'cardVue/demo.html',
-      template: 'index.html',
-      inject: true,
-      hash: true,
-      chunks:["manifest","demo"],
-      chunksSortMode: 'dependency'
-    }),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
-
-    // split vendor js into its own file
-    new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest'],
-      minChunks: function(module, count) {
-        // any required modules inside node_modules are extracted to vendor
-        return (
-          module.resource &&
-          /\.js$/.test(module.resource) &&
-          module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0
-        );
-      }
+    new HtmlWebpackPlugin({
+      title:"微博电影",
+      filename: 'cardVue/index.html',
+      template: 'index.html',
+      inject: true,
+      chunks:["main"],
+      minify: {
+        removeComments: false,
+        collapseWhitespace: false,
+        removeAttributeQuotes: false
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
     }),
+
+    new HtmlWebpackPlugin({
+      title:"demo",
+      filename: 'cardVue/demo.html',
+      template: 'index.html',
+      inject: true,
+      chunks:["demo"],
+      minify: {
+        removeComments: false,
+        collapseWhitespace: false,
+        removeAttributeQuotes: false
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency'
+    }),
+    // split vendor js into its own file
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   names: ['vendor', 'manifest'],
+    //   minChunks: function(module, count) {
+    //     // any required modules inside node_modules are extracted to vendor
+    //     return (
+    //       module.resource &&
+    //       /\.js$/.test(module.resource) &&
+    //       module.resource.indexOf(path.join(__dirname, '../node_modules')) === 0
+    //     );
+    //   }
+    // }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
@@ -108,7 +118,9 @@ if (minify) {
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings: false
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true
       },
       sourceMap: false
     }),
@@ -121,10 +133,10 @@ if (minify) {
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'manifest',
-      chunks: ['vendor']
-    })
+    // new webpack.optimize.CommonsChunkPlugin({
+    //   name: 'manifest',
+    //   chunks: ['vendor']
+    // })
   ];
 }
 
@@ -150,4 +162,6 @@ if (config.build.bundleAnalyzerReport) {
   webpackConfig.plugins.push(new BundleAnalyzerPlugin());
 }
 
-module.exports = webpackConfig;
+module.exports = vuxLoader.merge(webpackConfig,{
+  plugins: ['vux-ui']
+});

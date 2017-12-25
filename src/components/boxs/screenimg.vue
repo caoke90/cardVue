@@ -15,7 +15,7 @@
 
 
   export default{
-    name:"screenimg",
+    name:"card12",
     props:['card'],
     data:function () {
       return {

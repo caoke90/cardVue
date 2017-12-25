@@ -31,15 +31,12 @@
     },
     mounted:function () {
       var the=this;
-      if(process.env.NODE_ENV=="development"){
-        var datastr=localStorage.getItem("curCardData")||"[]"
-        the.mainChild=JSON.parse(datastr);
-      }else{
-        this.$http.get("/subject/h5/getpageInfo?page_id="+Bus.params.page_id+"&preview=1").then(function (rst) {
-          the.mainChild=rst.data.data.cards;
-        })
-      }
-
+      this.$http.get("/subject/h5/getpageInfo?page_id="+Bus.params.page_id+"&preview=1").then(function (rst) {
+        the.mainChild=rst.data.data.cards.map(function (item) {
+          item.card_type="card"+item.card_type
+          return item;
+        });
+      })
     }
   };
 

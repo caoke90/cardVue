@@ -19,18 +19,30 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser;
 // Define HTTP proxies to your custom API backend
 // https://github.com/chimurai/http-proxy-middleware
 const proxyTable = config.dev.proxyTable;
+const mockArr = require("../mock/index.js");
 
+const mockUrl={}
+mockArr.forEach(function (item) {
+  Object.assign(mockUrl,item)
+})
 const app = express();
 const compiler = webpack(webpackConfig);
 
 const list=[]
-webpackConfig.plugins.forEach(function (item) {
-  if(item.constructor.name=="HtmlWebpackPlugin"){
-    list.push(item);
-  }
-})
+if(mockArr.length){
+  var urlMock=mockArr[0]
+  Object.keys(urlMock).forEach(function(url) {
+    var mock = urlMock[url];
+    list.push({
+      key:url,
+      value:mock,
+    })
+  })
+}
+
 
 app.get("/",function (req,res) {
+
   res.render(__dirname+"/list.ejs",{
     list:list
   })
@@ -51,15 +63,42 @@ compiler.plugin('compilation', function(compilation) {
     cb();
   });
 });
+const fs=require("fs")
+const rewrite=require("./rewrite")
+Object.keys(mockUrl).forEach(function(url) {
+  var mock = mockUrl[url];
 
-// proxy api requests
-Object.keys(proxyTable).forEach(function(context) {
-  var options = proxyTable[context];
-  if (typeof options === 'string') {
-    options = { target: options };
+  if(/^http:/.test(mock)){
+
+    var options = {
+      target: mock.replace(/(http:\/\/[^/]+)\/.+/,"$1")
+      ,changeOrigin: true, ws: true,
+      pathRewrite:{
+        url:mock.replace(/http:\/\/[^/]+\//,"/")
+      }
+    };
+    app.use(proxyMiddleware(options.filter || url, options));
+  }else{
+    var filepath=path.join(__dirname,"../mock"+mock)
+    if(fs.existsSync(filepath)){
+      app.use(url,function (req,res,next) {
+        res.jsonp(JSON.parse(fs.readFileSync(filepath).toString()))
+      });
+    }else{
+      app.use(rewrite(url,mock));
+    }
+
   }
-  app.use(proxyMiddleware(options.filter || context, options));
+
 });
+// proxy api requests
+// Object.keys(proxyTable).forEach(function(context) {
+//   var options = proxyTable[context];
+//   if (typeof options === 'string') {
+//     options = { target: options };
+//   }
+//   app.use(proxyMiddleware(options.filter || context, options));
+// });
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')());
@@ -76,15 +115,6 @@ const staticPath = path.posix.join(
   config.dev.assetsPublicPath,
   config.dev.assetsSubDirectory
 );
-// app.post("/movieapp/action/like",function (req,res) {
-//   res.json({
-//     ok:1
-//   })
-// })
-// app.all("/movieapp/homepage/*",function (req,res) {
-//   res.charset = 'gb2312';
-//   res.sendFile(path.join(__dirname,"../test"+req.path))
-// })
 app.use(staticPath, express.static('./static'));
 // app.use(express.static('./test'));
 function getIPAdress(){

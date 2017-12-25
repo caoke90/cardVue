@@ -16,7 +16,7 @@
 
 <script>
   export default{
-    name:"box1",
+    name:"card14",
     props:['card']
   };
 

@@ -1,7 +1,7 @@
 
 <template>
-  <swiper class="vux-swipe" :height="card.height" :auto="true" :aspect-ratio="300/800" @on-index-change="onSwiperItemIndexChange">
-    <swiper-item class="swiper-demo-img" v-for="(item, index) in card.pic_items" :key="index">
+  <swiper class="vux-swipe" :height="card.height" :auto="true" :aspect-ratio="300/800">
+    <swiper-item class="swiper-demo-img" v-model="card.defaultIndex" v-for="(item, index) in card.pic_items" :key="index">
       <img :src="item.src">
     </swiper-item>
   </swiper>
@@ -11,15 +11,12 @@
 
 
   export default {
-    name: 'swipe',
+    name: "card3",
     props: ['card'],
     components: {
       Swiper,SwiperItem
     },
     methods: {
-      onSwiperItemIndexChange:function (index) {
-        console.log(index)
-      }
     }
   };
 </script>

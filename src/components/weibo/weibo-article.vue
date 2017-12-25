@@ -1,25 +1,39 @@
 <template>
   <article class="weibo-main">
     <div class="weibo-og">
-      <div class="weibo-text" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="getBlogLink($event, item)" v-html="item.card_info.html"></div>
-      <weibo-media :item="item"></weibo-media>
+      <div class="weibo-text" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="getBlogLink($event, card)" v-html="card.card_info.html"></div>
+      <weibo-media :card="card"></weibo-media>
     </div>
 
 
   </article>
 </template>
-<style lang="scss">
+<style lang="scss" scoped="scoped">
   @import "../../scss/_sassCore";
   @import "../../scss/_var";
-  .card9 .weibo-main .weibo-og{
-  	  padding: P2R(12px)  P2R(13px);
+  .weibo-main{
+    color: #507daf;
+    .weibo-og{
+      padding: 0.24rem 0.26rem;
+      font-size: 0.34rem;
+      color: #333;
+      .weibo-text{
+        line-height: 1.5;
+        word-wrap: break-word;
+      }
+    }
+  }
+  @media screen and (min-width: 540px){
+    .weibo-text{
+      font-size: 22px;
+    }
   }
 </style>
 <script>
 import Bus from '../../marvel/bus';
 
   export default{
-    props: ['item'],
+    props: ['card'],
     components: {
       weiboMedia: require('./weibo-media.vue')
     },
@@ -38,9 +52,9 @@ import Bus from '../../marvel/bus';
           Bus.mActive=null
         }
       },
-      getBlogLink(e, item) {
+      getBlogLink(e, card) {
         if(e.target.nodeName!=="A"){
-          const schemeClient = 'sinaweibo://detail?mblogid=' + item.strid;
+          const schemeClient = 'sinaweibo://detail?mblogid=' + card.strid;
           Bus.$emit("openScheme",schemeClient);
         }
 

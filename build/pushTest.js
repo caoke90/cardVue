@@ -6,7 +6,8 @@ const exec = function (cmd) {
   // console.log(str.toString())
   return str.toString();
 };
-exec("git pull origin")
+exec("git pull origin dev:dev")
+
 process.chdir(__dirname+'/../../../release_h5');
 
 exec("git clean -df")

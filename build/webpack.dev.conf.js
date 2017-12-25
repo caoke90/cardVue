@@ -6,6 +6,8 @@ const baseWebpackConfig = require('./webpack.base.conf');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const vuxLoader = require('vux-loader')
+
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function(name) {
   baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(
@@ -13,9 +15,9 @@ Object.keys(baseWebpackConfig.entry).forEach(function(name) {
   );
 });
 
-module.exports = merge.smart(baseWebpackConfig, {
+const webpackConfig = merge.smart(baseWebpackConfig, {
   entry:{
-    marvel: './src/marvel.js',
+    alldemo: './src/alldemo.js',
     demo: './src/demo.js',
     main: './src/main.js',
   },
@@ -32,31 +34,36 @@ module.exports = merge.smart(baseWebpackConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
       new HtmlWebpackPlugin({
-        filename: 'card/index.html',
+        filename: 'cardVue/index.html',
         template: 'index.html',
         inject: true,
         hash: true,
-        chunks:["manifest","main"],
+        chunks:["main"],
         chunksSortMode: 'dependency'
       }),
+
     new HtmlWebpackPlugin({
-      filename: 'card/marvel.html',
+      filename: 'cardVue/demo.html',
       template: 'index.html',
       inject: true,
       hash: true,
-      chunks:["manifest","marvel"],
+      chunks:["demo"],
       chunksSortMode: 'dependency'
     }),
     new HtmlWebpackPlugin({
-      filename: 'card/demo.html',
+      filename: 'cardVue/alldemo.html',
       template: 'index.html',
       inject: true,
       hash: true,
-      chunks:["manifest","demo"],
+      chunks:["alldemo"],
       chunksSortMode: 'dependency'
     }),
     // https://github.com/ampedandwired/html-webpack-plugin
     new BundleAnalyzerPlugin(),
     new FriendlyErrorsPlugin()
   ]
+});
+
+module.exports = vuxLoader.merge(webpackConfig,{
+  plugins: ['vux-ui']
 });

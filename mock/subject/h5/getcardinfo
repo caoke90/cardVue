@@ -1,0 +1,55 @@
+{
+    "status":1,
+    "message":"ok",
+    "data":{
+        "pageInfo":{
+            "v_p":null,
+            "title_top":"h5专题测试",
+            "page_title":"h5专题测试",
+            "show_style":1,
+            "filter_group":[
+
+            ],
+            "button":[
+
+            ],
+            "can_shared":"1",
+            "shared_text":"",
+            "shared_text_qrcode":"",
+            "portrait":"",
+            "cardlist_title":"h5专题测试",
+            "desc":"测试专题",
+            "page_type":"72"
+        },
+        "cards":[
+            {
+                "card_group":[
+                    {
+                        "card_type":9,
+                        "weibo_info":{
+                            "mid":""
+                        },
+                        "cardId":"c0"
+                    }
+                ],
+                "card_type":10,
+                "card_id":"461394"
+            }
+        ],
+        "db_data":{
+            "page_id":"6225",
+            "name":"h5专题测试",
+            "recommend":"测试专题",
+            "pic":"http://weiyinyue.music.sina.com.cn/movie_game/1504150297811.jpg",
+            "scheme":"",
+            "topic":"默认",
+            "act_status":"1",
+            "status":"2",
+            "type_id":"72",
+            "publish_time":"2017-12-21 03:54:00",
+            "create_time":"0000-00-00 00:00:00",
+            "update_time":"2017-12-22 14:51:39",
+            "alter_id":"114"
+        }
+    }
+}

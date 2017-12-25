@@ -14,7 +14,7 @@
     data() {
       return {};
     },
-    name: 'img4',
+    name: "card2",
     props: ['card'],
     components: {
       Flexbox,

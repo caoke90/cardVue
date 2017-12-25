@@ -1,41 +1,26 @@
 <template>
-  <div>
-    <div class="card m-panel card10">
-      <div class="card-wrap">
-        <div class="card-main">
-          <article>
-            	<!--<section v-html="item.card_info.html">
-
-              </section>-->
-            <section class="media-box">
-              <div class="m-img-box m-imghold-wide clf2" @click.stop.prevent="gotoUrl(item.card_info.big_card.player_url)">
-                <mv-img :needlazy="true" :src="item.card_info.big_card.object.image.url"></mv-img>
-                <div class="m-btn-round m-btn-media">
-                  <img src="../../assets/img/common_icon_play.png"/>
-                </div>
-                <div class="media-msg">
-                  <div class="left" v-if="item.card_info.big_card.play_count">{{item.card_info.big_card.play_count}}</div>
-                  <div class="right" v-if="item.card_info.big_card.object.stream">{{item.card_info.big_card.object.stream.duration | capitalize}}</div>
-                </div>
-              </div>
-            </section>
-          </article>
-        </div>
+  <!--视频播放-->
+  <section class="media-box">
+    <div class="m-img-box" @click.stop.prevent="gotoUrl(card.card_info.big_card.player_url)">
+      <mv-img :needlazy="true" :src="card.card_info.big_card.object.image.url"></mv-img>
+      <div class="m-btn-round m-btn-media">
+        <img src="../../assets/img/common_icon_play.png"/>
+      </div>
+      <div class="media-msg">
+        <div class="left" v-if="card.card_info.big_card.play_count">{{card.card_info.big_card.play_count}}</div>
+        <div class="right" v-if="card.card_info.big_card.object.stream">{{card.card_info.big_card.object.stream.duration | capitalize}}</div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
   import Bus from '../../marvel/bus';
 
   export default {
-    props: ["item"],
+    props: ["card"],
     data() {
       return {};
-    },
-    components: {
-
     },
     filters: {
       capitalize: function (value) {
@@ -48,15 +33,6 @@
     methods: {
       gotoUrl: function (url) {
         Bus.$emit("openScheme",url);
-//        const ua = navigator.userAgent.toLowerCase();
-//        if ((/micromessenger/.test(ua)) && (ua.indexOf('android') > -1)) {
-//          this.addLog('act_code=1776');
-//        } else {
-//          Bus.$emit("playVideo",{
-//            src: this.item.media_info,
-//            poster: this.item.page_pic
-//          });
-//        }
       }
     }
   }
@@ -65,86 +41,59 @@
 <style lang="scss" scoped>
   @import "../../scss/sassCore";
   @import "../../scss/var";
-   .m-btn-round.m-btn-media{
-  	  width: P2R(64px);
-  	  height: P2R(64px);
-  	  box-shadow:none;
-  }
-  section{
-  	  a{
-  	  	  border:1px solid red;
-  	  }
-  }
-  .card-wrap{
-  	   margin: 0px;
-  }
-  .card9 .card.m-panel{
-  	   background: white;
-  	   border: 0px solid white;
-  }
-  .card9 .card .m-img-box{
-  	  width: 100%;
-  	  height: auto;
-  }
-  .card10 {
-
-    .card-wrap {
-      .card-main {
-        margin: 0;
-      }
-    }
-    a {
-      color: $cl-l;
-    }
-    article {
-      font-size: $f16;
-      line-height: 1.5;
-      @include col(0, 0, P2R(7px), 0);
-      section {
-        margin-bottom: 0;
-      }
-    }
-    .media-box {
-      .clf2 {
-        background-color: #F2F2F2;
-      }
-      .#{$button}-media {
-        position: absolute;
-        z-index: 9;
-        font-size: (42/10)*1rem;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%,-50%);
-        .m-font{
-        	 -webkit-transform: translate(-50%,-50%);
-        }
-      }
-      .media-msg {
-        z-index: 100;
-        box-sizing: border-box;
-        position: absolute;
+  //视频播放
+  .media-box {
+    position: relative;
+    .m-img-box{
+      padding-bottom: 56.25%;
+      position: relative;
+      background-color: #F2F2F2;
+      width: 100%;
+      height: auto;
+      >img{
         width: 100%;
-        left: P2R(0px);
-        bottom: P2R(0px);
-        color: #FFF;
+        position: absolute;
+        height: 100%;
+        vertical-align: top;
+        object-fit: cover;
+      }
+    }
+    .m-btn-media {
+      position: absolute;
+      z-index: 9;
+      width: 1.28rem;
+      height: 1.28rem;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%,-50%);
+      img{
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+        object-fit: cover;
+      }
+    }
+    .media-msg {
+      z-index: 100;
+      position: absolute;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      color: #FFF;
+      padding-left: 0.26rem;
+      padding-right: 0.26rem;
+      line-height: 0.78rem;
+      font-size: 0.26rem;
+      background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%);
 
-        padding: P2R(10px) P2R(13px);
-        font-size: $f13;
-
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-
-        -webkit-box-pack: justify;
-        -webkit-justify-content: space-between;
-        justify-content: space-between;
-        background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 100%);
+      .left{
+        float: left;
+      }
+      .right{
+        float: right;
       }
     }
   }
 
-  div.wb-item-wrap:nth-of-type(6) .card10 {
-    margin-bottom: 0px;
-  }
 </style>

@@ -1,20 +1,18 @@
 <template>
-	<header class="weibo-top m-box m-avatar-box">
+	<header class="weibo-title">
 		<div @click="jump_url" class="m-img-box">
-			<mv-img :needlazy="true" :src="item.user.avatar_large"></mv-img>
-			<i class="m-icon" :class='"m-icon-"+item.user.verified_color+"v"' v-if="item.user.verified_color"></i>
+			<mv-img :needlazy="true" :src="card.user.avatar_large"></mv-img>
+			<i class="m-icon" :class='"m-icon-"+card.user.verified_color+"v"' v-if="card.user.verified_color"></i>
 		</div>
-		<div class="m-box-col m-box-dir">
+		<div class="m-box-col">
 			<div class="m-text-box" ref="msgbox">
-				<a @click="openScheme('sinaweibo://userinfo?uid='+item.user.id)" class="bouser">{{item.user.name}}</a>
+				<a @click="openScheme('sinaweibo://userinfo?uid='+card.user.id)" class="bouser">{{card.user.name}}</a>
 				<span>点评了</span>
 				<br>
-				<a @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="openScheme('sinaweibo://pageinfo?containerid=100120'+item.film_id)" class="filmName">
-				  {{nameSplit(item.film_name)}}
+				<a @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="openScheme('sinaweibo://pageinfo?containerid=100120'+card.film_id)" class="filmName">
+				  {{nameSplit(card.film_name)}}
 				</a>
-				<span class="filmName">
-              <span class="score">{{item.score}}分</span>
-				</span>
+        <span class="score">{{card.score}}分</span>
 			</div>
 		</div>
 	</header>
@@ -22,42 +20,67 @@
 <style lang="scss" scoped="scoped">
 	@import "../../scss/_sassCore";
 	@import "../../scss/_var";
-	.m-text-box>span {
-		font-size: 0.9375rem;
-		color: #151515;
-	}
-  .m-text-box>*{
-    margin: 0;
+
+  .weibo-title {
+    padding: 0 0.24rem;
+    overflow: hidden;
+    //左边定宽，右边自适应
+    .m-img-box{
+      float:left;
+      margin-right:-0.8rem;
+
+      position: relative;
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      img{
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        vertical-align: top;
+        object-fit: cover;
+      }
+      .m-icon{
+        font-size: 0.28rem;
+        position: absolute;
+        z-index: 3;
+        right: -0.02rem;
+        bottom: -0.02rem;
+      }
+    }
+
+    .m-box-col{
+      float:right;width:100%;
+
+      .m-text-box{
+        font-size: 0.3rem;
+        margin-left:1.06rem;
+
+        .bouser{
+          color: #ff8200;
+        }
+        .score{
+         position: relative;
+         top: -.03rem;
+          display: inline-block;
+          height:0.3rem;
+          line-height: 0.35rem;
+          font-size: 0.24rem;
+          background: #fcce17;
+          text-align: center;
+          width: 0.92rem;
+          color: #fff;
+          border-radius: 0.18rem;
+        }
+      }
+    }
+
   }
-
-	.bouser {
-		font-size: 0.9375rem;
-		display: inline-block;
-		color: #FF8200;
-	}
-
-	.filmName {
-		font-size: 0.9375rem;
-		display: inline-block;
-	}
-
-	.score {
-		display: inline-block;
-		position: relative;
-		top: P2R(-1.5px);
-		width: 46px;
-		line-height: P2R(16px);
-		font-size: 0.75rem;
-		text-align: center;
-		background: #FCCE17;
-		border-radius: 9px;
-		color: white;
-	}
 </style>
 <script>
 	import Bus from '../../marvel/bus';
 	export default {
-		props: ['item', 'showTriangle', 'gomore'],
+		props: ['card', 'showTriangle', 'gomore'],
 		data() {
 			return {
 				conW: 0
@@ -65,26 +88,25 @@
 		},
 		computed: {
 			profileUrl() {
-				return this.item.user.profile_url.replace(/^http(|s):\/\/m.weibo.cn/, '');
+				return this.card.user.profile_url.replace(/^http(|s):\/\/m.weibo.cn/, '');
 			}
 		},
 		methods: {
       touchstart:function (e) {
         if(Bus.mActive){
-          Bus.mActive.target.classList.remove("m-active")
-          Bus.mActive=null
+          Bus.mActive.classList.remove("m-active")
         }
-        Bus.mActive=e;
-        Bus.mActive.target.classList.add("m-active")
+        Bus.mActive = e.currentTarget;
+        Bus.mActive.classList.add("m-active")
       },
       touchmove:function (e) {
         if(Bus.mActive){
-          Bus.mActive.target.classList.remove("m-active")
+          Bus.mActive.classList.remove("m-active")
           Bus.mActive=null
         }
       },
 			jump_url: function() {
-				Bus.$emit("openScheme", 'sinaweibo://userinfo?uid=' + this.item.user.id);
+				Bus.$emit("openScheme", 'sinaweibo://userinfo?uid=' + this.card.user.id);
 			},
 			openScheme: function(url) {
 				Bus.$emit("openScheme", url);
@@ -108,7 +130,6 @@
 			}
 		},
 		components: {
-			weiboVerified: require('./weibo-verified.vue'),
 			weiboIcon: require('./weibo-icon.vue')
 		},
 		mounted() {

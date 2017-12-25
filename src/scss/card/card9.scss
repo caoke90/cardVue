@@ -1,5 +1,8 @@
 @import "../lib/sassCore";
 @import "../lib/var";
+@function P22R($px) {
+  @return $px / 100px * 1rem;
+}
 .card9 {
 
     &.card-vip{
@@ -13,7 +16,7 @@
         padding-bottom: 80/140 * 100%;
         position: absolute;
         left: 0;
-        top: P2R(-7px);
+        top: P22R(-7px);
         z-index: 99;
         background-size: cover;
     }
@@ -38,14 +41,14 @@
         }
     }
     > .card-wrap{
-        padding-top:P2R(15px);
+        padding-top:P22R(15px);
     }
     .card-title{
-        margin-top:P2R(-15px);
-        margin-bottom: P2R(15px);
+        margin-top:P22R(-15px);
+        margin-bottom: P22R(15px);
         padding: 0 $gap;
-        height: P2R(35px);
-        line-height: P2R(35px);
+        height: P22R(35px);
+        line-height: P22R(35px);
         font-size: $f14;
         position: relative;
         //color: $cl-l;
@@ -53,7 +56,7 @@
         .m-ctrl-box {
             display: inline-block;
             img {
-                @include imgsize(P2R(14px),P2R(14px));
+                @include imgsize(P22R(14px),P22R(14px));
             }
         }
         aside{
@@ -69,10 +72,10 @@
     .weibo-top {
         padding: 0 $gap;
         .m-img-box{
-            @include imgsize(P2R(38px),P2R(38px))
+            @include imgsize(P22R(38px),P22R(38px))
         }
         .m-text-box{
-            margin-left:P2R(12px);
+            margin-left:P22R(12px);
             h3{
                 font-size: $f15;
                 margin: 0;
@@ -84,8 +87,8 @@
         aside{
             color: $cl-c;
             font-size: $f14;
-            padding-top: P2R(5px);
-            min-width: P2R(40px);
+            padding-top: P22R(5px);
+            min-width: P22R(40px);
             text-align: right;
         }
     }
@@ -97,9 +100,9 @@
         .url-icon{
             display: inline-block;
             vertical-align: middle;
-            margin-right: P2R(2px);
+            margin-right: P22R(2px);
             img{
-                @include imgsize(P2R(16px),P2R(16px))
+                @include imgsize(P22R(16px),P22R(16px))
             }
         }
         a{
@@ -110,8 +113,8 @@
             background-color: rgba($cl-l,0.75);
             right: 0;
             bottom: 0;
-            border-radius:P2R(2px) 0 0 0 ;
-            padding: P2R(2px);
+            border-radius:P22R(2px) 0 0 0 ;
+            padding: P22R(2px);
             color: #fff;
             font-size: $f10;
         }
@@ -125,7 +128,7 @@
             &:empty{
               display: none;
             }
-            margin-top:P2R(10px);
+            margin-top:P22R(10px);
             .m-auto-list{
                 li{
                     display: inline-block;
@@ -134,33 +137,33 @@
             }
             > img{
                 vertical-align: top;
-                max-width: P2R(150px);
+                max-width: P22R(150px);
             }
         }
         .media-a{
-            margin-bottom: P2R(-8px);
+            margin-bottom: P22R(-8px);
             .m-auto-list{
-               max-width: P2R(220px);
+               max-width: P22R(220px);
                 li{
-                    margin: 0 P2R(5px) P2R(5px) 0;
+                    margin: 0 P22R(5px) P22R(5px) 0;
                 }
                 .m-img-box{
-                    @include imgsize(P2R(96px),P2R(96px));
+                    @include imgsize(P22R(96px),P22R(96px));
                 }
             }
         }
         .media-b{
-            margin: P2R(10px) P2R(-2px) P2R(-6px);
+            margin: P22R(10px) P22R(-2px) P22R(-6px);
             .m-auto-list{
-                max-width: P2R(460px);
+                max-width: P22R(460px);
                 .m-auto-box{
                     width: 33.33%;
                 }
             }
-            @include col(0,0,P2R(4px),P2R(4px));
+            @include col(0,0,P22R(4px),P22R(4px));
         }
         .media-c{
-            max-height: P2R(150px);
+            max-height: P22R(150px);
             overflow: hidden;
             position: relative;
             display: inline-block;
@@ -181,10 +184,10 @@
             }
         }
         .m-img-box{
-            @include imgsize(P2R(70px),P2R(70px));
+            @include imgsize(P22R(70px),P22R(70px));
         }
         .card-main > .m-box > .m-box-col{
-            margin: 0 P2R(10px);
+            margin: 0 P22R(10px);
             overflow: hidden;
         }
         .m-text-box{
@@ -196,15 +199,15 @@
             }
         }
         &.article-card{
-            height: P2R(80px);
+            height: P22R(80px);
             .feed-mark{
-                @include imgsize(P2R(26px),P2R(26px));
+                @include imgsize(P22R(26px),P22R(26px));
                 top: 0;
                 left: 0;
                 padding: 0;
             }
             .m-img-box{
-                @include imgsize(P2R(102px),P2R(80px));
+                @include imgsize(P22R(102px),P22R(80px));
                 overflow: hidden;
                 position: relative;
                 img{
@@ -215,14 +218,14 @@
             }
             .m-text-box{
                 h3,h4:first-of-type{
-                    margin-bottom: P2R(2px);
+                    margin-bottom: P22R(2px);
                 }
             }
         }
     }
     .weibo-rp{
         background-color:#f7f7f7 ;
-        margin-top:P2R(-4px);
+        margin-top:P22R(-4px);
         padding: $gap;
         .weibo-text{
             font-size: $f15;
@@ -242,17 +245,17 @@
         }
         background-color: #fff;
         .m-img-box{
-            height: P2R(175px);
+            height: P22R(175px);
             vertical-align: top;
             overflow: hidden;
             position: relative;
             .article-mark{
                 position: absolute;
                 z-index: 10;
-                width: P2R(25px);
-                height: P2R(25px);
-                right: P2R(5px);
-                top: P2R(5px);
+                width: P22R(25px);
+                height: P22R(25px);
+                right: P22R(5px);
+                top: P22R(5px);
                 img{
                     width: 100%;
                     height: 100%;
@@ -263,8 +266,8 @@
                 color: #fff;
                 text-shadow:1px 1px rgba(0,0,0,.5);
                 position: absolute;
-                left: P2R(12px);
-                bottom: P2R(10px);
+                left: P22R(12px);
+                bottom: P22R(10px);
             }
             &::after{
                 content:"";
@@ -278,25 +281,25 @@
             }
             > img{
                 min-width: 100%;
-                min-height:  P2R(175px);
+                min-height:  P22R(175px);
             }
         }
         .article-des{
-            height: P2R(58px);
-            padding: 0 P2R(12px);
+            height: P22R(58px);
+            padding: 0 P22R(12px);
             h3{
                 font-size: $f16;
             }
             h4{
                 font-size: $f12;
                 color: $cl-c;
-                margin-top: P2R(5px);
+                margin-top: P22R(5px);
             }
         }
     }
     .forward-report {
         text-align: center;
-        margin-bottom: P2R(3px);
+        margin-bottom: P22R(3px);
         .m-img-box{
             position: relative;
             height: 0;
@@ -317,12 +320,12 @@
         }
         h3 {
             font-size: $f18;
-            margin-top: P2R(12px);
+            margin-top: P22R(12px);
         }
         h4 {
             font-size: $f12;
             color: $cl-c;
-            margin-top: P2R(6px);
+            margin-top: P22R(6px);
         }
     }
 

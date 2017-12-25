@@ -15,7 +15,7 @@
     data() {
       return {};
     },
-    name: 'grid4',
+    name: "card4",
     props: ['card'],
     components: {
       Grid,
