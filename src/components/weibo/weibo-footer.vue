@@ -1,16 +1,16 @@
 <template>
   <footer class="m-ctrl-box">
-    <div class="m-box-center" v-if="showRt" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="repost($event, card)">
+    <div class="box-center" v-if="showRt" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="repost($event, card)">
       <i class="font m-font m-font-forward" v-if="showRt"></i>
       <span v-text="card.reposts_count?card.reposts_count:'转发'">转发</span>
     </div>
     <span class="m-line-gradient"></span>
-    <div class="m-box-center" :class="card.comment_scheme?'':'active'" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="comment($event, card)">
+    <div class="box-center" :class="card.comment_scheme?'':'active'" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="comment($event, card)">
       <i class="font m-font m-font-comment"></i>
       <span v-text="card.comments_count?card.comments_count:'评论'">评论</span>
     </div>
     <span class="m-line-gradient"></span>
-    <div class="m-box-center" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="like">
+    <div class="box-center" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="like">
       <i class="font m-font m-icon" :class="{'m-icon-liked':liked,'m-icon-like':!liked}"></i>
       <span v-text="like_counts === 0 ? '赞': like_counts"></span>
     </div>
@@ -35,7 +35,7 @@
     color: #939393;
     overflow: hidden;
     font-size: 0.26rem;
-    .m-box-center {
+    .box-center {
       width: 33%;
       float: left;
       text-align: center;

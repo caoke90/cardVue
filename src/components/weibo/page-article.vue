@@ -56,7 +56,7 @@
           vertical-align: -15%;
           width: 0.24rem;
           transform: scale(0.8);
-          margin-right: -0.3rem;
+          margin-right: 0;
         }
       }
     }

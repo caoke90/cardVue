@@ -2,7 +2,7 @@
 
   <div v-if="cardShow" :key="card.cardId">
 
-    <div class="weui-article" style="line-height: 40px;margin-bottom: -15px;">
+    <div class="weui-article" style="margin-bottom: -15px;line-height: 40px;font-size: 16px;color: #26a2ff;position: relative;">
       {{helpItem.help}}
     </div>
 
@@ -25,62 +25,50 @@
               <span slot="right">px</span>
             </x-input>
             <selector v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k2]=='Selector'" :title="k2+':'" placeholder="请输入" v-model="cardShow[k][k2]" :options="helpItem.propsType[k+'.'+k2+'Options']"></selector>
-            <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k2]=='Number'" :title="k2+':'" placeholder="请输入" v-model="cardShow[k][k2]"></x-input>
+            <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k2]=='Number'" :title="k2+':'" placeholder="请输入数字" v-model="cardShow[k][k2]"></x-input>
             <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k2]=='imgUrl'" :title="k2" v-model="cardShow[k][k2]">
               <button slot="right" @click="uploadFile(k,k2)">图片上传</button>
             </x-input>
+            <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k2]=='Url'" :title="k2+':'" placeholder="请输入url" v-model="cardShow[k][k2]"></x-input>
             <x-input v-else :title="k2+':'" placeholder="请输入" v-model="cardShow[k][k2]"></x-input>
-
           </div>
         </group>
       </div>
       <div v-else-if="Object.prototype.toString.call(v)=='[object Array]'">
         <group>
-          <div class="weui-cells__title" style="padding: 0;margin-top: 0;" slot="title">
+          <div class="weui-cells__title" style="padding: 0;margin-top: 10px;color: #333;" slot="title">
             {{helpItem.editHelp[k]}}
           </div>
         </group>
-        <div v-if="v[0]&&Object.prototype.toString.call(v[0])=='[object Object]'" v-on:click="selected3==k?selected3='':selected3=k">
-          <mt-cell :title="k">
-            <a v-if="selected3!=k">{{'['+'{…},'.repeat(v.length).replace(/,$/,'')+v.length+']'}}</a>
-            <a v-else>-</a>
-          </mt-cell>
-        </div>
-        <div v-else v-on:click="selected3==k?selected3='':selected3=k">
-          <mt-cell :title="k">
-            <a v-if="selected3!=k">{{'[…'+v.length+']'}}</a>
-            <a v-else>-</a>
-          </mt-cell>
-        </div>
-        <div v-show="selected3==k">
-          <div v-for="(v2,k2) in v" :key="k2">
-            <span class="weui-cells__title" slot="title">
-                {{k2}}:
-                <mt-button size="small" style="cursor: pointer;" @click="delv(k,k2)">删除</mt-button>
-              </span>
+        <div>
+          <div v-for="(v2,k2) in v" :key="k2" style="position: relative;">
+            <div @click="delv(k,k2)" style="z-index:10;font-size:12px;cursor:pointer;position:absolute;right:0;top: -10px;text-align:center;line-height:20px;border-radius: 50%;display: block;width: 20px;height: 20px;background: #ef4f4f;color: #fff;">X</div>
+
             <group v-if="Object.prototype.toString.call(v2)=='[object Object]'" style="margin-top: -15px;">
               <div v-for="(v3,k3) in v2">
-                <x-input v-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Rem'" :title="k3+':'" v-model="cardShow[k][k2][k3]">
+                <x-input v-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Rem'" :title="helpItem.editHelp[k+'.'+k3]" v-model="cardShow[k][k2][k3]">
                   <span slot="right">px</span>
                 </x-input>
-                <selector v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Selector'" placeholder="请选择" v-model="cardShow[k][k2][k3]" :title="k3+':'" :options="helpItem.propsType[k+'.'+k3+'Options']"></selector>
-                <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Number'" :title="k3+':'" placeholder="请输入" v-model="cardShow[k][k2][k3]"></x-input>
-                <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='imgUrl'" :title="k3+':'" v-model="cardShow[k][k2][k3]">
+                <selector v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Selector'" :title="helpItem.editHelp[k+'.'+k3]" placeholder="请选择" v-model="cardShow[k][k2][k3]"  :options="helpItem.propsType[k+'.'+k3+'Options']"></selector>
+                <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Number'" :title="helpItem.editHelp[k+'.'+k3]" placeholder="请输入" v-model="cardShow[k][k2][k3]"></x-input>
+                <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='imgUrl'" :title="helpItem.editHelp[k+'.'+k3]" placeholder="请输入" v-model="cardShow[k][k2][k3]">
                   <button slot="right" @click="uploadFile(k,k2,k3)">图片上传</button>
                 </x-input>
-                <x-input v-else :title="k3+':'" placeholder="请输入" v-model="cardShow[k][k2][k3]"></x-input>
+                <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k+'.'+k3]=='Url'" placeholder="请输入url" :title="helpItem.editHelp[k+'.'+k3]" v-model="cardShow[k][k2][k3]"></x-input>
+                <x-input v-else placeholder="请输入" :title="helpItem.editHelp[k+'.'+k3]" v-model="cardShow[k][k2][k3]"></x-input>
               </div>
              </group>
             <group v-else style="margin-top: -15px;">
-              <x-input v-if="helpItem.propsType&&helpItem.propsType[k]=='Rem'" v-model="cardShow[k][k2]">
+              <x-input v-if="helpItem.propsType&&helpItem.propsType[k]=='Rem'" :title="helpItem.editHelp[k+'.']" v-model="cardShow[k][k2]">
                 <span slot="right">px</span>
               </x-input>
-              <selector v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Selector'" placeholder="请选择" v-model="cardShow[k][k2]" :options="helpItem.propsType[k+'Options']"></selector>
-              <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Number'" placeholder="请输入" v-model="cardShow[k][k2]"></x-input>
-              <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k]=='imgUrl'" v-model="cardShow[k][k2]">
+              <selector v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Selector'" :title="helpItem.editHelp[k+'.']" placeholder="请选择" v-model="cardShow[k][k2]" :options="helpItem.propsType[k+'Options']"></selector>
+              <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Number'" :title="helpItem.editHelp[k+'.']" placeholder="请输入" v-model="cardShow[k][k2]"></x-input>
+              <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k]=='imgUrl'" :title="helpItem.editHelp[k+'.']" placeholder="请输入" v-model="cardShow[k][k2]">
                 <button slot="right" @click="uploadFile(k,k2)">图片上传</button>
               </x-input>
-              <x-input v-else placeholder="请输入" v-model="cardShow[k][k2]"></x-input>
+              <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Url'" placeholder="请输入url" :title="helpItem.editHelp[k+'.']" v-model="cardShow[k][k2]"></x-input>
+              <x-input v-else placeholder="请输入" :title="helpItem.editHelp[k+'.']" v-model="cardShow[k][k2]"></x-input>
             </group>
 
           </div>
@@ -88,24 +76,19 @@
         </div>
       </div>
       <group v-else >
-          <div class="weui-cells__title" style="padding-left: 0" slot="title">
-            {{helpItem.editHelp[k]}}
-          </div>
-        <x-input v-if="helpItem.propsType&&helpItem.propsType[k]=='Rem'" :title="k+':'" v-model="cardShow[k]">
+        <x-input v-if="helpItem.propsType&&helpItem.propsType[k]=='Rem'" :title="helpItem.editHelp[k]" placeholder="请输入" v-model="cardShow[k]">
           <span slot="right">px</span>
         </x-input>
-        <selector v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Selector'" placeholder="请选择" :title="k+':'" v-model="cardShow[k]" :options="helpItem.propsType[k+'Options']"></selector>
-        <x-input type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Number'" :title="k+':'" placeholder="请输入" v-model="cardShow[k]"></x-input>
-        <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k]=='imgUrl'" :title="k+':'" v-model="cardShow[k]">
+        <selector :title="helpItem.editHelp[k]" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Selector'" placeholder="请选择" v-model="cardShow[k]" :options="helpItem.propsType[k+'Options']"></selector>
+        <x-input :title="helpItem.editHelp[k]" type="number" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Number'" placeholder="请输入数字" v-model="cardShow[k]"></x-input>
+        <x-input :title="helpItem.editHelp[k]" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='imgUrl'" placeholder="请输入" v-model="cardShow[k]">
           <button slot="right" @click="uploadFile(k)">图片上传</button>
         </x-input>
-        <x-input v-else :title="k+':'" placeholder="请输入" v-model="cardShow[k]"></x-input>
+        <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Url'" :title="helpItem.editHelp[k]" placeholder="请输入url" v-model="cardShow[k]"></x-input>
+        <x-input v-else :title="helpItem.editHelp[k]" placeholder="请输入" v-model="cardShow[k]"></x-input>
       </group>
     </div>
-    <flexbox>
-      <flexbox-item v-if="!helpItem.noDel"><mt-button size="small" type="danger" style="cursor: pointer" @click="delCard()" >删除</mt-button></flexbox-item>
-      <flexbox-item v-if="!helpItem.noSave"><mt-button size="small" type="primary" style="cursor: pointer" @click="saveCard()" >保存</mt-button></flexbox-item>
-    </flexbox>
+
 
   </div>
 
@@ -154,8 +137,48 @@
   }
   var helpJSON=require("./helpJSON")
   import Bus from '../marvel/bus';
+  import $ from 'jquery';
   import File from '@/utils/file';
   import { XInput,Selector,XButton,XNumber, Flexbox, FlexboxItem, Group, XTextarea, Cell } from 'vux'
+  var editVue;
+  $("body").delegate("input","change",function (e) {
+    setTimeout(function () {
+      editVue&&editVue.saveCard()
+    },0)
+  })
+  $("body").delegate("select","change",function (e) {
+    setTimeout(function () {
+      editVue&&editVue.saveCard()
+    },0)
+  })
+
+  //编辑
+  Bus.$on("edit",function (card,id) {
+    var cardNum=(""+card.card_type).replace(/\D+/g,"")
+    //存在异步数据
+    if(cardNum=="20"){
+      var helpItem=helpJSON["card"+cardNum]
+      Bus.$http.get("/admin/mobile_page/ajax_getpolllist").then(function (rst) {
+        if (rst.data) {
+          helpItem.propsType.left_themeidOptions=[];
+          helpItem.propsType.right_themeidOptions=[];
+          for(var k in rst.data.votethemelist){
+            helpItem.propsType.left_themeidOptions.push({key: k, value: rst.data.votethemelist[k]})
+            helpItem.propsType.right_themeidOptions.push({key: k, value: rst.data.votethemelist[k]})
+          }
+          Bus.root.editCardData=card;
+          Bus.root.editCardData.cardId=id;
+        }
+      })
+      return;
+
+    }else{
+      Bus.root.editCardData=card;
+      Bus.root.editCardData.cardId=id;
+    }
+
+  })
+
   export default{
     components: {
       XInput,
@@ -182,50 +205,55 @@
     watch:{
       card:function () {
         if(!this.card){
+          editVue=null;
           this.helpItem=null;
           this.cardShow=null;
           this.selected3=-1;
           return;
         }
-        console.log("card watch")
-
         var the=this
-        this.helpItem=helpJSON["card"+(""+this.card.card_type).replace(/\D+/g,"")]
 
+        console.log(this.card.card_type)
+        editVue=this;
+        this.helpItem=helpJSON["card"+(""+this.card.card_type).replace(/\D+/g,"")]
         this.cardShow={}
         //数据映射
         if(this.helpItem.dataMap){
           for(var k in this.helpItem.dataMap){
-            hset(this.cardShow,this.helpItem.dataMap[k],hget(this.card,k))
+            hset(this.cardShow,this.helpItem.dataMap[k],hget(this.card,k,""))
           }
         }
-        for(var k in this.helpItem.propsType){
-          if(this.helpItem.propsType[k]=="Rem"){
-            if(k.indexOf(".")==-1){
-              if(Object.prototype.toString.call(this.card[k])=='[object Array]'){
-                this.card[k].forEach(function (item,k2) {
-                  the.cardShow[k][k2]=parseFloat(item)*100;
-                })
+        if(this.helpItem.propsType){
+          for(var k in this.helpItem.propsType){
+            if(this.helpItem.propsType[k]=="Rem"){
+              if(k.indexOf(".")==-1){
+                if(Object.prototype.toString.call(this.card[k])=='[object Array]'){
+                  this.card[k].forEach(function (item,k2) {
+                    the.cardShow[k][k2]=parseFloat(item)*100;
+                  })
+                }else{
+                  this.cardShow[k]=parseFloat(this.card[k])*100;
+                }
               }else{
-                this.cardShow[k]=parseFloat(this.card[k])*100;
-              }
-            }else{
-              var arr=k.split(".")
-              //如果是数组
-              if(Object.prototype.toString.call(this.card[arr[0]])=='[object Array]'){
-                for(var kk in this.card[arr[0]]){
-                  //数组里面是对象
-                  this.cardShow[arr[0]][kk][arr[1]]=parseFloat(this.card[arr[0]][kk][arr[1]])*100
+                var arr=k.split(".")
+                //如果是数组
+                if(Object.prototype.toString.call(this.card[arr[0]])=='[object Array]'){
+                  for(var kk in this.card[arr[0]]){
+                    //数组里面是对象
+                    this.cardShow[arr[0]][kk][arr[1]]=parseFloat(this.card[arr[0]][kk][arr[1]])*100
+                  }
+                }
+                if(Object.prototype.toString.call(this.card[arr[0]])=='[object Object]'){
+                  this.cardShow[arr[0]][arr[1]]=parseFloat(this.card[arr[0]][arr[1]])*100
                 }
               }
-              if(Object.prototype.toString.call(this.card[arr[0]])=='[object Object]'){
-                this.cardShow[arr[0]][arr[1]]=parseFloat(this.card[arr[0]][arr[1]])*100
-              }
             }
+
           }
         }
 
-      }
+
+      },
     },
     methods:{
       uploadFile:function (k,k2,k3) {
@@ -272,12 +300,13 @@
       },
       //保存
       saveCard:function () {
+        console.log("saveCard")
         var the=this;
 
         //数据映射
         if(this.helpItem.dataMap){
           for(var k in this.helpItem.dataMap){
-            hset(this.card,k,hget(this.cardShow,this.helpItem.dataMap[k]))
+            hset(this.card,k,hget(this.cardShow,this.helpItem.dataMap[k],""))
           }
         }
 
@@ -319,3 +348,13 @@
   };
 
 </script>
+<style >
+  .weui-cell__bd{
+    background: #efefef;
+  }
+
+  .weui-label{
+    color: #999;
+  }
+
+</style>

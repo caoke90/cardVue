@@ -1,11 +1,11 @@
 {
   "main": {
-    "js": "//conchfairy.sinajs.cn/cardVue/js/main.js",
-    "css": "//conchfairy.sinajs.cn/cardVue/css/main.css"
+    "js": "//conchfairy.sinajs.cn/cardVue/js/main.e6f745a0.js",
+    "css": "//conchfairy.sinajs.cn/cardVue/css/main.1dfe160d.css"
   },
   "demo": {
-    "js": "//conchfairy.sinajs.cn/cardVue/js/demo.js",
-    "css": "//conchfairy.sinajs.cn/cardVue/css/demo.css"
+    "js": "//conchfairy.sinajs.cn/cardVue/js/demo.c70673af.js",
+    "css": "//conchfairy.sinajs.cn/cardVue/css/demo.9db4de13.css"
   },
   "metadata": {
     "version": ""

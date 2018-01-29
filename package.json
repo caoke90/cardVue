@@ -9,9 +9,12 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=0 minify=1 node build/build.js",
-    "predeploy": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=0 minify=1 node build/build.js",
+    "build": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=1 minify=1 node build/build.js",
+    "predeploydev": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=1 minify=1 node build/build.js",
+    "deploydev": "node build/deploy.js",
+    "predeploy": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=1 minify=1 node build/build.js",
     "deploy": "node build/deploy.js",
+    "pushOnline": "node build/pushOnline.js",
     "pushTest": "node build/pushTest.js",
     "proxy": "node build/proxy.js"
   },

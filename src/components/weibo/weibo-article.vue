@@ -23,6 +23,11 @@
       }
     }
   }
+  @media screen and (min-width: 375px){
+    .weibo-text{
+      font-size: 17px;
+    }
+  }
   @media screen and (min-width: 540px){
     .weibo-text{
       font-size: 22px;

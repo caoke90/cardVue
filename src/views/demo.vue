@@ -8,6 +8,7 @@
 
 <script>
   import Bus from '../marvel/bus';
+  require("../common/marvel.css");
 
   //获取url参数
   function GetQueryString(name)
@@ -31,11 +32,18 @@
     },
     mounted:function () {
       var the=this;
-      this.$http.get("/subject/h5/getpageInfo?page_id="+Bus.params.page_id+"&preview=1").then(function (rst) {
+      var url;
+      if(GetQueryString("preview")==1){
+        url="/subject/h5/getpageInfo?page_id="+Bus.params.page_id+"&preview=1"
+      }else{
+        url="/subject/h5/getpageInfo?page_id="+Bus.params.page_id
+      }
+      this.$http.get(url).then(function (rst) {
         the.mainChild=rst.data.data.cards.map(function (item) {
           item.card_type="card"+item.card_type
           return item;
         });
+
       })
     }
   };
@@ -43,6 +51,6 @@
   export default app;
 </script>
 
-<style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
+<style rel="stylesheet/scss" type="text/css" lang="scss">
 
 </style>

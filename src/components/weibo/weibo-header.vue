@@ -45,6 +45,7 @@
         object-fit: cover;
       }
       .m-icon{
+        font-size: 0.28rem;
         position: absolute;
         z-index: 3;
         right: -1px;

@@ -15,6 +15,16 @@
         <span class="score">{{card.score}}分</span>
 			</div>
 		</div>
+    <aside v-if="card.user.followed==false">
+      <div v-if="isfollowed==false" class="m-add-box" @click="guanzhu()" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" >
+        <i class="m-font m-font-plus"></i>
+        关注
+      </div>
+      <div v-else class="m-add-box m-add-al" @click="jumpgunz(card)">
+        <i class="m-font m-font-check"></i>
+        已关注
+      </div>
+    </aside>
 	</header>
 </template>
 <style lang="scss" scoped="scoped">
@@ -24,6 +34,7 @@
   .weibo-title {
     padding: 0 0.24rem;
     overflow: hidden;
+    position: relative;
     //左边定宽，右边自适应
     .m-img-box{
       float:left;
@@ -41,11 +52,10 @@
         object-fit: cover;
       }
       .m-icon{
-        font-size: 0.28rem;
         position: absolute;
         z-index: 3;
-        right: -0.02rem;
-        bottom: -0.02rem;
+        right: -1px;
+        bottom: -1px;
       }
     }
 
@@ -74,7 +84,29 @@
         }
       }
     }
-
+    aside{
+      position: absolute;
+      right: 0.26rem;
+      top:0.02rem;
+      .m-add-box{
+        display: inline-block;
+        .m-font{
+          vertical-align: top
+        }
+        color: #FF8200;
+        padding: 0 0.14rem;
+        font-size: 0.24rem;
+        height: 0.56rem;
+        line-height: 0.56rem;
+        border: 1px solid #FF8200;
+        vertical-align:top;
+        border-radius: 0.04rem;
+      }
+      .m-add-box.m-add-al{
+        color: #636363;
+        border: 1px solid #939393;
+      }
+    }
   }
 </style>
 <script>
@@ -83,6 +115,7 @@
 		props: ['card', 'showTriangle', 'gomore'],
 		data() {
 			return {
+			  isfollowed:false,
 				conW: 0
 			};
 		},
@@ -104,6 +137,34 @@
           Bus.mActive.classList.remove("m-active")
           Bus.mActive=null
         }
+      },
+      guanzhu:function () {
+        this.isfollowed=true;
+        const mid=this.card.mid
+        const uid=this.card.user.id
+        this.$http.post("/movieapp/action/follow",{
+          operate:"follow",
+          sinaid:uid
+        }).then((resp) =>{
+          if(resp.data && resp.data.status == 1) {
+
+          }else{
+            this.isfollowed=false;
+          }
+        })
+        //关注统计
+        Bus.$emit("movieActionLog", {
+          "luicode": Bus.movieConfig.luicode,
+          "lfid": Bus.movieConfig.lfid,
+          "uicode": 40000078,
+          "act_code": 1383,
+          "ext": 'type:movie_follow|mid:'+mid+'|touid:'+uid,
+          "fid": '10100310001_-_homepage'
+        });
+      },
+      jumpgunz:function (card) {
+        const schemeClient = 'sinaweibo://detail?mblogid=' + card.strid;
+        Bus.$emit("openScheme",schemeClient);
       },
 			jump_url: function() {
 				Bus.$emit("openScheme", 'sinaweibo://userinfo?uid=' + this.card.user.id);
