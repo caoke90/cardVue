@@ -1,11 +1,11 @@
 <template>
-  <div class="card m-panel card20 m-col-2">
+  <div class="card m-panel card20" :class="['m-col-'+card.col]">
     <div class="card-wrap">
       <div class="card-main">
         <h2 class="card-title" v-if="card.title" v-text="card.title"></h2>
-        <div v-for="index in itemsNum">
+        <div v-for="itemNum in itemsNum">
           <div class=" m-auto-list">
-            <div class="m-auto-box" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
+            <div class="m-auto-box" v-for="index in itemNum" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
               <div class="m-img-box m-imghold-wide" @click="imgclick(card.items[index])">
                 <mv-img :style="{height:card.height}" :needlazy="true" :src="card.items[index].pic"></mv-img>
                 <div class="m-btn-round m-btn-media" v-if="card.items[index].media_info">
@@ -16,28 +16,17 @@
                 <h3 class="m-text-cut" v-text="card.items[index].title"></h3>
                 <h4 v-html="card.items[index].title_sub"></h4>
               </div>
-            </div><div v-if="card.items[index+1]" class="m-auto-box" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
-            <div class="m-img-box m-imghold-wide" @click="imgclick(card.items[index+1])">
-              <mv-img :style="{height:card.height}" :needlazy="true" :src="card.items[index+1].pic"></mv-img>
-              <div class="m-btn-round m-btn-media" v-if="card.items[index+1].media_info">
-                <img src="../../assets/img/common_icon_play.png"/>
-              </div>
             </div>
-            <div class="m-text-box" @click="openUrl(card.items[index+1].scheme)">
-              <h3 class="m-text-cut" v-text="card.items[index+1].title"></h3>
-              <h4 v-html="card.items[index+1].title_sub"></h4>
-            </div>
-          </div>
           </div>
           <div class="m-panel">
-            <div class="m-item-box">
-              <div v-if="card.items[index].bottom_info.scheme" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" class="m-diy-btn m-box-col  m-box-center-a" @click="openUrl(card.items[index].bottom_info.scheme)"><mv-img :needlazy="true" :src="card.items[index].bottom_info.pic" ></mv-img><h4 v-text="card.items[index].bottom_info.text"></h4></div>
-              <div v-else class="m-diy-btn m-box-col  m-box-center-a"><img :src="card.items[index].bottom_info.pic" ><h4 v-text="card.items[index].bottom_info.text"></h4></div>
-            </div><div class="m-item-box">
-            <div v-if="card.items[index+1]&&card.items[index+1].bottom_info.scheme" class="m-diy-btn m-box-col  m-box-center-a" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" @click="openUrl(card.items[index+1].bottom_info.scheme)"><mv-img :needlazy="true" :src="card.items[index+1].bottom_info.pic" ></mv-img><h4 v-text="card.items[index+1].bottom_info.text"></h4></div>
-            <div v-else-if="card.items[index+1]" class="m-diy-btn m-box-col  m-box-center-a" ><img :src="card.items[index+1].bottom_info.pic" ><h4 v-text="card.items[index+1].bottom_info.text"></h4></div>
-
-          </div>
+            <div class="m-item-box" v-for="index in itemNum" v-if="card.col==2">
+              <div v-if="card.items[index].bottom_info.scheme" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" class="m-diy-btn m-box-col  m-box-center-a" @click="openUrl(card.items[index].bottom_info.scheme)"><mv-img  :src="card.items[index].bottom_info.pic" ></mv-img><h4 v-text="card.items[index].bottom_info.text"></h4></div>
+              <div v-else class="m-diy-btn m-box-col  m-box-center-a"><mv-img :src="card.items[index].bottom_info.pic"></mv-img><h4 v-text="card.items[index].bottom_info.text"></h4></div>
+            </div>
+            <div class="m-item-box" v-for="index in itemNum" v-if="card.col==4">
+              <div v-if="card.items[index].bottom_info.scheme" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)" class="m-diy-btn m-box-col m-box-center" @click="openUrl(card.items[index].bottom_info.scheme)"><h4 v-text="card.items[index].bottom_info.text"></h4></div>
+              <div v-else class="m-diy-btn m-box-col  m-box-center"><h4 v-text="card.items[index].bottom_info.text"></h4></div>
+            </div>
           </div>
         </div>
       </div>
@@ -50,19 +39,28 @@
   export default {
     data() {
       return {
-        itemsNum:[]
       };
     },
     name: "card20",
     props: ['card'],
-    components: {
-    },
+    components: {},
     created:function () {
-      var arr=[]
-      for(var i=0;i<this.card.items.length;i=i+2){
-        arr.push(i)
+      if(!this.card.col){
+        this.card.col=2;
       }
-      this.itemsNum=arr;
+    },
+    computed:{
+      itemsNum:function () {
+        var arr=[]
+        var col=this.card.col;
+        this.card.items.forEach(function (item,num) {
+          if(num%col==0){
+            arr[parseInt(num/col)]=[]
+          }
+          arr[parseInt(num/col)].push(num)
+        })
+        return arr;
+      }
     },
     methods: {
       touchstart:function (e) {
@@ -94,8 +92,12 @@
     },
   };
 </script>
+<style rel="stylesheet/scss" type="text/css" lang="scss">
+  .card20 .m-text-box h4 .txta{
+    color: #FF8200;
+  }
+</style>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
-
 
   .card20 {
     .card-title{
@@ -136,7 +138,6 @@
           max-height: 0.84rem;
         }
         h4{
-          color: #FF8200;
           .txta{
             color: #FF8200;
             margin: 0 0.16rem 0 0;
@@ -163,10 +164,16 @@
     right: 0.16rem; display: none;}
   .card20 .m-item-box .m-diy-btn img {
     width: 0.48rem;
-    height: 0.48rem; }
+    height: 0.48rem;margin-right: 0.32rem; }
   .card20 .m-item-box .m-diy-btn h4 {
     font-size: 0.32rem;
-    margin: 0 0 0 0.32rem; }
-
+    margin: 0; }
+  .card20.m-col-4 .m-item-box{
+    height: 0.66rem;
+    line-height: 0.66rem;
+  }
+  .card20.m-col-4 .m-item-box .m-diy-btn h4 {
+    font-size: 0.24rem;
+  }
 
 </style>

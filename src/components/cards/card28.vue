@@ -2,11 +2,11 @@
   <div class="card m-panel card28" :class="['m-col-'+card.col]">
     <div class="card-wrap">
       <div class="card-main">
-        <div class="m-item-box" v-for="button in card.items" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
-          <div class="m-diy-btn m-box-col m-box-center m-box-center-a" @click="openUrl(button.scheme)" v-if="button.pic">
-            <mv-img :needlazy="true" :src="button.pic"></mv-img><h4 v-text="button.title_sub"></h4></div>
-          <div class="m-diy-btn m-box-col m-box-center0 m-box-center-a" @click="openUrl(button.scheme)" v-else>
-            <h4 class="m-text-cut" v-text="button.title_sub"></h4></div>
+        <div class="m-item-box" v-for="item in card.items" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
+          <div class="m-diy-btn m-box-col m-box-center m-box-center-a" @click="openUrl(item.scheme)" v-if="item.pic">
+            <mv-img :needlazy="true" :src="item.pic"></mv-img><h4 v-text="item.title_sub"></h4></div>
+          <div class="m-diy-btn m-box-col m-box-center0 m-box-center-a" @click="openUrl(item.scheme)" v-else>
+            <h4 class="m-text-cut" v-text="item.title_sub"></h4></div>
         </div>
       </div>
     </div>
@@ -37,17 +37,7 @@
           Bus.mActive=null
         }
       },
-      addFollow:function (button) {
-        button.sub_type=1;
-        this.$http.post(button.params.callback_url).then(function (resp) {
-          if(resp.data&&resp.data.status==1){
-          }else{
-            button.sub_type=0;
-          }
-        },function () {
-          button.sub_type=0;
-        })
-      },
+
       openUrl:function (url) {
         if(url){
           Bus.$emit("openScheme",url);

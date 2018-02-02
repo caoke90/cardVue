@@ -17,7 +17,6 @@ Object.keys(baseWebpackConfig.entry).forEach(function(name) {
 
 const webpackConfig = merge.smart(baseWebpackConfig, {
   entry:{
-    alldemo: './src/alldemo.js',
     demo: './src/demo.js',
     main: './src/main.js',
   },
@@ -48,14 +47,6 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
       inject: true,
       hash: true,
       chunks:["demo"],
-      chunksSortMode: 'dependency'
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'cardVue/alldemo.html',
-      template: 'index.html',
-      inject: true,
-      hash: true,
-      chunks:["alldemo"],
       chunksSortMode: 'dependency'
     }),
     // https://github.com/ampedandwired/html-webpack-plugin

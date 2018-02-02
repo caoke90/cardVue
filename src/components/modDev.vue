@@ -10,21 +10,15 @@
   var $ = require('jquery');
   import Bus from '../marvel/bus';
   export default{
-    props:['card','contain'],
+    props:['card','contain','index'],
     data:function () {
-      return {
-        helpJSON:require("./helpJSON"),
-        hover:false
-      }
+      return {}
     },
     components: {
       'box': require('./boxDev.vue')
     },
-    computed:{
-
-    },
-    methods:{
-    }
+    computed:{},
+    methods:{}
   };
 
 </script>

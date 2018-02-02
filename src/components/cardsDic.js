@@ -1,5 +1,25 @@
 var cardsDic=[
   {
+    "card_type":"card100",
+    "user_id":"",
+    "task_id":"",
+    "desc":"这是一段任务描叙的文本<a href='https://www.baidu.com'>查看详情</a>",
+    "scheme":"",
+  },
+  {
+    "card_type":"card3001",
+    "topic_name":"",
+    "sort_type":"time",
+    "num":"0",
+    "object_type":"3",
+  },
+  {
+    "card_type":"card2008",
+    "film_id":"",
+    "object_type":"2",
+    "button_type":"0"
+  },
+  {
     "card_type":"card30",
     "name":"更多热门评论",
     "scheme":"",
@@ -77,6 +97,24 @@ var cardsDic=[
     "scheme":"",
   },
   {
+    "card_type":"card21",
+    "card_id": 0,
+    "title": "",
+    "pic_height": "1.5rem",
+    "themeid": "",
+    "vote_url": "",
+    "vote_item_start": 1,
+    "vote_item_end": 3,
+
+    "sort_type": "desc",
+    "votenum_lefttext": "",
+    "votenum_righttext": "",
+
+    "bottom_pic_url": "",
+    "bottom_text": "立即投票",
+
+  },
+  {
     "card_type":"card20",
     "card_id": 0,
     "title": "",
@@ -114,7 +152,7 @@ var cardsDic=[
     "width":"4rem",
     "height":"4rem",
     "card_id": 0,
-    "src":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510294905153&di=0571b62b3d24181dbdc52da66956a1fa&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F15%2F02%2F16pic_1502789_b.jpg",
+    "src":"http://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/h5_subject/6225_c4cf45.png",
     "openurl": ""
   },
 
@@ -163,7 +201,9 @@ var cardsDic=[
       name:"购票",
       pic:"https://mu1.sinaimg.cn/frame.150x200/weiyinyue.music.sina.com.cn/movie_poster/183380_vertical.jpg",
       type:"link",
-      params:"http://weibo.com",
+      params:{
+        scheme:"http://weibo.com"
+      },
     },
 
   },

@@ -1,4 +1,4 @@
-
+import Bus from '../marvel/bus';
 module.exports={
   "card1":{
     "help": "card1:ui类的容器",
@@ -73,11 +73,12 @@ module.exports={
       "scheme":"scheme",
       "button.name":"buttonName",
       "button.pic":"buttonPic",
-      "button.params":"buttonUrl",
+      "button.params.scheme":"buttonUrl",
     },
     //属性类型
     "propsType":{
       "scheme":"Url",
+      "buttonUrl":"Url",
       "pic":"imgUrl",
       "buttonPic":"imgUrl",
     },
@@ -213,6 +214,21 @@ module.exports={
       "right_bottom_text":"右边投票项底部文案",
 
     },
+    //异步获取完数据，然后再进行编辑
+    "sync":function (next) {
+      var helpItem=this;
+      Bus.$http.get("/admin/mobile_page/ajax_getpolllist").then(function (rst) {
+        if (rst.data) {
+          helpItem.propsType.left_themeidOptions=[];
+          helpItem.propsType.right_themeidOptions=[];
+          for(var k in rst.data.votethemelist){
+            helpItem.propsType.left_themeidOptions.push({key: k, value: rst.data.votethemelist[k]})
+            helpItem.propsType.right_themeidOptions.push({key: k, value: rst.data.votethemelist[k]})
+          }
+          next()
+        }
+      })
+    },
     //属性类型
     "propsType":{
       "pic_height":"Rem",
@@ -226,6 +242,71 @@ module.exports={
 
       "left_themeidOptions":["异步获取的"],
       "right_themeidOptions":["异步获取的"],
+      "sort_typeOptions":[
+        {key: "desc", value: '票数倒序'},
+        {key: "asc", value: '票数顺序'},
+        {key: "rand", value: '随机'},
+        {key: "default", value: '按选项顺序'},
+        {key: "default_desc", value: '按选项倒序'},
+      ],
+    },
+  },
+  "card21":{
+    "help":"card21:四图投票",
+    "demo_url":require("../assets/demoimg/card21.jpg"),
+    //数据映射
+    "dataMap":{
+      "title":"title",
+      "pic_height":"pic_height",
+      "themeid":"themeid",
+      "vote_url":"vote_url",
+      "vote_item_start":"vote_item_start",
+      "vote_item_end":"vote_item_end",
+      "sort_type":"sort_type",
+      "votenum_lefttext":"votenum_lefttext",
+      "votenum_righttext":"votenum_righttext",
+      // "bottom_pic_url":"bottom_pic_url",
+      "bottom_text":"bottom_text",
+
+    },
+    "editHelp":{
+      "title":"标题",
+      "pic_height":"图片高度",
+      "themeid":"投票主题ID",
+      "vote_url":"投票结果页地址",
+      "vote_item_start":"投票项开始序号",
+      "vote_item_end":"投票项结束序号",
+      "sort_type":"投票展示顺序",
+      "votenum_lefttext":"票数项title_sub左边文案",
+      "votenum_righttext":"票数项title_sub右边文案",
+      "bottom_pic_url":"投票项底部图片",
+      "bottom_text":"投票项底部文案",
+
+    },
+    //异步获取完数据，然后再进行编辑
+    "sync":function (next) {
+      var helpItem=this;
+      Bus.$http.get("/admin/mobile_page/ajax_getpolllist").then(function (rst) {
+        if (rst.data) {
+          helpItem.propsType.themeidOptions=[];
+          for(var k in rst.data.votethemelist){
+            helpItem.propsType.themeidOptions.push({key: k, value: rst.data.votethemelist[k]})
+          }
+          next()
+        }
+      })
+    },
+    //属性类型
+    "propsType":{
+      "pic_height":"Rem",
+      "vote_url":"Url",
+      "sort_type":"Selector",
+      "vote_item_start":"Number",
+      "vote_item_end":"Number",
+      "bottom_pic_url":"imgUrl",
+
+      "themeid":"Selector",
+      "themeidOptions":["异步获取的"],
       "sort_typeOptions":[
         {key: "desc", value: '票数倒序'},
         {key: "asc", value: '票数顺序'},
@@ -415,13 +496,104 @@ module.exports={
     //属性类型
     "propsType":{
       "scheme":"Url"
+    },
+  },
+
+ "card2008":{
+    "help":"card2008:图文",
+    "demo_url":require("../assets/demoimg/card8.png"),
+    "dataMap":{
+      "film_id":"film_id",
+      "button_type":"button_type"
+    },
+    //属性类型
+    "propsType":{
+      "button_type":"Selector",
+      "button_typeOptions":[
+       {key: "0", value: '不配置'},
+        {key: "1", value: '点评'},
+        {key: "2", value: '购票'}
+      ],
+    },
+    "editHelp":{
+    	  "film_id":"电影ID",
+      "button_type":"按钮类型"
+    }
+  },
+  "card3001":{
+    "help":"card3001:话题流card",
+    "demo_url":require("../assets/demoimg/card3001.jpg"),
+    "dataMap":{
+      "topic_name":"topic_name",
+      "sort_type":"sort_type",
+      "num":"num",
+    },
+    //属性类型
+    "propsType":{
+      "num":"Number",
+      "sort_type":"Selector",
+      "sort_typeOptions":[
+        {key: "time", value: '时间倒序'},
+        {key: "social", value: '社会化排序'},
+        {key: "hot", value: '热门度'},
+        {key: "fwnum", value: '按转发数倒序'},
+        {key: "cmtnum", value: '按评论数倒序'},
+      ],
+    },
+    "editHelp":{
+      "topic_name":"话题词",
+      "sort_type":"排序类型",
+      "num":"展示数量",
+      "object_type":"组合类业务编号",
+    }
+  },
+  "card100":{
+    "help":"card100:任务卡片",
+    "demo_url":require("../assets/demoimg/card100.png"),
+    "dataMap":{
+      "user_id":"user_id",
+      "task_id":"task_id",
+      "desc":"desc",
+      "scheme":"scheme",
+    },
+    //属性类型
+    "propsType":{
+      "scheme":"Url",
+      "user_id":"Selector",
+      "user_idOptions":["异步获取的"],
+      "task_id":"Selector",
+      "task_idOptions":["异步获取的"],
+    },
+    //异步获取完数据，然后再进行编辑
+    "sync":function (next) {
+      var helpItem=this;
+      Bus.$http.get("/getuserandtask").then(function (rst) {
+        if (rst.data) {
+          helpItem.propsType.user_idOptions=[];
+          helpItem.propsType.task_idOptions=[];
+          for(var k in rst.data.user){
+            helpItem.propsType.user_idOptions.push({key: k, value: rst.data.user[k]})
+          }
+          for(var k in rst.data.task){
+            helpItem.propsType.task_idOptions.push({key: k, value: rst.data.task[k]})
+
+          }
+          next()
+        }
+      })
+    },
+    "editHelp":{
+      user_id:"教师名称",
+      task_id:"任务名称",
+      desc:"描叙",
+      scheme:"跳转",
     }
   },
   getCardData:function(name) {
     var num=(""+name).replace(/\D+/g,"")
     for(var k in this){
       if(num==k.replace(/\D+/g,"")){
-        return JSON.parse(JSON.stringify(this[k]));
+        return this[k];
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
 
-  <component :is="page_type" :card="card" :cid="this._uid"></component>
+  <component  :is="page_type" :card="card" :cid="this._uid"></component>
 
 </template>
 
@@ -21,7 +21,7 @@
     components:compo,
     computed: {
       page_type: function () {
-        let type = 'card';
+        let type = '';
         if (this.card && this.card.card_type) {
           if(typeof this.card.card_type=="string"){
             type=this.card.card_type;

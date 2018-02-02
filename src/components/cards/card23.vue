@@ -1,6 +1,6 @@
 <template>
   <div class="card card23">
-    <a href="javascript:;" @click="openUrl(card.scheme)" class="m-btn m-btn-block m-btn-white" :class="[card.show_color,{'m-btn-disabled': !card.scheme }]">{{card.desc}}</a>
+    <a @click="openUrl(card.scheme)" class="m-btn m-btn-block m-btn-white" :class="[card.show_color,{'m-btn-disabled': !card.scheme }]">{{card.desc}}</a>
 
   </div>
  </template>

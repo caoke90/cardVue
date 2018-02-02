@@ -6,7 +6,7 @@
           {{card.title}}
         </h2>
         <div class="m-auto-list">
-          <div class="m-auto-box" v-for="item in card.items">
+          <div class="m-auto-box" v-for="item in card.items" @click="openUrl(item.scheme)">
             <div class="m-img-box m-imghold-square">
               <mv-img :needlazy="true" :src="item.pic"></mv-img>
             </div>
@@ -30,7 +30,11 @@
     components: {
     },
     methods: {
-
+      openUrl:function (url) {
+        if(url){
+          Bus.$emit("openScheme",url);
+        }
+      },
     },
   };
 </script>

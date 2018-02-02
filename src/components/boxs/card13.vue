@@ -1,6 +1,6 @@
 <!--可移动、可调整大小的图片-->
 <template>
-  <a :href="card.openurl||'javascript:void(0);'"><img :style="{width:card.width,height:card.height}" :src="card.src"></a>
+  <a class="card13" :href="card.openurl"><img :style="{width:card.width,height:card.height}" :src="card.src"></a>
 </template>
 
 <script>

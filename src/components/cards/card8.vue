@@ -2,17 +2,15 @@
   <div class="card m-panel card8">
     <div class="card-wrap">
       <div class="card-main">
-        <h2 class="card-title" v-if="card.title_sub">
-          {{card.title_sub}}
-        </h2>
         <div class="m-box">
           <div class="m-img-box" @click="openUrl(card.scheme)">
             <img :src="card.pic">
           </div>
           <div class="m-box-col m-box-dir m-box-center" @click="openUrl(card.scheme)">
             <div class="m-text-box">
-              <h3 class="m-text-cut" v-html="card.desc1"></h3>
-              <h4 class="m-text-cut-2" v-text="card.desc2"></h4>
+              <h3 class="m-text-cut" v-html="card.title_sub"></h3>
+              <h4 class="m-text-cut" v-if="card.desc1" v-text="card.desc1"></h4>
+              <h4 class="m-text-cut" v-if="card.desc2" v-text="card.desc2"></h4>
             </div>
           </div>
           <div class="box-right m-box-center-a m-box-center  m-btn-box">

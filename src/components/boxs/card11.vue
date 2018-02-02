@@ -1,19 +1,23 @@
 <template>
-	<x-dialog v-model="show2" class="dialog-demo">
-		<div class="img-box">
-			<a :href="card.openurl||'javascript:void(0);'">
-				<img :src="card.src" ref="img">
-			</a>
-		</div>
-		<div class="close" @click="show2=false">
-			<span class="vux-close"></span>
-		</div>
-	</x-dialog>
+  <div class="card11" v-show="show2" >
+    <div class="m-mask" @touchstart.stop.prevent></div>
+
+      <div class="dialog">
+        <div class="img-box">
+          <a :href="card.openurl">
+            <img :src="card.src" ref="img">
+          </a>
+        </div>
+        <div class="close" @click="show2=false">
+          X
+        </div>
+      </div>
+  </div>
+
 </template>
 
 <script>
-	//slider
-	import xDialog from 'vux/src/components/x-dialog'
+
 
 	export default {
 		name: "card11",
@@ -24,15 +28,16 @@
 			}
 		},
 		components: {
-			xDialog,
+
 		},
 		methods: {
 			load: function() {
 				var the = this;
 				this.show2 = true;
-
+        document.body.style.overflowY="hidden";
 				setTimeout(() => {
-					the.show2 = false
+					the.show2 = false;
+          document.body.style.overflowY="scroll";
 				},the.card.duration || 3000)
 
 			},
@@ -50,30 +55,27 @@
 	};
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss">
-	.dialog-demo {
-		.weui-dialog {
-			outline: none;
-			padding: 0px;
-			margin: 0px;
-			background: none;
-      border-radius: 0px;
-      overflow: visible;
-		}
-		.dialog-title {
-			line-height: 30px;
-			color: #666;
+  /*遮罩层*/
+  .m-mask { position: fixed; z-index: 996; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, 0.6); }
+
+  .card11 {
+    .m-mask{
+      z-index: 1000;
+    }
+		.dialog {
+      transform: translate(-50%,-50%);
+      z-index: 1001;
+      position: fixed;
+      top:50vh;
+      left:3.75rem;
+      width:6rem;
+      max-height:80vh;
 		}
 		.img-box {
-			padding: 0px;
-			margin: 0px;
-			outline: none;
 			a {
 				display: block;
 			}
 			img {
-				padding: 0px;
-				margin: 0px;
-				outline: none;
 				width: 100%;
 			}
 		}
@@ -81,12 +83,16 @@
 			width: 24px;
 			height: 24px;
 			position: absolute;
-			top: -3px;
-			right: -3px;
+			top: -8px;
+			right: -10px;
       background:black ;
       border-radius: 50%;
       border: 1px solid #fff;
+      color: #fff;
+      text-align: center;
+      line-height: 22px;
+      font-size: 14px;
+      display: block;
 		}
-		.vux-close {}
 	}
 </style>

@@ -6,17 +6,9 @@
         <leftedit :children="children"></leftedit>
 
       </div>
-      <div class="g-mn5" contain="mainChild">
+      <div class="g-mn5" contain="card_group">
         <div class="g-mn5c" >
-          <mainedit :children="mainChild"></mainedit>
-          <!--<div class="main">-->
-            <!--<div style="width: 375px;height:100vh; border:1px solid rgb(221, 221, 221);margin: 0 auto;position: relative;">-->
-              <!--<div v-for="(v,k) in mainChild" :key="v.cardId">-->
-                <!--<mod :card="v" contain="mainChild"></mod>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-
+          <mainedit :children="card_group" :key="cardId"></mainedit>
         </div>
       </div>
       <div class="g-sd52">
@@ -40,7 +32,7 @@
 
 <script>
   require("../common/marvel.css");
-  import {  XInput,Selector,XButton,XNumber, Flexbox, FlexboxItem, Group, XTextarea, Cell } from 'vux'
+
   var $ = require('jquery');
 
   import Bus from '../marvel/bus';
@@ -58,20 +50,16 @@
   const app={
     data:function () {
       return {
-        selected:"e1",////右边
-        selected2:"l1",//左边
-        selected3:"",//右边
-        helpJSON:require("../components/helpJSON"),
         children:[{
           "title":"容器",
-          "col":"3",
+          "col":"2",
           "items":[
             "card10",
 
           ],
         },{
           "title":"ui挂件",
-          "col":"3",
+          "col":"2",
           "items":[
             "card11",
             "card13",
@@ -79,13 +67,14 @@
           ],
         },{
           "title":"基础类",
-          "col":"4",
+          "col":"2",
           "items":[
             "card2",
             "card3",
             "card8",
             "card9",
             "card20",
+            "card21",
             "card22",
             "card23",
             "card24",
@@ -98,29 +87,27 @@
           "title":"业务类",
           "col":"2",
           "items":[
-
+            "card2008",
+            "card3001",
+          ],
+        },{
+          "title":"other",
+          "col":"2",
+          "items":[
+            "card100",
           ],
         }],
-        childrenList:(require("../components/childrenList").splice(0,2)),
-        mainChild:[],
+        cardId:++Bus.index,
+        card_group:[],
 //        editPageData:null,
         editCardData:null
       };
     },
     components: {
-      XInput,
-      XButton,
-      XNumber,
-      XTextarea,
-      Group,
-      Selector,
-      Flexbox,
-      FlexboxItem,
-      Cell,
       'drag': require('../components/drag.vue'),
-      'mod': require('../components/modDev.vue'),
-      'mainedit': require('../components/mainEdit.vue'),
+
       'leftedit': require('../components/leftEdit.vue'),
+      'mainedit': require('../components/mainEdit.vue'),
       'editor': require('../components/editor.vue')
     },
     methods:{
@@ -146,7 +133,7 @@
       },
       //点击保存
       save:function () {
-        var obj=JSON.parse(JSON.stringify(this.mainChild))
+        var obj=JSON.parse(JSON.stringify(this.card_group))
         obj.map(function (item,k) {
           delete item.cardId
           if(typeof item.card_type=="string") {
@@ -163,24 +150,24 @@
           }
           return item
         })
-      console.log(obj)
+        console.log(obj)
 //        var obj2=JSON.parse(JSON.stringify(this.editPageData))
 //        delete obj2.cardId;
 //        delete obj2.card_type;
 //        console.log(obj2)
 
-          var the=this;
-          this.$http.post("/subject/h5/savecard",{
-            page_id:Bus.params.id,
-            cardlist:JSON.stringify(obj),
+        var the=this;
+        this.$http.post("/subject/h5/savecard",{
+          page_id:Bus.params.id,
+          cardlist:JSON.stringify(obj),
 //            cardlist:JSON.stringify(obj2)
-          }).then(function (rst) {
-            if (rst.data && rst.data.status==1) {
-              the.$toast({
-                message: '已保存！'
-              })
-            }
-          })
+        }).then(function (rst) {
+          if (rst.data && rst.data.status==1) {
+            the.$toast({
+              message: '已保存！'
+            })
+          }
+        })
 
 
       },
@@ -191,11 +178,11 @@
       Bus.root=this;
 
       this.$http.get("/subject/h5/getcardinfo?page_id="+Bus.params.id+"&preview=1").then(function (rst) {
-        the.mainChild=rst.data.data.cards.map(function (item) {
-          item.cardId=Bus.index++
+        the.card_group=rst.data.data.cards.map(function (item) {
+          item.cardId=++Bus.index
           if(item.card_group){
             item.card_group.map(function (item2) {
-              item2.cardId=Bus.index++
+              item2.cardId=++Bus.index
               return item2;
             })
           }
@@ -220,25 +207,12 @@
   .g-bd5{
     width: 100%;
   }
-  .g-sd51,.g-sd52{position:relative;float:left;width:375px;margin:0 -375px 0 0;}
+  .g-sd51,.g-sd52{position:relative;float:left;width:300px;margin:0 -300px 0 0;}
   .g-sd52{float:right;width:300px;margin:0 0 0 -300px;}
   .g-mn5{float:left;width:100%;}
   .g-mn5c{margin:0 310px 0 375px;}
 
-  .main{
-    margin: 0 auto;
-    width: 575px;
-    height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    overflow-y: scroll;
-  }
 
-  /*@media screen and (min-width: 1500px){*/
-  /*.main{*/
-  /*width: 750px;*/
-  /*}*/
-  /*}*/
   .right{
     overflow: scroll;height: 100vh;
   }

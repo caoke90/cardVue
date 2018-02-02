@@ -211,11 +211,12 @@
           this.selected3=-1;
           return;
         }
+
         var the=this
 
         console.log(this.card.card_type)
         editVue=this;
-        this.helpItem=helpJSON["card"+(""+this.card.card_type).replace(/\D+/g,"")]
+        this.helpItem=helpJSON.getCardData(this.card.card_type);
         this.cardShow={}
         //数据映射
         if(this.helpItem.dataMap){
@@ -336,13 +337,8 @@
           }
         }
 
-        this.card.cardId=Bus.index++
+        this.card.cardId=++Bus.index
 
-      },
-      //删除
-      delCard:function () {
-        Bus.parentCardArr.splice(Bus.parentCardArr.indexOf(this.card),1)
-        Bus.root.editCardData=null
       },
     }
   };

@@ -2,8 +2,7 @@
   <div class="card card9 m-panel" v-if="card">
     <div class="card-wrap">
       <div class="card-main">
-        <weibo-title :card="card" v-if="card.card_type=='homepage_review'"></weibo-title>
-        <weibo-header v-else :card="card" ></weibo-header>
+        <weibo-title :card="card"></weibo-title>
 
         <weibo-article :card="card"></weibo-article>
         <weibo-footer :card="card"></weibo-footer>
@@ -22,7 +21,6 @@
     props: ['card'],
     components: {
       weiboTitle: require('./weibo-title.vue'),
-      weiboHeader: require('./weibo-header.vue'),
       weiboArticle: require('./weibo-article.vue'),
       weiboFooter: require('./weibo-footer.vue'),
 

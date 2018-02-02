@@ -10,7 +10,7 @@
       <div class="card m-panel card28" :class="['m-col-'+card.col]">
         <div class="card-wrap">
           <div class="card-main">
-            <div class="m-item-box" v-if="item" v-for="item in card.items" @mouseover="mouseover($event,item)" @mouseleave="mouseleave" @click="addCard(item)">
+            <div class="m-item-box" v-if="helpJSON[item]" v-for="item in card.items" @mouseover="mouseover($event,item)" @mouseleave="mouseleave" @click="addCard(item)">
               <div class="m-diy-btn m-box-col m-box-center m-box-center-a">
                 <h4>{{helpJSON[item].help}} <i class="m-font m-font-plus"></i></h4>
               </div>

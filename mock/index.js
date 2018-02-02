@@ -11,6 +11,7 @@ module.exports=[
     "/subject/h5/getpageinfo":"/subject/h5/getpageinfo",
     "/addfollow":"/subject/h5/ok",
     "/admin/mobile_page/ajax_getpolllist":"/subject/h5/ajax_getpolllist",
+    "/getuserandtask":"/subject/h5/getuserandtask",
     // "/subject/h5/savecard":"http://ting.weibo.com/subject/h5/savecard",
   }
 ]

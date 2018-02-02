@@ -78,7 +78,7 @@
     props: {
       needlazy: {
         type: Boolean,
-        default: false,
+        default: true,
       },
       src: {
         type: String,

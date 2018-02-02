@@ -4,27 +4,19 @@
   "data": {
     "cards": [
       {
-        "card_type": 11,
-        "type": "ui",
+        "card_group": [
+          {
+            "card_type": 100,
+            "user_id": "",
+            "task_id": "",
+            "desc": "这是一段任务描叙的文本<a href='https://www.baidu.com'>查看详情</a>",
+            "scheme": ""
+          }
+        ],
+        "type": "box",
+        "card_type": 10,
         "card_id": 0,
-        "openurl": "",
-        "duration": 3000,
-        "src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510294905153&di=0571b62b3d24181dbdc52da66956a1fa&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F15%2F02%2F16pic_1502789_b.jpg"
-      },
-      {
-        "card_type": 13,
-        "type": "ui",
-        "style": {
-          "position": "absolute",
-          "top": "2.2rem",
-          "left": "0rem",
-          "zIndex": 10
-        },
-        "width": "4rem",
-        "height": "4rem",
-        "card_id": 0,
-        "src": "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510294905153&di=0571b62b3d24181dbdc52da66956a1fa&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F15%2F02%2F16pic_1502789_b.jpg",
-        "openurl": ""
+        "title": ""
       }
     ]
   }

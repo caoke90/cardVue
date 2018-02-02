@@ -24,16 +24,19 @@ import '@/assets/font/sprite.css';
 import 'vux/src/styles/close.less';
 import 'vux/src/styles/1px.less';
 
-import mvImg  from './marvel/components/img.vue'
 
-Vue.component("mvImg", mvImg);
+Vue.component("mvImg", require('././marvel/components/img.vue'));
+Vue.component("mvFile", require('././marvel/components/file.vue'));
+Vue.component("mvPswp", require('././marvel/components/pswp.vue'));
 Vue.use(require('./filters'));
 const app = new Vue({
   name: 'App',
 
   components: {
     "router-view": require('./views/demo.vue'),
-    "mv-modal": require('./marvel/components/pswp.vue')
+    "mv-modal": {
+      template:"<div><mv-file></mv-file><mv-pswp></mv-pswp></div>"
+    },
   },
 }).$mount('#app');
 

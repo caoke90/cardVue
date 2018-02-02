@@ -1,12 +1,11 @@
 <template>
-  <div class="mainEdit">
-    <div class="boxcenter">
-
+  <div class="mainEdit" id="mainEdit">
+    <div class="boxcenter" :key="Bus.key">
       <div v-for="(v,k) in children" v-if="v.type=='ui'" :key="v.cardId">
-        <mod :card="v" contain="mainChild"></mod>
+        <mod :card="v" contain="card_group"></mod>
       </div>
       <div v-for="(v,k) in children" v-if="v.type!='ui'" :key="v.cardId">
-        <mod :card="v" contain="mainChild"></mod>
+        <mod :card="v" contain="card_group"></mod>
       </div>
     </div>
   </div>
@@ -17,15 +16,18 @@
 
   import $ from 'jquery';
   import Bus from '../marvel/bus';
+  Bus.key=0
   export default{
     props:['children'],
     data:function () {
       return {
+        Bus:Bus
       }
     },
     components: {
       'mod': require('./modDev.vue'),
     },
+
     computed:{
 
     },

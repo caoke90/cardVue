@@ -1,19 +1,15 @@
 <template>
-  <div :bid="this._uid" style="min-height: 2em;">
+  <div :bid="this._uid" style="min-height: 2em;"  :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
 
-    <div class="main-wrap" slot="drag1">
-      <!--<div class="btn-wrap">-->
-        <!--<button class="btn-item btn-up">↑</button>-->
-        <!--<button class="btn-item btn-down">↓</button>-->
-        <!--<button class="btn-item btn-drag">drag</button>-->
-        <!--<button class="btn-item btn-remove">X</button>&lt;!&ndash;v-if&ndash;&gt;-->
-      <!--</div>-->
-      <mt-button cardType="box" style="cursor:pointer;" type="danger" size="small">编辑</mt-button>
-      <div cardType="del" style="z-index:10;font-size:12px;cursor:pointer;position:absolute;left:-22px;top: 0px;text-align:center;line-height:20px;border-radius: 50%;display: block;width: 20px;height: 20px;background: #ef4f4f;color: #fff;">X</div>
+    <div class="main-wrap" :class="{'active':editting2||editting}">
+      <div @click.stop="editCard(card)" class="item drag" style="">drag</div>
+      <div @click.stop="delCard(card)"  v-show="editting" class="item del">X</div>
+      <div @click.stop="upCard(card)" v-if="card.type=='box'" class="item up" title="可按键盘↑操作">↑</div>
+      <div @click.stop="downCard(card)" v-if="card.type=='box'" class="item down" title="可按键盘↓操作">↓</div>
     </div>
     <!--在中间显示的样子-->
-    <component v-if="page_type=='card13'" :is="page_type" :card="card" :helpItem="helpItem"></component>
-    <div v-else-if="helpItem&&helpItem.demo_url" style="max-height: 100px;overflow: scroll;margin-bottom: 0.18rem;">
+    <component  v-if="page_type=='card13'" :is="page_type" :card="card"></component>
+    <div @click.stop="editCard(card)" v-else-if="helpItem&&helpItem.demo_url" style="max-height: 100px;overflow: scroll;margin-bottom: 0.18rem;">
       <img :src="helpItem.demo_url" onclick="return false;" />
     </div>
     <component v-else :is="page_type" :card="card" :helpItem="helpItem" ></component>
@@ -23,7 +19,7 @@
 <script>
   const helpJSON=require("./helpJSON")
   const component = require.context('./boxs', false, /\.vue$/);
-
+  import Bus from '../marvel/bus';
   const requireAll = context => context.keys().map(context);
   const compo={}
   requireAll(component).forEach((item) => {
@@ -38,9 +34,60 @@
     },
     props:['card','contain'],
     components:compo,
+    methods:{
+      mouseover:function (e) {
+        this.top=e.currentTarget.getBoundingClientRect().top;
+        if(Bus.mActive){
+          Bus.mActive.classList.remove("m-active")
+        }
+        Bus.mActive=e.currentTarget;
+        Bus.mActive.classList.add("m-active")
+
+      },
+      mouseleave:function () {
+        if(Bus.mActive){
+          Bus.mActive.classList.remove("m-active")
+          Bus.mActive=null
+        }
+      },
+      delCard:function (card) {
+        if(!this.editting){
+          return;
+        }
+        Bus.delCard(card)
+      },
+      upCard:function (card) {
+        if(!this.editting){
+          this.editCard(card)
+          return;
+        }
+        Bus.upCard(card)
+      },
+      downCard:function (card) {
+        if(!this.editting){
+          this.editCard(card)
+          return;
+        }
+        Bus.downCard(card)
+      },
+      editCard:function (card) {
+        Bus.editCard(card)
+      }
+    },
     computed: {
+      editting:function () {
+        return this.card===Bus.root.editCardData
+      },
+      editting2:function () {
+        if(this.card.card_group&&this.card.card_group.indexOf(Bus.root.editCardData)>-1){
+          return true;
+        }else{
+          return false;
+        }
+
+      },
       page_type: function () {
-        let type = 'box';
+        let type = '';
 
         if (this.card && this.card.card_type) {
           type="card"+(""+this.card.card_type).replace(/\D+/g,"");
@@ -53,55 +100,70 @@
 
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
+
+  .editting{
+    border: 1px solid #ef4f4f;
+    box-shadow: 2px 2px 5px #333333;
+    .item{
+      opacity: 1;
+    }
+  }
   .main-wrap{
-    left: -52px;height: 0;position: relative;z-index: 2;opacity: 0.9
+    left: -70px;height: 0;position: relative;z-index: 2;
+    width: 70px;
+    background: #fff;
+    display: block;
+    opacity: 0.1;
+    .item{
+      z-index:10;
+      font-size:12px;
+      cursor:pointer;
+      text-align:center;
+      line-height:20px;
+      border-radius: 50%;
+      display: block;
+      width: 20px;
+      height: 20px;
+      color: #fff;
+      margin-bottom: 6px;
+      background: #999;
+      position:relative;
+      left:22px;
+    }
+    .drag{
+      width:auto;
+      height: 28px;
+      line-height: 22px;
+      padding: 1px 7px 2px;
+      display: inline-block;
+      font-size: 14px;
+      background: #ef4f4f;
+      border-radius: 4px;
+      text-align: center;
+    }
+    .del{
+      position:absolute;
+      left:0px;top: 0px;
+      background: #ef4f4f;
+
+    }
+    .up{
+      left: 32px;
+    }
+    .down{
+      left: 32px;
+    }
+
   }
-  .main-wrap .btn-wrap {
-    width: 32px;
-    height: 200px;
-    position: absolute;
-    top: 0;
-    right: -32px;
+  .m-active{
+    border: 1px solid #26a2ff;
   }
-  .main-wrap .btn-up {
-    top: 32px;
-  }
-  .main-wrap .btn-wrap{
-    width: 32px;
-    height: 200px;
-    position: absolute;
-    top: 0;
-    right: -32px;
+  /*.m-active .main-wrap{*/
+    /*opacity: 0.9;*/
+  /*}*/
+  .main-wrap.active{
+    z-index: 1000;
+    opacity: 0.9;
   }
 
-  .main-wrap .btn-remove{
-    right: 0;
-  }
-  .main-wrap .btn-up{
-    top:32px;
-  }
-  .main-wrap .btn-down{
-    top:64px;
-  }
-  .main-wrap .btn-drag{
-    top:96px;
-    cursor:move;
-  }
-  .main-wrap .btn-edit{
-    right: 0;
-  }
-  .main-wrap .btn-item {
-    outline: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 10;
-    padding: 0;
-    border: none;
-    width: 30px;
-    height: 30px;
-    background: #E1E1E1;
-    color: #fff;
-    cursor: pointer;
-  }
 </style>
