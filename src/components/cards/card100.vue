@@ -1,5 +1,5 @@
 <template>
-  <weibo :card="card.weibo_info"></weibo>
+  <other :card="card.weibo_info"></other>
 </template>
 <script>
   export default {
@@ -9,7 +9,7 @@
     name: "card100",
     props: ['card'],
     components: {
-      weibo:require("../other/other.vue")
+      other:require("../other/other.vue")
     },
     methods: {
 
