@@ -33,7 +33,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-// app.use(bodyParser({uploadDir:'./uploads'}));
+
+var formidable = require("formidable");
 
 const compiler = webpack(webpackConfig);
 
@@ -59,9 +60,36 @@ app.get("/", function(req, res) {
 
 //文件上传
 app.post('/upload', function(req, res, next) {
-  console.log(req.file)
-  console.log(req.files)
-  res.json({});
+	var form = new formidable.IncomingForm();
+    form.encoding = 'utf-8';
+    form.uploadDir = __dirname + '/../static/';
+    form.maxFieldsSize = 10 * 1024 * 1024;
+	 //解析
+    form.parse(req, function (err, fields, files) {
+		
+        if(err) return res.json(err);
+        for (var file in files) {
+            //后缀名
+            var extName = /\.[^\.]+/.exec(files[file].name);
+            var ext = Array.isArray(extName)
+                ? extName[0]
+                : '';
+            //重命名，以防文件重复
+            var avatarName =  files[file].name;
+            //移动的文件目录
+            var newPath = form.uploadDir + avatarName;
+            fs.renameSync(files[file].path, newPath);
+            fields[file] = {
+                size: files[file].size,
+                url: uri+staticPath+"/"+avatarName,
+                path: newPath,
+                name: files[file].name,
+                type: files[file].type,
+                extName: ext
+            };
+        }
+        res.json( fields);
+    });
 });
 //保存card数据
 app.post("/subject/h5/savecard", function(req, res) {
@@ -188,7 +216,7 @@ app.use(devMiddleware);
 app.use(hotMiddleware);
 
 // serve pure static assets
-const staticPath = path.posix.join(
+var staticPath = path.posix.join(
 	config.dev.assetsPublicPath,
 	config.dev.assetsSubDirectory
 );
@@ -206,7 +234,7 @@ function getIPAdress() {
 		}
 	}
 }
-const uri = 'http://' + getIPAdress() + ':' + port;
+var uri = 'http://' + getIPAdress() + ':' + port;
 
 let _resolve;
 const readyPromise = new Promise(resolve => {

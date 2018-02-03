@@ -66,7 +66,7 @@
 
         if(!this.needlazy || this.isShow) {
           this.isShow = true;
-          var hsrc = this.src.replace("http:","https:")
+          var hsrc = this.src;
           cache.push(hsrc);
           return hsrc;
         }else{

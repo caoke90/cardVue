@@ -15,7 +15,9 @@
         <span class="score">{{card.score}}</span>
 			</div>
 		</div>
+        <aside>
 
+        </aside>
 	</header>
 </template>
 <style lang="scss" scoped="scoped">
@@ -128,34 +130,6 @@
           Bus.mActive.classList.remove("m-active")
           Bus.mActive=null
         }
-      },
-      guanzhu:function () {
-        this.isfollowed=true;
-        const mid=this.card.mid
-        const uid=this.card.user.id
-        this.$http.post("/movieapp/action/follow",{
-          operate:"follow",
-          sinaid:uid
-        }).then((resp) =>{
-          if(resp.data && resp.data.status == 1) {
-
-          }else{
-            this.isfollowed=false;
-          }
-        })
-        //关注统计
-        Bus.$emit("movieActionLog", {
-          "luicode": Bus.movieConfig.luicode,
-          "lfid": Bus.movieConfig.lfid,
-          "uicode": 40000078,
-          "act_code": 1383,
-          "ext": 'type:movie_follow|mid:'+mid+'|touid:'+uid,
-          "fid": '10100310001_-_homepage'
-        });
-      },
-      jumpgunz:function (card) {
-        const schemeClient = 'sinaweibo://detail?mblogid=' + card.strid;
-        Bus.$emit("openScheme",schemeClient);
       },
 			jump_url: function() {
 				Bus.$emit("openScheme", 'sinaweibo://userinfo?uid=' + this.card.user.id);

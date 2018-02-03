@@ -3,7 +3,6 @@
     <div class="card-wrap">
       <div class="card-main">
         <weibo-title :card="card"></weibo-title>
-
         <weibo-article :card="card"></weibo-article>
         <weibo-footer :card="card"></weibo-footer>
       </div>

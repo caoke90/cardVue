@@ -1,6 +1,5 @@
 //请求失败后的统一拦截，以及ajax的基本设置
 import axios from 'axios';
-import qs from 'qs';
 
 function cleanRequest(req) {
   for (const i in req) {
@@ -32,7 +31,6 @@ module.exports.install = function (Vue) {
       }
       if (request.data) {
         cleanRequest(request.data);
-        request.data=qs.stringify(request.data)
       }
       return request;
     },

@@ -6,9 +6,7 @@
       <li class="m-auto-box" v-for="(pic, index) in card.card_info.big_card.object.small_pics">
         <div class="m-img-box" @click="thumbnails($event, index, card.card_info.big_card.object.large_pics)">
           <mv-img :needlazy="true" :src="pic.url"></mv-img>
-          <span class="feed-mark" v-if="pic.pic_type=='gif'">GIF</span>
-          <span class="feed-mark" v-else-if="pic.pic_type=='long'">长图</span>
-          <span class="feed-mark" v-else-if="pic.pic_type=='live'">LIVE</span>
+          <span class="feed-mark" @click.stop.prevent="delImg(index)">X</span>
         </div>
       </li>
     </ul>
@@ -25,7 +23,7 @@
     .feed-mark{
       position: absolute;
       right: 0;
-      bottom: 0;
+      top: 0;
       border-radius: 0.04rem 0 0 0;
       color: #fff;
       background-color: rgba(80,125,175,0.75);
@@ -138,6 +136,10 @@
 		components: {
 		},
 		methods: {
+            delImg:function (index) {
+                this.card.card_info.big_card.object.small_pics.splice(index,1)
+                this.card.card_info.big_card.object.large_pics.splice(index,1)
+            },
 			thumbnails(e, index, cardList) {
 				const eTarget = e.target || e.srcElement;
 				const list = this.formatThumbItem(eTarget, cardList, index);

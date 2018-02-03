@@ -3,8 +3,8 @@
     <div class="box-center" @click="uplodClick" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
       上传文件
     </div>
-    <span class="m-line-gradient" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)"></span>
-    <div class="box-center">
+    <span class="m-line-gradient"></span>
+    <div class="box-center" @click="uplodimgClick" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)">
       上传图片
     </div>
     <span class="m-line-gradient" @touchstart="touchstart($event)" @touchmove="touchmove($event)" @touchend="touchmove($event)"></span>
@@ -17,6 +17,8 @@
 <script>
   import Bus from '../../marvel/bus';
   import qs from 'qs';
+  import image from '@/utils/image';
+
   export default {
     props: ['card'],
     data() {
@@ -30,7 +32,6 @@
     watch: {
     },
     components: {
-      weiboMedia: require('./weibo-media.vue'),
     },
     computed: {
 
@@ -38,6 +39,7 @@
     methods: {
 
       uplodClick:function () {
+        var self=this;
         //获取一个文件
        Bus.$emit("getFile",function (file) {
          var formData = new FormData();
@@ -48,9 +50,52 @@
            }
          }
          Bus.$http.post("/upload",formData,config).then(function (rst) {
-            console.log(rst)
+           self.card.card_info.big_card.object.small_pics.push(rst.data.file)
+           self.card.card_info.big_card.object.large_pics.push(rst.data.file)
          })
        })
+      },
+      uplodimgClick:function () {
+        var self=this;
+        //获取一个文件
+        Bus.$emit("getFile",function (imgfile) {
+
+          var options={
+            //图片的最大宽高
+            compress:{
+              width: 1600,
+              height: 1600,
+              quality: 1,
+            }
+          }
+
+          image.compress(imgfile, options, function(file){
+            if(file){
+              var formData = new FormData();
+              formData.append("file", file)
+              let config = {
+                headers: {
+                  'Content-Type': 'multipart/form-data'
+                }
+              }
+              Bus.$http.post("/upload",formData,config).then(function (rst) {
+                self.card.card_info.big_card.object.small_pics.push(rst.data.file)
+                self.card.card_info.big_card.object.large_pics.push(rst.data.file)
+              })
+            }
+          });
+//          var formData = new FormData();
+//          formData.append("file", file)
+//          let config = {
+//            headers: {
+//              'Content-Type': 'multipart/form-data'
+//            }
+//          }
+//          Bus.$http.post("/upload",formData,config).then(function (rst) {
+//            self.card.card_info.big_card.object.small_pics.push(rst.data.file)
+//            self.card.card_info.big_card.object.large_pics.push(rst.data.file)
+//          })
+        })
       },
       touchstart: function(e) {
         if(Bus.mActive) {
