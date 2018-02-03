@@ -37,7 +37,6 @@ import './common/moviePic';
 import '@/assets/font/font.css';
 import '@/assets/font/sprite.css';
 
-import 'vux/src/styles/close.less';
 import 'vux/src/styles/1px.less';
 
 Vue.component("mvImg", require('././marvel/components/img.vue'));

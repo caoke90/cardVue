@@ -9,7 +9,7 @@
     name: "card100",
     props: ['card'],
     components: {
-      weibo:require("../other/weibo.vue")
+      weibo:require("../other/other.vue")
     },
     methods: {
 
