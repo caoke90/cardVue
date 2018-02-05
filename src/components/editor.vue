@@ -337,7 +337,7 @@
           }
         }
 
-        this.card.cardId=++Bus.index
+        this.card.cardId=Bus.index++
 
       },
     }

@@ -36,6 +36,7 @@
   }
   .swiper-demo-img img {
     width: 100%;
+    height: 100%;
     position: relative;
     top:50%;
     -webkit-transform:translateY(-50%);

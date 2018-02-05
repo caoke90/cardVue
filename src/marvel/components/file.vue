@@ -1,5 +1,5 @@
 <template>
-  <input type="file" value="" accept=""  style="display:none;" @change="change($event)" />
+  <input type="file" value=""   style="display:none;" @change="change($event)" />
 </template>
 <script>
   import Bus from '../bus';

@@ -9,9 +9,7 @@
   const component = require.context('./cards', false, /\.vue$/);
 
   const requireAll = context => context.keys().map(context);
-  const compo={
-    "card9":require("./weibo/weibo.vue")
-  }
+  const compo={}
   requireAll(component).forEach((card) => {
     const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();
     compo[name]=card;

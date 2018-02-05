@@ -1,6 +1,6 @@
 //请求失败后的统一拦截，以及ajax的基本设置
 import axios from 'axios';
-
+import qs from 'qs';
 function cleanRequest(req) {
   for (const i in req) {
     /* eslint guard-for-in: 0 */
@@ -26,11 +26,17 @@ module.exports.install = function (Vue) {
   axios.interceptors.request.use(
     function (request) {
       const params = request.params;
+      const body = request.data;
       if (params) {
         cleanRequest(params);
       }
-      if (request.data) {
-        cleanRequest(request.data);
+      if (body) {
+        cleanRequest(body);
+        if (body.append) {
+        } else {
+          // 普通表单
+          request.data = qs.stringify(body);
+        }
       }
       return request;
     },

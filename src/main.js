@@ -25,32 +25,33 @@ import Vue from 'vue';
 
 import './common/base.css';
 
-//公用的组件
-Vue.component('card', require("./components/cardDev.vue"));
-
 //公用的ajax
-import ajax from '@/common/ajax';
+import ajax from './common/ajax';
 Vue.use(ajax);
-//查看大图
-import './common/moviePic';
+
 //引入字体
 import '@/assets/font/font.css';
 import '@/assets/font/sprite.css';
 
-import 'vux/src/styles/1px.less';
+//公用modal中的组件
+import Bus from './marvel/bus';
+Bus.modalComponent=[];
+Bus.addModalComponent=function (model) {
+  if(Bus.modalComponent.indexOf(model.name)==-1){
+    Bus.modalComponent.push(model.name)
+    Vue.component("mv-"+model.name, model);
+  }
 
+}
+Vue.component('card', require("./components/cardDev.vue"));
 Vue.component("mvImg", require('././marvel/components/img.vue'));
-Vue.component("mvFile", require('././marvel/components/file.vue'));
-Vue.component("mvPswp", require('././marvel/components/pswp.vue'));
-Vue.use(require('./filters'));
+
 const app = new Vue({
   name: 'App',
 
   components: {
     "router-view": require('./views/main.vue'),
-    "mv-modal": {
-      template:"<div><mv-file></mv-file><mv-pswp></mv-pswp></div>"
-    },
+    "mv-modal": require('./marvel/components/modal.vue'),
   },
 }).$mount('#app');
 

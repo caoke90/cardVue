@@ -23,8 +23,6 @@
             <editor :card="editCardData"></editor>
           </div>
         </div>
-
-
       </div>
     </div>
   </drag>
@@ -97,7 +95,7 @@
             "card100",
           ],
         }],
-        cardId:++Bus.index,
+        cardId:Bus.index++,
         card_group:[],
 //        editPageData:null,
         editCardData:null
@@ -151,10 +149,6 @@
           return item
         })
         console.log(obj)
-//        var obj2=JSON.parse(JSON.stringify(this.editPageData))
-//        delete obj2.cardId;
-//        delete obj2.card_type;
-//        console.log(obj2)
 
         var the=this;
         this.$http.post("/subject/h5/savecard",{
@@ -179,10 +173,10 @@
 
       this.$http.get("/subject/h5/getcardinfo?page_id="+Bus.params.id+"&preview=1").then(function (rst) {
         the.card_group=rst.data.data.cards.map(function (item) {
-          item.cardId=++Bus.index
+          item.cardId=Bus.index++
           if(item.card_group){
             item.card_group.map(function (item2) {
-              item2.cardId=++Bus.index
+              item2.cardId=Bus.index++
               return item2;
             })
           }

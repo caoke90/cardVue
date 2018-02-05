@@ -163,7 +163,7 @@ var cardsDic=[
     "card_id": 0,
     "openurl": "",
     "duration": 3000,
-    "src":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510294905153&di=0571b62b3d24181dbdc52da66956a1fa&imgtype=0&src=http%3A%2F%2Fpic3.16pic.com%2F00%2F15%2F02%2F16pic_1502789_b.jpg",
+    "src":"http://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/h5_subject/6225_461ae3.png",
 
   },
   //一个空的容器，可以在里面放入卡片

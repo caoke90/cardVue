@@ -20,7 +20,7 @@
   //添加card
   Bus.addCard=function (cardname) {
     var card=cardsDic.getCardData(cardname)
-    card.cardId=++Bus.index
+    card.cardId=Bus.index++
     if(card.type=="box"||card.card_group){
       Bus.root.card_group.push(card)
       Bus.editCard(card)
