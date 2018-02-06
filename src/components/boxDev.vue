@@ -1,5 +1,5 @@
 <template>
-  <div :bid="this._uid" style="min-height: 2em;"  :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
+  <div :bid="this._uid"  @click.stop.prevent="editCard(card)" style="min-height: 2em;"  :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
 
     <div class="main-wrap" :class="{'active':editting2||editting}">
       <div @click.stop="editCard(card)" class="item drag" style="">drag</div>
@@ -8,7 +8,7 @@
       <div @click.stop="downCard(card)" v-if="card.type=='box'" class="item down" title="可按键盘↓操作">↓</div>
     </div>
     <!--在中间显示的样子-->
-    <component  v-if="page_type=='card13'" :is="page_type" :card="card"></component>
+    <component v-if="page_type=='card13'" :is="page_type" :card="card" ></component>
     <div @click.stop="editCard(card)" v-else-if="helpItem&&helpItem.demo_url" style="max-height: 100px;overflow: scroll;margin-bottom: 0.18rem;">
       <img :src="helpItem.demo_url" onclick="return false;" />
     </div>
@@ -72,6 +72,7 @@
       },
       editCard:function (card) {
         Bus.editCard(card)
+
       }
     },
     computed: {
@@ -103,7 +104,6 @@
 
   .editting{
     border: 1px solid #ef4f4f;
-    box-shadow: 2px 2px 5px #333333;
     .item{
       opacity: 1;
     }

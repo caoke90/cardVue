@@ -144,7 +144,7 @@ var cardsDic=[
     "card_type": "card13",
     "type": "ui",
     "style":{
-      "position":"absolute",
+      "position":"fixed",
       "top":"0rem",
       "left":"0rem",
       "zIndex":10,

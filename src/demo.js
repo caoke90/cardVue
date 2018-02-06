@@ -14,8 +14,8 @@ Vue.use(ajax);
 //设置监听openScheme事件,同时拦截a标签的跳转事件
 import  './common/openScheme';
 //引入字体
-import '@/assets/font/font.css';
-import '@/assets/font/sprite.css';
+import './assets/font/font.css';
+import './assets/font/sprite.css';
 
 //公用modal中的组件
 import Bus from './marvel/bus';

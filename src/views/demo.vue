@@ -1,7 +1,10 @@
 <template>
   <div style="margin:0 auto;max-width: 750px;position: relative;">
+    <div v-for="(v,k) in card_group" v-if="v.type=='ui'" :key="k">
+      <mod :card="v"></mod>
+    </div>
     <mv-loadmore :top-method="pull_refresh">
-      <div v-for="(v,k) in card_group" :key="k">
+      <div v-for="(v,k) in card_group" v-if="v.type!='ui'" :key="k">
         <mod :card="v"></mod>
       </div>
     </mv-loadmore>

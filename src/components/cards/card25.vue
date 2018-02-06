@@ -20,7 +20,7 @@
 							<h4>加关注</h4>
 						</span>
             <span class="m-add-box m-add-al" v-else>
-							<i class="m-font m-font-follow"></i>
+							<i class="m-font m-font-followed"></i>
 							<h4>已关注</h4>
 						</span>
           </div>

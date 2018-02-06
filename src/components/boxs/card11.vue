@@ -67,7 +67,7 @@
       z-index: 1001;
       position: fixed;
       top:50vh;
-      left:3.75rem;
+      left:50vw;
       width:6rem;
       max-height:80vh;
 		}

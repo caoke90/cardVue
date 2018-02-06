@@ -13,6 +13,7 @@
     components: {
       'box': require('./box.vue')
     },
+
     data:function () {
       return {}
     },

@@ -1,5 +1,5 @@
 <template>
-  <div class="mainEdit" id="mainEdit">
+  <div class="mainEdit" id="mainEdit" >
     <div class="boxcenter" :key="Bus.key">
       <div v-for="(v,k) in children" v-if="v.type=='ui'" :key="v.cardId">
         <mod :card="v" contain="card_group"></mod>
