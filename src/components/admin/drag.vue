@@ -94,6 +94,7 @@
     var helpItem=helpJSON.getCardData(card.card_type);
     //存在异步数据
     if(helpItem.sync){
+      Bus.root.editCardData=card;
       helpItem.sync(function () {
         Bus.root.editCardData=card;
       })
@@ -244,9 +245,17 @@
         Bus.downTarget=e.target;
 
         Bus.downBox= this.findVue($(e.target).parents("[mid]").attr("mid"), this.$root)
+        if(Bus.downBox){
+          if(Bus.downBox.card&&Bus.downBox.card.card_type==11||Bus.downBox.card.card_type=="card11"){
+            $("#dragbox #dragClone").remove();
+            e.preventDefault()
+            return;
+          }
+        }
 
         if($(e.target).parents("[cid]").attr("cid")){
           $("#dragbox #dragClone").remove();
+
           Bus.clone=$(Bus.downTarget).parents("[cid]").clone().appendTo("#dragbox").css({
             position:"absolute",
             left:e.x+"px",

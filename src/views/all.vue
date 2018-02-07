@@ -88,12 +88,12 @@
             "card2008",
             "card3001",
           ],
-        },{
-          "title":"other",
-          "col":"2",
-          "items":[
-            "card100",
-          ],
+//        },{
+//          "title":"other",
+//          "col":"2",
+//          "items":[
+//            "card100",
+//          ],
         }],
         cardId:Bus.index++,
         card_group:[],

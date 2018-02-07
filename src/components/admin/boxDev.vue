@@ -1,5 +1,5 @@
 <template>
-  <div :bid="this._uid"  @click.stop.prevent="editCard(card)" style="min-height: 2em;"  :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
+  <div :bid="this._uid"  @click.stop.prevent="editCard(card)" style="min-height: 2em;" class="boxDev" :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
 
     <div class="main-wrap" :class="{'active':editting2||editting}">
       <div @click.stop="editCard(card)" class="item drag" style="">drag</div>
@@ -94,9 +94,13 @@
 
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
-
+  .boxDev{
+    border: 1px solid hsla(0,0,0,0);
+    box-sizing: border-box;
+  }
   .editting{
     border: 1px solid #ef4f4f;
+    box-sizing: border-box;
     .item{
       opacity: 1;
     }
@@ -150,11 +154,13 @@
   }
   .m-active{
     border: 1px solid #26a2ff;
+    box-sizing: border-box;
   }
   /*.m-active .main-wrap{*/
     /*opacity: 0.9;*/
   /*}*/
   .main-wrap.active{
+    box-sizing: border-box;
     z-index: 1000;
     opacity: 0.9;
   }

@@ -78,6 +78,7 @@
     overflow-y:scroll;height:100vh;
     padding-bottom: 3rem;
     .active{
+
       z-index: 100;
       position: absolute;left: 102%;width: 375px;
       top:20px;

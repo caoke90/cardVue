@@ -1,5 +1,5 @@
 <template>
-  <div v-if="page_type" :cid="this._uid" :key="card.cardId" @click.stop="editCard(card)" :class="{'editting':editting}" @mouseover.stop="mouseover($event)" @mouseleave="mouseleave">
+  <div v-if="page_type" :cid="this._uid" :key="card.cardId" class="cardDev" @click.stop="editCard(card)"  :class="{'editting':editting}" @mouseover.stop="mouseover($event)" @mouseleave="mouseleave">
     <div class="main-wrap" :class="{'active':editting}">
       <div @click.stop="delCard(card)" class="item del" style="">X</div>
       <div @click.stop="upCard(card)" class="item up" title="可按键盘↑操作">↑</div>
@@ -100,10 +100,12 @@
 
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
-
+  .cardDev{
+    border: 1px solid hsla(0,0,0,0);
+    box-sizing: border-box;
+  }
   .editting{
     border: 1px solid #ef4f4f;
-    box-shadow: 2px 2px 5px #333333;
   }
   .main-wrap{
     left: 102%;
@@ -154,9 +156,6 @@
   .m-active{
     border: 1px solid #26a2ff;
   }
-  /*.m-active .main-wrap{*/
-    /*opacity: 0.9;*/
-  /*}*/
   .main-wrap.active{
     z-index: 1000;
     opacity: 0.9;

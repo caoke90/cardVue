@@ -60,7 +60,7 @@ module.exports={
       "defaultIndex":"Number",
       "height":"Rem",
       "pic_items.src":"imgUrl",
-      "pic_items.openurl":"Url",
+      "pic_items.src":"imgUrl",
     },
   },
   "card8":{
