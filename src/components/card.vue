@@ -9,9 +9,12 @@
     computed: {
       style:function () {
         var card=this.card;
-        if(card.style&&window.innerWidth>750){
+        if(card.style&&card.style.position=='fixed'&&window.innerWidth>750){
           if(card.style.left&&card.style.left.indexOf("rem")>-1){
             card.style.left=((window.innerWidth-750)/200+parseFloat(card.style.left))+"rem";
+          }
+          if(card.style.right&&card.style.right.indexOf("rem")>-1){
+            card.style.right=((window.innerWidth-750)/200+parseFloat(card.style.right))+"rem";
           }
         }
         return card.style;
