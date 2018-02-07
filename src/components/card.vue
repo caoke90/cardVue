@@ -1,22 +1,11 @@
 <template>
-
-  <component  :is="page_type" :card="card" :cid="this._uid"></component>
-
+  <component :style="card.style" :is="page_type" :card="card" :cid="this._uid"></component>
 </template>
 
 <script>
 
-  const component = require.context('./cards', false, /\.vue$/);
-
-  const requireAll = context => context.keys().map(context);
-  const compo={}
-  requireAll(component).forEach((card) => {
-    const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();
-    compo[name]=card;
-  });
   export default{
     props:['card'],
-    components:compo,
     computed: {
       page_type: function () {
         let type = '';

@@ -14,8 +14,8 @@
 <script>
   var $ = require('jquery');
   var cardsDic = require('./cardsDic');
-  var helpJSON = require('./helpJSON');
-  import Bus from '../marvel/bus';
+  var helpJSON = require('./cardshelp');
+  import Bus from '../../marvel/bus';
 
   //添加card
   Bus.addCard=function (cardname) {
@@ -91,8 +91,7 @@
   },
   //编辑card
   Bus.editCard=function (card) {
-    var cardNum=(""+card.card_type).replace(/\D+/g,"")
-    var helpItem=helpJSON.getCardData(cardNum);
+    var helpItem=helpJSON.getCardData(card.card_type);
     //存在异步数据
     if(helpItem.sync){
       helpItem.sync(function () {
@@ -182,7 +181,6 @@
       }
     },
     components:{
-      'mod': require('./mod.vue'),
     },
 
     methods:{

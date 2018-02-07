@@ -1,11 +1,11 @@
 <template>
   <div style="margin:0 auto;max-width: 750px;position: relative;">
     <div v-for="(v,k) in card_group" v-if="v.type=='ui'" :key="k">
-      <mod :card="v"></mod>
+      <card :card="v"></card>
     </div>
     <mv-loadmore :top-method="pull_refresh">
       <div v-for="(v,k) in card_group" v-if="v.type!='ui'" :key="k">
-        <mod :card="v"></mod>
+        <card :card="v"></card>
       </div>
     </mv-loadmore>
   </div>
@@ -35,7 +35,6 @@
     },
     components: {
       'mv-loadmore': require('@/marvel/components/loadmore.vue'),
-      'mod': require('../components/mod.vue')
     },
     methods:{
       pull_refresh:function() {

@@ -1,11 +1,11 @@
-import Bus from '../marvel/bus';
+import Bus from '../../marvel/bus';
 module.exports={
   "card1":{
     "help": "card1:ui类的容器",
   },
   "card2":{
     "help": "card2:宫格图文",
-    "demo_url":require("../assets/demoimg/card2.png"),
+    "demo_url":require("../../assets/demoimg/card2.png"),
     //数据映射
     "dataMap":{
       "col":"col",
@@ -40,7 +40,7 @@ module.exports={
   },
   "card3":{
     "help": "card3:高度可调的轮播图",
-    "demo_url":require("../assets/demoimg/card3.png"),
+    "demo_url":require("../../assets/demoimg/card3.png"),
     //数据映射
     "dataMap":{
       // "defaultIndex":"defaultIndex",
@@ -60,11 +60,12 @@ module.exports={
       "defaultIndex":"Number",
       "height":"Rem",
       "pic_items.src":"imgUrl",
+      "pic_items.openurl":"Url",
     },
   },
   "card8":{
     "help":"card8:图文",
-    "demo_url":require("../assets/demoimg/card8.png"),
+    "demo_url":require("../../assets/demoimg/card8.png"),
     "dataMap":{
       "pic":"pic",
       "title_sub":"title_sub",
@@ -95,7 +96,7 @@ module.exports={
   },
   "card9":{
     "help":"card9:表示一条微博",
-    "demo_url":require("../assets/demoimg/card9.png"),
+    "demo_url":require("../../assets/demoimg/card9.png"),
     "dataMap":{
       "weibo_info.url":"url"
     },
@@ -114,7 +115,7 @@ module.exports={
   },
   "card11":{
     "help":"card11,全屏动画，默认3秒后消失",
-    "demo_url":require("../assets/demoimg/card11.png"),
+    "demo_url":require("../../assets/demoimg/card11.png"),
     //数据映射
     "dataMap":{
       "src":"src",
@@ -136,7 +137,7 @@ module.exports={
 
   "card13":{
     "help":"card13:可移动、可调整大小的图片",
-    "demo_url":require("../assets/demoimg/card13.png"),
+    "demo_url":require("../../assets/demoimg/card13.png"),
 
     //数据映射
     "dataMap":{
@@ -155,14 +156,16 @@ module.exports={
       "openurl":"跳转",
       "width":"宽度",
       "height":"高度",
-      "left":"距离左边",
-      "top":"距离上面",
+      // "left":"距离左边",
+      // "top":"距离上面",
     },
     //属性类型
     "propsType":{
       "src":"imgUrl",
       "width":"Rem",
       "height":"Rem",
+      // "top":"Rem",
+      // "left":"Rem",
       "openurl":"Url",
       "position":"Selector",
       "positionOptions":[{key: "absolute", value: '普通'}, {key: "fixed", value: '固定在页面'}],
@@ -171,7 +174,7 @@ module.exports={
 
   "card20":{
     "help":"card20:投票card",
-    "demo_url":require("../assets/demoimg/card20.png"),
+    "demo_url":require("../../assets/demoimg/card20.png"),
     //数据映射
     "dataMap":{
       "title":"title",
@@ -253,7 +256,7 @@ module.exports={
   },
   "card21":{
     "help":"card21:四图投票",
-    "demo_url":require("../assets/demoimg/card21.jpg"),
+    "demo_url":require("../../assets/demoimg/card21.jpg"),
     //数据映射
     "dataMap":{
       "title":"title",
@@ -318,7 +321,7 @@ module.exports={
   },
   "card22":{
     "help":"card22:单行",
-    "demo_url":require("../assets/demoimg/card22.png"),
+    "demo_url":require("../../assets/demoimg/card22.png"),
     "dataMap":{
       "pic":"pic",
       "desc":"desc",
@@ -337,7 +340,7 @@ module.exports={
   },
   "card23":{
     "help":"card23:单行按钮",
-    "demo_url":require("../assets/demoimg/card23.png"),
+    "demo_url":require("../../assets/demoimg/card23.png"),
     "dataMap":{
       "show_color":"show_color",
       "desc":"desc",
@@ -363,7 +366,7 @@ module.exports={
   },
   "card24":{
     "help":"card24: 纯文本",
-    "demo_url":require("../assets/demoimg/card24.png"),
+    "demo_url":require("../../assets/demoimg/card24.png"),
     "dataMap":{
       "title":"title",
       "desc":"desc",
@@ -383,7 +386,7 @@ module.exports={
   },
   "card25":{
     "help":"card25: 用户",
-    "demo_url":require("../assets/demoimg/card25.png"),
+    "demo_url":require("../../assets/demoimg/card25.png"),
     "dataMap":{
       "uid":"uid",
     },
@@ -397,7 +400,7 @@ module.exports={
   },
   "card26":{
     "help":"card26: 宫格按钮",
-    "demo_url":require("../assets/demoimg/card26.png"),
+    "demo_url":require("../../assets/demoimg/card26.png"),
     "dataMap":{
       "col":"col",
       "items":"items",
@@ -430,7 +433,7 @@ module.exports={
   },
   "card28":{
     "help":"card28: 宫格",
-    "demo_url":require("../assets/demoimg/card28.png"),
+    "demo_url":require("../../assets/demoimg/card28.png"),
     "dataMap":{
       "col":"col",
       "items":"items",
@@ -463,7 +466,7 @@ module.exports={
   },
   "card29":{
     "help":"card29: 标题",
-    "demo_url":require("../assets/demoimg/card29.png"),
+    "demo_url":require("../../assets/demoimg/card29.png"),
     "dataMap":{
       "pic":"pic",
       "desc":"desc",
@@ -484,7 +487,7 @@ module.exports={
   },
   "card30":{
     "help":"card30: 分割线",
-    "demo_url":require("../assets/demoimg/card30.png"),
+    "demo_url":require("../../assets/demoimg/card30.png"),
     "dataMap":{
       "name":"name",
       "scheme":"scheme",
@@ -501,7 +504,7 @@ module.exports={
 
  "card2008":{
     "help":"card2008:图文",
-    "demo_url":require("../assets/demoimg/card8.png"),
+    "demo_url":require("../../assets/demoimg/card8.png"),
     "dataMap":{
       "film_id":"film_id",
       "button_type":"button_type"
@@ -522,7 +525,7 @@ module.exports={
   },
   "card3001":{
     "help":"card3001:话题流card",
-    "demo_url":require("../assets/demoimg/card3001.jpg"),
+    "demo_url":require("../../assets/demoimg/card3001.jpg"),
     "dataMap":{
       "topic_name":"topic_name",
       "sort_type":"sort_type",
@@ -549,7 +552,7 @@ module.exports={
   },
   "card100":{
     "help":"card100:任务卡片",
-    "demo_url":require("../assets/demoimg/card100.png"),
+    "demo_url":require("../../assets/demoimg/card100.png"),
     "dataMap":{
       "user_id":"user_id",
       "task_id":"task_id",
@@ -590,9 +593,11 @@ module.exports={
     }
   },
   getCardData:function(name) {
-    var num=(""+name).replace(/\D+/g,"")
+    if(typeof name=="number"){
+      name="card"+name;
+    }
     for(var k in this){
-      if(num==k.replace(/\D+/g,"")){
+      if(name==k){
         return this[k];
       }
     }

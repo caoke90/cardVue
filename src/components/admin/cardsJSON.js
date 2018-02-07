@@ -948,9 +948,11 @@ module.exports={
     ]
   },
   getCardData:function(name) {
-    var num=(""+name).replace(/\D+/g,"")
+    if(typeof name=="number"){
+      name="card"+name;
+    }
     for(var k in this){
-      if(num==k.replace(/\D+/g,"")){
+      if(name==k){
         return JSON.parse(JSON.stringify(this[k]));
       }
     }

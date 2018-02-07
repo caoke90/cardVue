@@ -15,7 +15,7 @@
 <script>
 
   import $ from 'jquery';
-  import Bus from '../marvel/bus';
+  import Bus from '../../marvel/bus';
   Bus.key=0
   export default{
     props:['children'],

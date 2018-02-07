@@ -149,10 +149,10 @@ var cardsDic=[
       "left":"0rem",
       "zIndex":10,
     },
-    "width":"4rem",
-    "height":"4rem",
+    "width":"1rem",
+    "height":"1rem",
     "card_id": 0,
-    "src":"http://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/h5_subject/6225_c4cf45.png",
+    "src":"https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/movie_game/1517809788560.jpg",
     "openurl": ""
   },
 
@@ -271,9 +271,11 @@ var cardsDic=[
 module.exports={
   cardsDic:cardsDic,
   getCardData:function getCardData(name) {
-    var num=(""+name).replace(/\D+/g,"")
+    if(typeof name=="number"){
+      name="card"+name;
+    }
     for(var i=0;i<cardsDic.length;i++){
-      if(num==cardsDic[i].card_type.replace(/\D+/g,"")){
+      if(name==cardsDic[i].card_type){
         return JSON.parse(JSON.stringify(cardsDic[i]));
       }
     }

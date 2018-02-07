@@ -19,6 +19,8 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
   entry:{
     demo: './src/demo.js',
     main: './src/main.js',
+    all: './src/all.js',
+    alldemo: './src/alldemo.js',
   },
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
@@ -47,6 +49,22 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
       inject: true,
       hash: true,
       chunks:["demo"],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'cardVue/alldemo.html',
+      template: 'index.html',
+      inject: true,
+      hash: true,
+      chunks:["alldemo"],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'cardVue/all.html',
+      template: 'index.html',
+      inject: true,
+      hash: true,
+      chunks:["all"],
       chunksSortMode: 'dependency'
     }),
     // https://github.com/ampedandwired/html-webpack-plugin

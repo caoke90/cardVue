@@ -14,17 +14,9 @@
 </template>
 
 <script>
-  const helpJSON=require("./helpJSON")
-  const component = require.context('./cards', false, /\.vue$/);
-  import Bus from '../marvel/bus';
-  const requireAll = context => context.keys().map(context);
-  const compo={};
-  requireAll(component).forEach((card) => {
-    const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();
-    if(!compo[name]){
-      compo[name]=card;
-    }
-  });
+  const helpJSON=require("./cardshelp")
+  import Bus from '../../marvel/bus';
+
 
   export default{
     data:()=>{
@@ -74,7 +66,6 @@
       }
     },
     props:['card','contain'],
-    components:compo,
     computed: {
       editting:function () {
 

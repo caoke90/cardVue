@@ -28,7 +28,7 @@
 <script>
 
   import $ from 'jquery';
-  import Bus from '../marvel/bus';
+  import Bus from '../../marvel/bus';
   export default{
     props:['children'],
     data:function () {
@@ -36,7 +36,7 @@
         hoverE:"",
         top:0,
         left:0,
-        helpJSON:require("./helpJSON")
+        helpJSON:require("./cardshelp")
       }
     },
     components: {

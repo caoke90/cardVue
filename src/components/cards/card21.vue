@@ -12,7 +12,6 @@
     name: "card21",
     props: ['card'],
     components: {
-      "card20":require("./card20.vue")
     },
     created:function () {
       //四图card

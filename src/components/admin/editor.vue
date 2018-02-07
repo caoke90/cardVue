@@ -135,8 +135,8 @@
     }
     return result;
   }
-  var helpJSON=require("./helpJSON")
-  import Bus from '../marvel/bus';
+  var helpJSON=require("./cardshelp")
+  import Bus from '../../marvel/bus';
   import $ from 'jquery';
   import File from '@/utils/file';
   import { XInput,Selector,XButton,XNumber, Flexbox, FlexboxItem, Group, XTextarea, Cell } from 'vux'
@@ -227,12 +227,14 @@
         if(this.helpItem.propsType){
           for(var k in this.helpItem.propsType){
             if(this.helpItem.propsType[k]=="Rem"){
+
               if(k.indexOf(".")==-1){
                 if(Object.prototype.toString.call(this.card[k])=='[object Array]'){
                   this.card[k].forEach(function (item,k2) {
                     the.cardShow[k][k2]=parseFloat(item)*100;
                   })
                 }else{
+
                   this.cardShow[k]=parseFloat(this.card[k])*100;
                 }
               }else{

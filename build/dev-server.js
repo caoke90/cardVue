@@ -20,7 +20,7 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser;
 // https://github.com/chimurai/http-proxy-middleware
 const proxyTable = config.dev.proxyTable;
 const mockArr = require("../mock/index.js");
-const cardsJSON = require("../src/components/cardsJSON");
+const cardsJSON = require("../src/components/admin/cardsJSON");
 
 const mockUrl = {}
 mockArr.forEach(function(item) {
@@ -66,7 +66,7 @@ app.post('/upload', function(req, res, next) {
     form.maxFieldsSize = 10 * 1024 * 1024;
 	 //解析
     form.parse(req, function (err, fields, files) {
-		
+
         if(err) return res.json(err);
         for (var file in files) {
             //后缀名
@@ -98,23 +98,26 @@ app.post("/subject/h5/savecard", function(req, res) {
 		if(arr.card_group) {
 			for(var i = 0; i < arr.card_group.length; i++) {
 				var card = arr.card_group[i];
-				if(card.card_type == 20) {
+				if(typeof card.card_type=="Number"){
+          card.card_type="card"+card.card_type;
+        }
+				if(card.card_type == "card20") {
 					var item = cardsJSON.getCardData(card.card_type);
           item.title=card.title;
           item.height=card.pic_height;
 					arr.card_group[i] = item;
 				}
-        if(card.card_type == 21) {
+        if(card.card_type == "card21") {
           var item = cardsJSON.getCardData(card.card_type);
           item.title=card.title;
           item.height=card.pic_height;
           arr.card_group[i] = item;
         }
-				if(card.card_type == 9) {
+				if(card.card_type == "card9") {
           var item = cardsJSON.getCardData(card.card_type);
 					arr.card_group[i] = item;
 				}
-        if(card.card_type == 100) {
+        if(card.card_type == "card100") {
           var item = cardsJSON.getCardData(card.card_type);
           if(Array.isArray(item)){
             arr.card_group[i] = item[0|Math.random()*item.length];
@@ -122,11 +125,11 @@ app.post("/subject/h5/savecard", function(req, res) {
             arr.card_group[i] = item
           }
         }
-				if(card.card_type == 25) {
+				if(card.card_type == "card25") {
           var item = cardsJSON.getCardData(card.card_type);
 					arr.card_group[i] = item;
 				}
-				if(card.card_type == 2008) {
+				if(card.card_type == "card2008") {
           var item = cardsJSON.getCardData(card.card_type);
 					arr.card_group[i] = item;
 				}

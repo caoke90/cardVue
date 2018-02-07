@@ -4,6 +4,8 @@ module.exports=[
     //本地的url =》 本地的url
     "/admin/mobile_page/edit":"/cardVue/index.html",
     "/cardVue/demo.html?preview=1":"/cardVue/demo.html?preview=1",
+    "/all":"/cardVue/all.html",
+    "/cardVue/alldemo.html?preview=1":"/cardVue/alldemo.html?preview=1",
 
   },{
     //线上的url =》 本地的mock
