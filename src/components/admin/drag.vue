@@ -246,7 +246,7 @@
 
         Bus.downBox= this.findVue($(e.target).parents("[mid]").attr("mid"), this.$root)
         if(Bus.downBox){
-          if(Bus.downBox.card&&Bus.downBox.card.card_type==11||Bus.downBox.card.card_type=="card11"){
+          if(Bus.downBox.card&&(Bus.downBox.card.card_type==11||Bus.downBox.card.card_type=="card11")){
             $("#dragbox #dragClone").remove();
             e.preventDefault()
             return;
