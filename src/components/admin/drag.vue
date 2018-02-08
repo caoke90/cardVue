@@ -375,7 +375,7 @@
         }else if(x.indexOf("%")>-1){
           return parseInt(parseFloat(x)+parseFloat(relative/375)*100)+"%";
         }else if(x.indexOf("rem")>-1){
-          return parseInt(parseFloat(parseFloat(x)+parseInt(relative)/20)*10)/10+"rem";
+          return (parseInt(parseFloat(parseFloat(x)+parseInt(relative)/50)*5)/5||0)+"rem";
         }
       }
     },

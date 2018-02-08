@@ -1,5 +1,5 @@
 <template>
-  <div :style="style"  >
+  <div :style="style">
     <box v-if="card.type=='ui'||card.type=='box'||card.card_group" :mid="_uid" :card="card" :contain="contain"></box>
     <card v-else :mid="_uid" :card="card" :contain="contain"></card>
   </div>
@@ -17,15 +17,24 @@
       'box': require('./boxDev.vue')
     },
     computed:{
+
       style:function () {
+
         var card=this.card;
-        if(card.style){
+        if(card.style&&card.style.position=='fixed'&&window.innerWidth>375){
+          var rect=this.$parent.$refs.center.getBoundingClientRect();
+          var left=rect.x;
+          var right=window.innerWidth-(rect.x+rect.width);
           var style=JSON.parse(JSON.stringify(card.style))
-          style.position="absolute";
-          return style
-        }else{
-          return {}
+          if(style.left&&style.left.indexOf("rem")>-1){
+            style.left=(left/50+parseFloat(style.left))+"rem";
+          }
+          if(style.right&&style.right.indexOf("rem")>-1){
+            style.right=(right/50+parseFloat(style.right))+"rem";
+          }
+          return style;
         }
+        return card.style;
       }
     },
     methods: {
