@@ -159,6 +159,29 @@ module.exports={
       // "left":"距离左边",
       // "top":"距离上面",
     },
+    "watch":{
+      "style.position":function(nval,oval,editVue){
+        var style=JSON.parse(JSON.stringify(editVue.card.style))
+
+        if(nval=="fixed"){
+          if(parseFloat(style.top)>window.innerHeight/50){
+            style.top=parseFloat(style.top)%window.innerHeight/50;
+          }
+          if(parseFloat(style.top)>window.innerHeight/100){
+            style.bottom=window.innerHeight/50-parseFloat(style.top)-parseFloat(editVue.card.height)+"rem";
+            delete style.top;
+          }
+        }else{
+          if(style.bottom){
+            style.top=window.innerHeight/50-parseFloat(style.bottom)-parseFloat(editVue.card.height)+"rem";
+            delete style.bottom;
+          }
+
+        }
+        editVue.card.style=style;
+
+      }
+    },
     //属性类型
     "propsType":{
       "src":"imgUrl",

@@ -164,9 +164,7 @@
     console.log(event.keyCode)
     if(Bus.root.editCardData&&Bus.root.editCardData.type!="ui"){
       if (event.keyCode === 40||event.keyCode === 39){
-
         Bus.downCard(Bus.root.editCardData)
-
       }
       if ( event.keyCode === 38||event.keyCode === 37){
         Bus.upCard(Bus.root.editCardData)
@@ -339,6 +337,7 @@
               console.log("box内部交换")
             }else{
               this.boxMove(dbox)
+              dbox.card.style=JSON.parse(JSON.stringify(dbox.card.style));
               console.log("box内部移动")
             }
           }
@@ -351,21 +350,51 @@
           if((dbox&&!upbox&&dbox.card.style)||(dbox&&upbox&&dbox!=upbox&&dbox.card.style)){
             console.log("移动位置")
             this.boxMove(dbox)
+            dbox.card.style=JSON.parse(JSON.stringify(dbox.card.style));
           }
           Bus.downBox = null;
         }
         e.preventDefault();
       },
       boxMove:function (dbox) {
-        if(dbox.card.style.right){
-          dbox.card.style.right =this.toDw(dbox.card.style.right,(Bus.downP.x-Bus.upP.x ));
+        var card=dbox.card;
+        var rect=dbox.$el.getBoundingClientRect();
+        if(card.style.right){
+          var right =this.toDw(card.style.right,(Bus.downP.x-Bus.upP.x ));
+          if(parseFloat(card.style.right)>3.5){
+            card.style.left=(7.5-parseFloat(card.style.right)-rect.width/50).toFixed(2)+"rem";
+            delete card.style.right;
+          }else{
+            card.style.right=right;
+          }
         }else{
-          dbox.card.style.left =this.toDw(dbox.card.style.left,(Bus.upP.x - Bus.downP.x));
+          var left =this.toDw(card.style.left,(Bus.upP.x - Bus.downP.x));
+          if(parseFloat(left)>3.5){
+            card.style.right=(7.5-parseFloat(left)-rect.width/50).toFixed(2)+"rem";
+            delete card.style.left;
+          }else{
+            card.style.left=left;
+          }
         }
-        if(dbox.card.style.bottom){
-          dbox.card.style.bottom = this.toDw(dbox.card.style.bottom,( Bus.downP.y-Bus.upP.y));
+        if(card.style.bottom){
+          var bottom= this.toDw(card.style.bottom,( Bus.downP.y-Bus.upP.y));
+          if(card.style.position=="fixed"&&parseFloat(card.style.bottom)>window.innerHeight/100){
+            card.style.top=(window.innerHeight/50-parseFloat(card.style.bottom)-rect.height/50).toFixed(2)+"rem";
+            delete card.style.bottom;
+
+          }else{
+            card.style.bottom=bottom;
+          }
         }else{
-          dbox.card.style.top = this.toDw(dbox.card.style.top,(Bus.upP.y - Bus.downP.y));
+          var top = this.toDw(card.style.top,(Bus.upP.y - Bus.downP.y));
+          if(card.style.position=="fixed"&&parseFloat(card.style.top)>window.innerHeight/100){
+            card.style.bottom=(window.innerHeight/50-parseFloat(card.style.top)-rect.height/50).toFixed(2)+"rem";
+            delete card.style.top;
+          }else{
+            card.style.top=top;
+          }
+
+
         }
       },
       //单位转换

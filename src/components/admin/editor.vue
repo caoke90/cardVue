@@ -142,13 +142,22 @@
   import { XInput,Selector,XButton,XNumber, Flexbox, FlexboxItem, Group, XTextarea, Cell } from 'vux'
   var editVue;
   $("body").delegate("input","change",function (e) {
+
     setTimeout(function () {
-      editVue&&editVue.saveCard()
+      if(editVue){
+        editVue.change()
+        editVue.saveCard()
+      }
+
     },0)
   })
   $("body").delegate("select","change",function (e) {
+
     setTimeout(function () {
-      editVue&&editVue.saveCard()
+      if(editVue){
+        editVue.change()
+        editVue.saveCard()
+      }
     },0)
   })
 
@@ -300,6 +309,22 @@
       addv:function (k) {
         this.cardShow[k].push(JSON.parse(JSON.stringify(this.cardShow[k][0])));
         this.key++
+      },
+      //属性发生变化
+      change:function () {
+        if(this.helpItem.watch){
+
+          for(var k in this.helpItem.watch){
+
+            var key=this.helpItem.dataMap[k]||k;//编辑器的key
+            console.log(hget(this.cardShow,key,''))
+            console.log(hget(this.card,k,''))
+            if(hget(this.cardShow,key,'')!=hget(this.card,k,'')){
+              this.helpItem.watch[k](hget(this.cardShow,key,''),hget(this.card,k,''),this)
+            }
+
+          }
+        }
       },
       //保存
       saveCard:function () {

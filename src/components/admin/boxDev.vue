@@ -1,5 +1,5 @@
 <template>
-  <div :bid="this._uid"  @click.stop.prevent="editCard(card)" style="min-height: 2em;" class="boxDev" :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
+  <div :bid="this._uid"  @click.stop.prevent="editCard(card)" :style="{height:card.height}" style="min-height: 1em;" class="boxDev" :class="{'editting':editting}" @mouseover="mouseover($event)" @mouseleave="mouseleave">
 
     <div class="main-wrap" :class="{'active':editting2||editting}">
       <div @click.stop="editCard(card)" class="item drag" style="">drag</div>
@@ -94,6 +94,9 @@
 
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
+  .boxnone{
+    height: 0;
+  }
   .boxDev{
     border: 1px solid hsla(0,0,0,0);
     box-sizing: border-box;
@@ -107,7 +110,7 @@
   }
   .main-wrap{
     left: -70px;height: 0;position: relative;z-index: 2;
-    width: 70px;
+    width: 0;
     background: #fff;
     display: block;
     opacity: 0.1;
