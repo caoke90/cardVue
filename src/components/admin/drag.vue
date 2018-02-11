@@ -359,7 +359,7 @@
       boxMove:function (dbox) {
         var card=dbox.card;
         var rect=dbox.$el.getBoundingClientRect();
-        var innerHeight=Bus.rect.height;
+        var innerHeight=window.innerHeight-Bus.rect.y;
         if(card.style.right){
           var right =this.toDw(card.style.right,(Bus.downP.x-Bus.upP.x ));
           if(parseFloat(right)>3.5){

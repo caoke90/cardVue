@@ -28,6 +28,7 @@
             }
 
             var rect=Bus.rect;
+            console.log(rect)
             var left=rect.x;
             var right=window.innerWidth-(rect.x+rect.width);
 
