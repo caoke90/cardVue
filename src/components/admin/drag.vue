@@ -366,7 +366,7 @@
             card.style.left=(7.5-parseFloat(right)-rect.width/50).toFixed(2)+"rem";
             delete card.style.right;
           }else{
-            if(parseFloat(right)+rect.width/50<-5){
+            if(parseFloat(right)+rect.width/50<-0.2){
               right="0rem";
             }
             card.style.right=right;
@@ -377,7 +377,7 @@
             card.style.right=(7.5-parseFloat(left)-rect.width/50).toFixed(2)+"rem";
             delete card.style.left;
           }else{
-            if(parseFloat(left)+rect.width/50<-5){
+            if(parseFloat(left)+rect.width/50<-0.2){
               left="0rem";
             }
             card.style.left=left;
@@ -390,7 +390,7 @@
             delete card.style.bottom;
 
           }else{
-            if(parseFloat(bottom)+rect.height/50<-5){
+            if(parseFloat(bottom)+rect.height/50<-0.2){
               bottom="0rem";
             }
             card.style.bottom=bottom;
@@ -401,7 +401,7 @@
             card.style.bottom=(innerHeight/50-parseFloat(top)-rect.height/50).toFixed(2)+"rem";
             delete card.style.top;
           }else{
-            if(parseFloat(top)+rect.height/50<-5){
+            if(parseFloat(top)+rect.height/50<-0.2){
               top="0rem";
             }
             card.style.top=top;
