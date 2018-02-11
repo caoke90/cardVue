@@ -317,8 +317,6 @@
           for(var k in this.helpItem.watch){
 
             var key=this.helpItem.dataMap[k]||k;//编辑器的key
-            console.log(hget(this.cardShow,key,''))
-            console.log(hget(this.card,k,''))
             if(hget(this.cardShow,key,'')!=hget(this.card,k,'')){
               this.helpItem.watch[k](hget(this.cardShow,key,''),hget(this.card,k,''),this)
             }

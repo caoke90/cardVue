@@ -23,7 +23,11 @@
         var card=this.card;
         if(card.style){
           if(card.style.position=='fixed'&&window.innerWidth>375){
-            var rect=this.$parent.$refs.center.getBoundingClientRect();
+            if(!Bus.rect){
+              Bus.rect=this.$parent.$refs.center.getBoundingClientRect();
+            }
+
+            var rect=Bus.rect;
             var left=rect.x;
             var right=window.innerWidth-(rect.x+rect.width);
 
@@ -33,6 +37,10 @@
             }
             if(style.right&&style.right.indexOf("rem")>-1){
               style.right=(right/50+parseFloat(style.right))+"rem";
+            }
+            if(style.top){
+
+              style.top=(rect.y/50+parseFloat(style.top))+"rem";
             }
             return style;
           }

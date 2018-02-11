@@ -359,10 +359,11 @@
       boxMove:function (dbox) {
         var card=dbox.card;
         var rect=dbox.$el.getBoundingClientRect();
+        var innerHeight=Bus.rect.height;
         if(card.style.right){
           var right =this.toDw(card.style.right,(Bus.downP.x-Bus.upP.x ));
-          if(parseFloat(card.style.right)>3.5){
-            card.style.left=(7.5-parseFloat(card.style.right)-rect.width/50).toFixed(2)+"rem";
+          if(parseFloat(right)>3.5){
+            card.style.left=(7.5-parseFloat(right)-rect.width/50).toFixed(2)+"rem";
             delete card.style.right;
           }else{
             card.style.right=right;
@@ -378,8 +379,8 @@
         }
         if(card.style.bottom){
           var bottom= this.toDw(card.style.bottom,( Bus.downP.y-Bus.upP.y));
-          if(card.style.position=="fixed"&&parseFloat(card.style.bottom)>window.innerHeight/100){
-            card.style.top=(window.innerHeight/50-parseFloat(card.style.bottom)-rect.height/50).toFixed(2)+"rem";
+          if(card.style.position=="fixed"&&parseFloat(bottom)>parseFloat(innerHeight/100)){
+            card.style.top=(innerHeight/50-parseFloat(bottom)-rect.height/50).toFixed(2)+"rem";
             delete card.style.bottom;
 
           }else{
@@ -387,8 +388,8 @@
           }
         }else{
           var top = this.toDw(card.style.top,(Bus.upP.y - Bus.downP.y));
-          if(card.style.position=="fixed"&&parseFloat(card.style.top)>window.innerHeight/100){
-            card.style.bottom=(window.innerHeight/50-parseFloat(card.style.top)-rect.height/50).toFixed(2)+"rem";
+          if(card.style.position=="fixed"&&parseFloat(top)>parseFloat(innerHeight/100)){
+            card.style.bottom=(innerHeight/50-parseFloat(top)-rect.height/50).toFixed(2)+"rem";
             delete card.style.top;
           }else{
             card.style.top=top;
@@ -404,7 +405,8 @@
         }else if(x.indexOf("%")>-1){
           return parseInt(parseFloat(x)+parseFloat(relative/375)*100)+"%";
         }else if(x.indexOf("rem")>-1){
-          return (parseInt(parseFloat(parseFloat(x)+parseInt(relative)/50)*5)/5||0)+"rem";
+          //最小移动单位4px
+          return (parseInt(parseFloat(parseFloat(x)+parseInt(relative)/50)*25)/25)+"rem";
         }
       }
     },
