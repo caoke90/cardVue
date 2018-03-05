@@ -36,7 +36,7 @@
         hoverE:"",
         top:0,
         left:0,
-        helpJSON:require("./cardshelp")
+        helpJSON:require("../cardshelp")
       }
     },
     components: {

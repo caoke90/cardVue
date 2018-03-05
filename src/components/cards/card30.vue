@@ -1,5 +1,5 @@
 <template>
-  <div class="card card58">
+  <div class="card card30">
     <div class="card-wrap">
       <div class="card-main">
         <fieldset>
@@ -30,7 +30,7 @@
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
 
-  .card58 fieldset {
+  .card30 fieldset {
     border-top-width: 1px;
     border-right-width: 0;
     border-bottom-width: 0;
@@ -40,7 +40,7 @@
     text-align: center;
     font-size: 0.24rem; }
 
-  .card58 legend {
+  .card30 legend {
     color:#507DAF;
     padding: 0 0.4rem; }
 

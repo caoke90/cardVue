@@ -27,12 +27,12 @@
       }
     },
     components: {
-      'mod': require('./modDev.vue'),
+      'mod': require('../admin/modDev.vue'),
     },
 
     computed:{
       height:function () {
-        return (window.innerHeight-100)+"px"
+        return (window.innerHeight)+"px"
       }
     },
     methods: {}
@@ -41,12 +41,6 @@
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
   .mainEdit{
-    width: 575px;
-    margin: 0 auto;
-    background: url("../../assets/img/phone.png") top center;
-    background-repeat: no-repeat;
-    background-size: 407px;
-    padding-top: 100px;
     .page{
       position: relative;
       overflow-x: hidden;

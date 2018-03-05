@@ -7,7 +7,7 @@
     </div>
 
     <div v-for="(v,k) in cardShow" :key="key">
-      <div v-if="Object.prototype.toString.call(v)=='[object Object]'">
+      <div v-if="!helpItem.propsType[k+'Hide']&&Object.prototype.toString.call(v)=='[object Object]'">
         <group>
           <div class="weui-cells__title" style="padding: 0;margin-top: 0;" slot="title">
             {{helpItem.editHelp[k]}}
@@ -34,7 +34,7 @@
           </div>
         </group>
       </div>
-      <div v-else-if="Object.prototype.toString.call(v)=='[object Array]'">
+      <div v-else-if="!helpItem.propsType[k+'Hide']&&Object.prototype.toString.call(v)=='[object Array]'">
         <group>
           <div class="weui-cells__title" style="padding: 0;margin-top: 10px;color: #333;" slot="title">
             {{helpItem.editHelp[k]}}
@@ -75,7 +75,7 @@
           <div><mt-button size="small" style="cursor: pointer" @click="addv(k)">添加</mt-button></div>
         </div>
       </div>
-      <group v-else >
+      <group v-else-if="!helpItem.propsType[k+'Hide']">
         <x-input v-if="helpItem.propsType&&helpItem.propsType[k]=='Rem'" :title="helpItem.editHelp[k]" placeholder="请输入" v-model="cardShow[k]">
           <span slot="right">px</span>
         </x-input>
@@ -85,6 +85,9 @@
           <button slot="right" @click="uploadFile(k)">图片上传</button>
         </x-input>
         <x-input v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Url'" :title="helpItem.editHelp[k]" placeholder="请输入url" v-model="cardShow[k]"></x-input>
+        <datetime @on-change="change" v-else-if="helpItem.propsType&&helpItem.propsType[k]=='Time'"
+          v-model="cardShow[k]" format="YYYY-MM-DD HH:mm" placeholder="请选择时间"
+          :title="helpItem.editHelp[k]"></datetime>
         <x-input v-else :title="helpItem.editHelp[k]" placeholder="请输入" v-model="cardShow[k]"></x-input>
       </group>
     </div>
@@ -135,18 +138,17 @@
     }
     return result;
   }
-  var helpJSON=require("./cardshelp")
+  var helpJSON=require("../cardshelp")
   import Bus from '../../marvel/bus';
   import $ from 'jquery';
   import File from '@/utils/file';
-  import { XInput,Selector,XButton,XNumber, Flexbox, FlexboxItem, Group, XTextarea, Cell } from 'vux'
+  import { XInput,DatetimeRange,Datetime,Selector,XButton,XNumber, Flexbox, FlexboxItem, Group, XTextarea, Cell } from 'vux'
   var editVue;
   $("body").delegate("input","change",function (e) {
 
     setTimeout(function () {
       if(editVue){
         editVue.change()
-        editVue.saveCard()
       }
 
     },0)
@@ -156,7 +158,6 @@
     setTimeout(function () {
       if(editVue){
         editVue.change()
-        editVue.saveCard()
       }
     },0)
   })
@@ -190,6 +191,8 @@
 
   export default{
     components: {
+      DatetimeRange,
+      Datetime,
       XInput,
       XButton,
       XNumber,
@@ -310,19 +313,18 @@
         this.cardShow[k].push(JSON.parse(JSON.stringify(this.cardShow[k][0])));
         this.key++
       },
+
       //属性发生变化
       change:function () {
         if(this.helpItem.watch){
-
           for(var k in this.helpItem.watch){
-
             var key=this.helpItem.dataMap[k]||k;//编辑器的key
             if(hget(this.cardShow,key,'')!=hget(this.card,k,'')){
-              this.helpItem.watch[k](hget(this.cardShow,key,''),hget(this.card,k,''),this)
+              this.helpItem.watch[k].call(this.helpItem,hget(this.cardShow,key,''),hget(this.card,k,''),this)
             }
-
           }
         }
+        this.saveCard()
       },
       //保存
       saveCard:function () {
@@ -374,8 +376,8 @@
     background: #efefef;
   }
 
-  .weui-label{
-    color: #999;
-  }
+  /*.weui-label,.vux-datetime p{*/
+    /*color: #999;*/
+  /*}*/
 
 </style>

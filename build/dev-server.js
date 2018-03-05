@@ -20,7 +20,7 @@ const autoOpenBrowser = !!config.dev.autoOpenBrowser;
 // https://github.com/chimurai/http-proxy-middleware
 const proxyTable = config.dev.proxyTable;
 const mockArr = require("../mock/index.js");
-const cardsJSON = require("../src/components/admin/cardsJSON");
+const cardsJSON = require("../src/components/cardsJSON");
 
 const mockUrl = {}
 mockArr.forEach(function(item) {
@@ -98,7 +98,7 @@ app.post("/subject/h5/savecard", function(req, res) {
 		if(arr.card_group) {
 			for(var i = 0; i < arr.card_group.length; i++) {
 				var card = arr.card_group[i];
-				if(typeof card.card_type=="Number"){
+				if(typeof card.card_type=="number"){
           card.card_type="card"+card.card_type;
         }
 				if(card.card_type == "card20") {
@@ -129,6 +129,21 @@ app.post("/subject/h5/savecard", function(req, res) {
           var item = cardsJSON.getCardData(card.card_type);
 					arr.card_group[i] = item;
 				}
+        if(card.card_type == "card31") {
+          card.diff_endtime=parseInt((new Date(card.end_time).getTime()-new Date().getTime())/1000);
+          card.diff_warningtime=parseInt((new Date(card.warning_time).getTime()-new Date().getTime())/1000);
+        }
+        if(card.card_type == "card33") {
+          var item = cardsJSON.getCardData(card.card_type);
+          item.title=card.title;
+          item.desc=card.desc;
+          item.is_pic=card.is_pic;
+          item.width=card.width;
+          item.height=card.height;
+          item.button_vote_text=card.button_vote_text;
+          item.button_have_vote_text=card.button_have_vote_text;
+          arr.card_group[i] = item;
+        }
 				if(card.card_type == "card2008") {
           var item = cardsJSON.getCardData(card.card_type);
 					arr.card_group[i] = item;
@@ -199,14 +214,6 @@ Object.keys(mockUrl).forEach(function(url) {
 	}
 
 });
-// proxy api requests
-// Object.keys(proxyTable).forEach(function(context) {
-//   var options = proxyTable[context];
-//   if (typeof options === 'string') {
-//     options = { target: options };
-//   }
-//   app.use(proxyMiddleware(options.filter || context, options));
-// });
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')());

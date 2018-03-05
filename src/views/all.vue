@@ -80,6 +80,9 @@
             "card26",
             "card28",
             "card29",
+            "card31",
+            "card32",
+            "card33",
           ],
         },{
           "title":"业务类",

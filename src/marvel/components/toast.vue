@@ -36,20 +36,6 @@
   import Bus from '../bus';
   export default{
     name: 'toast',
-    // props: {
-    //   type: {
-    //     type: String,
-    //     default: 'ok',
-    //     validator(value) {
-    //       return [
-    //         'ok',
-    //         'error',
-    //         'warning',
-    //         'wait',
-    //       ].indexOf(value) > -1;
-    //     }
-    //   },
-    // },
 
     data() {
       return {
@@ -61,17 +47,6 @@
         type: 'ok',
       };
     },
-    // computed: {
-    //   curType() {
-    //     'ok error warning wait'.split(' ').indexOf(value)
-    //     [
-    //         'ok',
-    //         'error',
-    //         'warning',
-    //         'wait',
-    //       ].indexOf(value) > -1
-    //   }
-    // }
     methods: {
       call(obj, callback) {
         let options = {};

@@ -45,7 +45,7 @@ Bus.addModalComponent=function (model) {
 }
 //公用的card
 Vue.component('card', require("./components/admin/cardDev.vue"));
-const component = require.context('./components/cards', false, /card(2|3|8|9|10|11|13|20|21|22|23|24|25|26|28|29|30|31|32|33)\.vue$/);
+const component = require.context('./components/cards', false, /\.vue$/);
 const requireAll = context => context.keys().map(context);
 requireAll(component).forEach((card) => {
   const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();
@@ -57,9 +57,8 @@ const app = new Vue({
   name: 'App',
 
   components: {
-    "router-view": require('./views/main.vue'),
+    "router-view": require('./views/pcadmin.vue'),
     "mv-modal": require('./marvel/components/modal.vue'),
   },
 }).$mount('#app');
-
 

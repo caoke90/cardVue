@@ -1,12 +1,12 @@
 <template>
-  <div v-if="page_type" :cid="this._uid" :key="card.cardId" :style="{height:card.height}" class="cardDev" @click.stop="editCard(card)"  :class="{'editting':editting}" @mouseover.stop="mouseover($event)" @mouseleave="mouseleave">
+  <div v-if="page_type" :cid="this._uid" :key="card.cardId" :style="{height:helpJSON[page_type].height||card.height}" class="cardDev" @click.stop="editCard(card)"  :class="{'editting':editting}" @mouseover.stop="mouseover($event)" @mouseleave="mouseleave">
     <div class="main-wrap" :class="{'active':editting}">
       <div @click.stop="delCard(card)" class="item del" style="">X</div>
       <div @click.stop="upCard(card)" class="item up" title="可按键盘↑操作">↑</div>
       <div @click.stop="downCard(card)" class="item down" title="可按键盘↓操作">↓</div>
     </div>
     <div v-if="helpJSON[page_type].demo_url" class="card">
-       <img :src="helpJSON[page_type].demo_url" width="100%" :style="{height:card.height}" onclick="return false;" />
+       <img :src="helpJSON[page_type].demo_url" width="100%" :style="{height:helpJSON[page_type].height||card.height}" onclick="return false;" />
     </div>
     <component v-else :is="page_type" :card="card" ></component>
   </div>
@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  const helpJSON=require("./cardshelp")
+  const helpJSON=require("../cardshelp")
   import Bus from '../../marvel/bus';
 
 

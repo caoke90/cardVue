@@ -80,9 +80,6 @@
             "card26",
             "card28",
             "card29",
-            "card31",
-            "card32",
-            "card33",
           ],
         },{
           "title":"业务类",
@@ -90,6 +87,12 @@
           "items":[
             "card2008",
             "card3001",
+          ],
+        },{
+          "title":"other",
+          "col":"2",
+          "items":[
+            "card100",
           ],
         }],
         cardId:Bus.index++,
@@ -102,7 +105,7 @@
       'drag': require('../components/admin/drag.vue'),
 
       'leftedit': require('../components/admin/leftEdit.vue'),
-      'mainedit': require('../components/admin/mainEdit.vue'),
+      'mainedit': require('../components/pcadmin/mainEdit.vue'),
       'editor': require('../components/admin/editor.vue')
     },
     methods:{
@@ -120,7 +123,7 @@
       //点击预览
       show:function () {
         if(process.env.NODE_ENV=="development"){
-          window.open("/cardVue/demo.html?preview=1")
+          window.open("/cardVue/alldemo.html?preview=1")
         }else{
           window.open("http://movie.weibo.com/subject/h5/index?page_id="+Bus.params.id+"&preview=1")
         }
@@ -131,15 +134,9 @@
         var obj=JSON.parse(JSON.stringify(this.card_group))
         obj.map(function (item,k) {
           delete item.cardId
-          if(typeof item.card_type=="string") {
-            item.card_type = parseInt(item.card_type.replace(/\D+/g, ""))
-          }
           if(item.card_group&&item.card_group.length>0){
             item.card_group.forEach(function (witem) {
               delete witem.cardId
-              if(typeof witem.card_type=="string"){
-                witem.card_type=parseInt(witem.card_type.replace(/\D+/g,""))
-              }
 
             })
           }

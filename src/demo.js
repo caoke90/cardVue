@@ -28,7 +28,7 @@ Bus.addModalComponent=function (model) {
 }
 //公用的card
 Vue.component('card', require("./components/card.vue"));
-const component = require.context('./components/cards', false, /card(2|3|8|9|10|11|13|20|21|22|23|24|25|26|28|29|30)\.vue$/);
+const component = require.context('./components/cards', false, /card(2|3|8|9|10|11|13|20|21|22|23|24|25|26|28|29|30|31|32|33)\.vue$/);
 const requireAll = context => context.keys().map(context);
 requireAll(component).forEach((card) => {
   const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();

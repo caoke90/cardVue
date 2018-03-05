@@ -1,6 +1,6 @@
 <!--card10:一个空的容器，可以在里面放入卡片-->
 <template>
-  <div class="card card10">
+  <div class="card card10" :style="{'margin-bottom':card.mbottom||'0.18rem'}">
     <h2 class="card-title" v-if="card.title">{{card.title}}</h2>
     <card v-for="(v,k) in card.card_group" :card="v" :key="'c'+k"></card>
   </div>
@@ -20,14 +20,12 @@
   };
 </script>
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
-  .card10{
-    margin-bottom: 0.18rem;
+
+  .card10 .card-title{
+    color: #939393;
+    font-size:0.28rem;
+    line-height:0.34rem;
+    padding: 0.24rem 0 0.14rem 0.24rem;
+    background: #f2f2f2;
   }
-.card10 .card-title{
-  color: #939393;
-  font-size:0.28rem;
-  line-height:0.34rem;
-  padding: 0.24rem 0 0.14rem 0.24rem;
-  background: #f2f2f2;
-}
 </style>

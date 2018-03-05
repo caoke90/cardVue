@@ -13,8 +13,8 @@
 
 <script>
   var $ = require('jquery');
-  var cardsDic = require('./cardsDic');
-  var helpJSON = require('./cardshelp');
+  var cardsDic = require('../cardsDic');
+  var helpJSON = require('../cardshelp');
   import Bus from '../../marvel/bus';
 
   //添加card

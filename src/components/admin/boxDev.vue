@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  const helpJSON=require("./cardshelp")
+  const helpJSON=require("../cardshelp")
   import Bus from '../../marvel/bus';
 
   export default{

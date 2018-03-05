@@ -21,6 +21,7 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
     main: './src/main.js',
     all: './src/all.js',
     alldemo: './src/alldemo.js',
+    pcadmin: './src/pcadmin.js',
   },
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap })
@@ -65,6 +66,14 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
       inject: true,
       hash: true,
       chunks:["all"],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'cardVue/pcadmin.html',
+      template: 'index.html',
+      inject: true,
+      hash: true,
+      chunks:["pcadmin"],
       chunksSortMode: 'dependency'
     }),
     // https://github.com/ampedandwired/html-webpack-plugin

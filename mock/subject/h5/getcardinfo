@@ -4,36 +4,6 @@
   "data": {
     "cards": [
       {
-        "card_type": 13,
-        "type": "ui",
-        "style": {
-          "position": "fixed",
-          "top": "5rem",
-          "left": "6.7rem",
-          "zIndex": 10
-        },
-        "width": "1rem",
-        "height": "1rem",
-        "card_id": 0,
-        "src": "https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/movie_game/1517809788560.jpg",
-        "openurl": ""
-      },
-      {
-        "card_type": 13,
-        "type": "ui",
-        "style": {
-          "position": "fixed",
-          "top": "2.9rem",
-          "left": "6.5rem",
-          "zIndex": 10
-        },
-        "width": "1rem",
-        "height": "1rem",
-        "card_id": 0,
-        "src": "https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/movie_game/1517809788560.jpg",
-        "openurl": ""
-      },
-      {
         "card_group": [
           {
             "card_type": "card3",
@@ -59,111 +29,24 @@
             ]
           },
           {
-            "card_type": "card2",
-            "col": 4,
-            "items": [
-              {
-                "pic": "http://ww2.sinaimg.cn/thumb150/64b384f6jw1endrotx73qj20ha0pxq98.jpg",
-                "scheme": "",
-                "desc1": "宫格文字1",
-                "desc2": ""
-              },
-              {
-                "pic": "http://ww3.sinaimg.cn/thumb150/88c37718gw1etpt495p8sj20sg0iz4ql.jpg",
-                "scheme": "",
-                "desc1": "宫格文字1",
-                "desc2": ""
-              },
-              {
-                "pic": "http://ww2.sinaimg.cn/square/67c3553fgw1epc4qivvbbj20qo0qoaw0.jpg",
-                "scheme": "",
-                "desc1": "宫格文字1",
-                "desc2": ""
-              },
-              {
-                "pic": "http://ww2.sinaimg.cn/square/6f055540gw1er1hta1rl4j20go0p07a4.jpg",
-                "scheme": "",
-                "desc1": "宫格文字1",
-                "desc2": ""
-              }
-            ]
-          },
-          {
-            "card_type": "card8",
-            "card_id": 0,
-            "pic": "https://mu1.sinaimg.cn/frame.150x200/weiyinyue.music.sina.com.cn/movie_poster/183380_vertical.jpg",
-            "title_sub": "标题",
-            "desc1": "购票",
-            "desc2": "测试",
-            "scheme": "http://weibo.com",
-            "button": {
-              "name": "购票",
-              "pic": "https://mu1.sinaimg.cn/frame.150x200/weiyinyue.music.sina.com.cn/movie_poster/183380_vertical.jpg",
-              "type": "link",
-              "params": {
-                "scheme": "http://weibo.com"
-              }
-            }
-          },
-          {
-            "card_type": "card9",
-            "card_id": 0,
-            "weibo_info": {
-              "url": ""
-            }
-          },
-          {
-            "card_type": "card21",
-            "card_id": 0,
-            "title": "",
-            "pic_height": "1.5rem",
+            "card_type": 33,
+            "title": "投票征集徐州地铁样式啦！",
+            "desc": "为展现徐州城市人文特色，以下的美工设计方案，在充分吸收外地地铁车辆外观及内饰设计方案经验的基础上，结合徐州传统曲艺、汉朝龙文化、紫薇花、音乐厅等元素，遴选出7套外观和5套内饰设计方案。请您投出自己最喜欢的那一套哦!",
+            "is_pic": "1",
+            "width": "1rem",
+            "height": "1rem",
+            "button_vote_text": "投票",
+            "button_have_vote_text": "已投票",
             "themeid": "",
-            "vote_url": "",
-            "vote_item_start": 1,
-            "vote_item_end": 3,
             "sort_type": "desc",
-            "votenum_lefttext": "",
-            "votenum_righttext": "",
-            "bottom_pic_url": "",
-            "bottom_text": "立即投票"
-          },
-          {
-            "card_type": "card20",
-            "card_id": 0,
-            "title": "",
-            "pic_height": "1.5rem",
-            "left_themeid": "",
-            "right_themeid": "",
-            "vote_url": "",
-            "vote_item_start": 1,
-            "vote_item_end": 3,
-            "sort_type": "desc",
-            "left_votenum_lefttext": "",
-            "left_votenum_righttext": "",
-            "right_votenum_lefttext": "",
-            "right_votenum_righttext": "",
-            "left_bottom_pic_url": "",
-            "left_bottom_text": "立即投票",
-            "right_bottom_pic_url": "",
-            "right_bottom_text": "立即投票"
-          },
-          {
-            "card_type": "card23",
-            "show_color": "m-btn-white",
-            "desc": "",
-            "scheme": ""
-          },
-          {
-            "card_type": "card22",
-            "pic": "",
-            "desc": "",
-            "scheme": ""
+            "launch_uid": ""
           }
         ],
         "type": "box",
-        "card_type": "card10",
+        "card_type": 10,
         "card_id": 0,
-        "title": ""
+        "title": "",
+        "mbottom": "0.18rem"
       }
     ]
   }

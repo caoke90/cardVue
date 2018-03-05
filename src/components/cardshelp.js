@@ -1,11 +1,23 @@
-import Bus from '../../marvel/bus';
+import Bus from '../marvel/bus';
+import Toast from 'mint-ui/lib/toast';
 module.exports={
+  "animate":{
+    "opacity":"1",
+    "effect":"fadeInDown",
+    "duration":"0.5",
+    "delay":"0.5",
+    "style":{
+      "position":"",
+      "top":"",
+      "left":"",
+    }
+  },
   "card1":{
     "help": "card1:ui类的容器",
   },
   "card2":{
     "help": "card2:宫格图文",
-    "demo_url":require("../../assets/demoimg/card2.png"),
+    "demo_url":require("../assets/demoimg/card2.png"),
     //数据映射
     "dataMap":{
       "col":"col",
@@ -40,7 +52,7 @@ module.exports={
   },
   "card3":{
     "help": "card3:高度可调的轮播图",
-    "demo_url":require("../../assets/demoimg/card3.png"),
+    "demo_url":require("../assets/demoimg/card3.png"),
     //数据映射
     "dataMap":{
       // "defaultIndex":"defaultIndex",
@@ -65,7 +77,7 @@ module.exports={
   },
   "card8":{
     "help":"card8:图文",
-    "demo_url":require("../../assets/demoimg/card8.png"),
+    "demo_url":require("../assets/demoimg/card8.png"),
     "dataMap":{
       "pic":"pic",
       "title_sub":"title_sub",
@@ -96,7 +108,7 @@ module.exports={
   },
   "card9":{
     "help":"card9:表示一条微博",
-    "demo_url":require("../../assets/demoimg/card9.png"),
+    "demo_url":require("../assets/demoimg/card9.png"),
     "dataMap":{
       "weibo_info.url":"url"
     },
@@ -108,14 +120,20 @@ module.exports={
     "help":"card10:一个空的容器，可以在里面放入卡片",
     "dataMap":{
       "title":"title",
+      "mbottom":"mbottom",
     },
     "editHelp":{
-      "title":"标题"
+      "title":"标题",
+      "mbottom":"下边距离",
+    },
+    //属性类型
+    "propsType":{
+      "mbottom":"Rem",
     },
   },
   "card11":{
     "help":"card11,全屏动画，默认3秒后消失",
-    "demo_url":require("../../assets/demoimg/card11.png"),
+    "demo_url":require("../assets/demoimg/card11.png"),
     //数据映射
     "dataMap":{
       "src":"src",
@@ -137,7 +155,7 @@ module.exports={
 
   "card13":{
     "help":"card13:可移动、可调整大小的图片",
-    "demo_url":require("../../assets/demoimg/card13.png"),
+    "demo_url":require("../assets/demoimg/card13.png"),
 
     //数据映射
     "dataMap":{
@@ -197,7 +215,7 @@ module.exports={
 
   "card20":{
     "help":"card20:投票card",
-    "demo_url":require("../../assets/demoimg/card20.png"),
+    "demo_url":require("../assets/demoimg/card20.png"),
     //数据映射
     "dataMap":{
       "title":"title",
@@ -279,7 +297,7 @@ module.exports={
   },
   "card21":{
     "help":"card21:四图投票",
-    "demo_url":require("../../assets/demoimg/card21.jpg"),
+    "demo_url":require("../assets/demoimg/card21.jpg"),
     //数据映射
     "dataMap":{
       "title":"title",
@@ -344,7 +362,7 @@ module.exports={
   },
   "card22":{
     "help":"card22:单行",
-    "demo_url":require("../../assets/demoimg/card22.png"),
+    "demo_url":require("../assets/demoimg/card22.png"),
     "dataMap":{
       "pic":"pic",
       "desc":"desc",
@@ -363,7 +381,7 @@ module.exports={
   },
   "card23":{
     "help":"card23:单行按钮",
-    "demo_url":require("../../assets/demoimg/card23.png"),
+    "demo_url":require("../assets/demoimg/card23.png"),
     "dataMap":{
       "show_color":"show_color",
       "desc":"desc",
@@ -389,7 +407,7 @@ module.exports={
   },
   "card24":{
     "help":"card24: 纯文本",
-    "demo_url":require("../../assets/demoimg/card24.png"),
+    "demo_url":require("../assets/demoimg/card24.png"),
     "dataMap":{
       "title":"title",
       "desc":"desc",
@@ -409,7 +427,7 @@ module.exports={
   },
   "card25":{
     "help":"card25: 用户",
-    "demo_url":require("../../assets/demoimg/card25.png"),
+    "demo_url":require("../assets/demoimg/card25.png"),
     "dataMap":{
       "uid":"uid",
     },
@@ -423,7 +441,7 @@ module.exports={
   },
   "card26":{
     "help":"card26: 宫格按钮",
-    "demo_url":require("../../assets/demoimg/card26.png"),
+    "demo_url":require("../assets/demoimg/card26.png"),
     "dataMap":{
       "col":"col",
       "items":"items",
@@ -456,7 +474,7 @@ module.exports={
   },
   "card28":{
     "help":"card28: 宫格",
-    "demo_url":require("../../assets/demoimg/card28.png"),
+    "demo_url":require("../assets/demoimg/card28.png"),
     "dataMap":{
       "col":"col",
       "items":"items",
@@ -489,7 +507,7 @@ module.exports={
   },
   "card29":{
     "help":"card29: 标题",
-    "demo_url":require("../../assets/demoimg/card29.png"),
+    "demo_url":require("../assets/demoimg/card29.png"),
     "dataMap":{
       "pic":"pic",
       "desc":"desc",
@@ -510,7 +528,7 @@ module.exports={
   },
   "card30":{
     "help":"card30: 分割线",
-    "demo_url":require("../../assets/demoimg/card30.png"),
+    "demo_url":require("../assets/demoimg/card30.png"),
     "dataMap":{
       "name":"name",
       "scheme":"scheme",
@@ -524,10 +542,189 @@ module.exports={
       "scheme":"Url"
     },
   },
+  "card33":{
+    "help":"card33: 投票card，仅能投票一次",
+    "height":"6rem",
+    "demo_url":require("../assets/demoimg/card33.png"),
+    "dataMap":{
+      "title":"title",
+      "launch_uid":"launch_uid",
+      "desc":"desc",
+      "is_pic":"is_pic",
+      "width":"width",
+      "height":"height",
+      "button_vote_text":"button_vote_text",
+      "button_have_vote_text":"button_have_vote_text",
+      "themeid":"themeid",
+      "sort_type":"sort_type",
+    },
+    "watch":{
+      "is_pic":function (nval,oval,editVue) {
+        if(nval==0){
+          this.propsType["widthHide"]=true;
+          this.propsType["heightHide"]=true;
+        }else{
+          this.propsType["widthHide"]=false;
+          this.propsType["heightHide"]=false;
+        }
 
+      }
+    },
+    "editHelp":{
+      "title":"标题",
+      "launch_uid":"发起人uid",
+      "desc":"投票详情描述",
+      "is_pic":"是否包含图片",
+      "width":"图片宽度",
+      "height":"图片高度",
+      "button_vote_text":"底部投票文案",
+      "button_have_vote_text":"底部已完成投票文案",
+      "themeid":"投票主题ID",
+      "sort_type":"投票项展示顺序",
+    },
+    //异步获取完数据，然后再进行编辑
+    "sync":function (next) {
+      var helpItem=this;
+      Bus.$http.get("/admin/mobile_page/ajax_getpolllist").then(function (rst) {
+        if (rst.data) {
+          helpItem.propsType.themeidOptions=[];
+          for(var k in rst.data.votethemelist){
+            helpItem.propsType.themeidOptions.push({key: k, value: rst.data.votethemelist[k]})
+          }
+          next()
+        }
+      })
+    },
+
+    //属性类型
+    "propsType":{
+      "width":"Rem",
+      "widthHide":true,
+      "height":"Rem",
+      "heightHide":true,
+      "themeid":"Selector",
+      "themeidOptions":[],
+      "is_pic":"Selector",
+      "is_picOptions":[
+        {key: "0", value: '否'},
+        {key: "1", value: '是'},
+      ],
+      "sort_type":"Selector",
+      "sort_typeOptions":[
+        {key: "desc", value: '票数倒序'},
+        {key: "asc", value: '票数顺序'},
+        {key: "rand", value: '随机'},
+        {key: "default", value: '按选项顺序'},
+        {key: "default_desc", value: '按选项倒序'},
+      ],
+    },
+  },
+  "card31":{
+    "help":"card31: 倒计时card，仅能投票一次",
+    "demo_url":require("../assets/demoimg/card31.jpg"),
+    "dataMap":{
+      "title":"title",
+      "scheme":"scheme",
+      "end_time":"end_time",
+      "warning_time":"warning_time",
+      "number_color":"number_color",
+      "unit_color":"unit_color",
+      "number_warning_color":"number_warning_color",
+    },
+    "watch":{
+      "end_time":function (nval,oval,editVue) {
+        if(!nval){
+          return;
+        }
+        if(new Date(nval)<new Date()){
+          Toast("结束时间不能小于当前时间");
+          editVue.cardShow.end_time=oval;
+        }
+      },
+      "warning_time":function (nval,oval,editVue) {
+        if(!nval){
+          return;
+        }
+        if(!editVue.cardShow.end_time){
+          Toast("结束时间不存在");
+          editVue.cardShow.warning_time=oval;
+        }
+        if(new Date(nval)>new Date(editVue.cardShow.end_time)){
+          Toast("警告时间不能大于结束时间");
+          editVue.cardShow.warning_time=oval;
+        }
+      }
+    },
+    "editHelp":{
+      "title":"标题",
+      "scheme":"点击跳转地址",
+      "end_time":"结束时间",
+      "warning_time":"警告时间",
+      "number_color":"数字颜色编码",
+      "unit_color":"时间单位字体颜色编码",
+      "number_warning_color":"数字警告时颜色编码",
+    },
+
+    //属性类型
+    "propsType":{
+      "scheme":"Url",
+      "end_time":"Time",
+      "warning_time":"Time",
+
+    },
+  },
+  "card32":{
+    "help":"card32: 计数card",
+    "demo_url":require("../assets/demoimg/card32.jpg"),
+    "dataMap":{
+      "title":"title",
+      "scheme":"scheme",
+      "total":"total",
+      "number_color":"number_color",
+      "auto_add_number":"auto_add_number",
+      "auto_add_number_freq":"auto_add_number_freq",
+      "auto_max_min":"auto_max_min",
+      "update_url":"update_url",
+      "update_url_freq":"update_url_freq",
+      "isshow_rate":"isshow_rate",
+    },
+    "watch":{
+      "end_time":function (nval,oval,editVue) {
+
+      },
+      "warning_time":function (nval,oval,editVue) {
+
+      }
+    },
+    "editHelp":{
+      "title":"标题",
+      "scheme":"点击跳转地址",
+      "total":"总目标值",
+      "number_color":"数字颜色编码",
+      "auto_add_number":"自动更新时 每次增加的数值,可以为负整数",
+      "auto_add_number_freq":"自动更新的更新频率，单位:s",
+      "auto_max_min":"自动更新值为正时为最大值，自动更新值为负时最小值",
+      "update_url":"数据更新地址",
+      "update_url_freq":"请求更新方式时的更新频率，单位:s",
+      "isshow_rate":"是否展示完成比例",
+    },
+
+    //属性类型
+    "propsType":{
+      "scheme":"Url",
+      "update_url":"Url",
+      "end_time":"Time",
+      "isshow_rate":"Selector",
+      "isshow_rateOptions":[
+        {key: "0", value: '不展示'},
+        {key: "1", value: '展示'},
+      ],
+
+    },
+  },
  "card2008":{
     "help":"card2008:图文",
-    "demo_url":require("../../assets/demoimg/card8.png"),
+    "demo_url":require("../assets/demoimg/card8.png"),
     "dataMap":{
       "film_id":"film_id",
       "button_type":"button_type"
@@ -548,7 +745,7 @@ module.exports={
   },
   "card3001":{
     "help":"card3001:话题流card",
-    "demo_url":require("../../assets/demoimg/card3001.jpg"),
+    "demo_url":require("../assets/demoimg/card3001.jpg"),
     "dataMap":{
       "topic_name":"topic_name",
       "sort_type":"sort_type",
@@ -575,7 +772,7 @@ module.exports={
   },
   "card100":{
     "help":"card100:任务卡片",
-    "demo_url":require("../../assets/demoimg/card100.png"),
+    "demo_url":require("../assets/demoimg/card100.png"),
     "dataMap":{
       "user_id":"user_id",
       "task_id":"task_id",
