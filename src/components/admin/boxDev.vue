@@ -104,6 +104,9 @@
   .editting{
     border: 1px solid #ef4f4f;
     box-sizing: border-box;
+    .main-wrap.active{
+      opacity: 1;
+    }
     .item{
       opacity: 1;
     }
@@ -165,7 +168,7 @@
   .main-wrap.active{
     box-sizing: border-box;
     z-index: 1000;
-    opacity: 0.9;
+    opacity: 0.5;
   }
 
 </style>

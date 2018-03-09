@@ -5,8 +5,8 @@
       <div @click.stop="upCard(card)" class="item up" title="可按键盘↑操作">↑</div>
       <div @click.stop="downCard(card)" class="item down" title="可按键盘↓操作">↓</div>
     </div>
-    <div v-if="helpJSON[page_type].demo_url" class="card">
-       <img :src="helpJSON[page_type].demo_url" width="100%" :style="{height:helpJSON[page_type].height||card.height}" onclick="return false;" />
+    <div v-if="helpJSON[page_type].demo_url" class="card" style="overflow: hidden;" :style="{height:helpJSON[page_type].height||card.height}">
+       <img :src="helpJSON[page_type].demo_url" width="100%"  onclick="return false;" />
     </div>
     <component v-else :is="page_type" :card="card" ></component>
   </div>
@@ -77,10 +77,10 @@
             var rect=this.$el.getBoundingClientRect()
             var mainEdit=document.querySelector("#mainEdit")
             var mainEditrect=mainEdit.getBoundingClientRect()
-            if(rect.top+rect.height-mainEditrect.height>0){
-              mainEdit.scrollTop=mainEdit.scrollTop+rect.top+rect.height-mainEditrect.height+rect.height;
-            }else if(rect.top<0){
-              mainEdit.scrollTop=mainEdit.scrollTop+rect.top-rect.height
+            if(rect.top+rect.height-mainEditrect.height>100){
+              mainEdit.scrollTop=mainEdit.scrollTop+rect.top+rect.height-window.innerHeight;
+            }else if(rect.top<100){
+              mainEdit.scrollTop=mainEdit.scrollTop+rect.top+rect.height-window.innerHeight;
             }
           },0)
           return true;
@@ -102,8 +102,8 @@
 <style rel="stylesheet/scss" type="text/css" lang="scss" scoped>
   .cardDev{
     border: 1px solid hsla(0,0,0,0);
-    box-sizing: border-box;
   }
+
   .editting{
     border: 1px solid #ef4f4f;
   }

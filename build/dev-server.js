@@ -133,6 +133,13 @@ app.post("/subject/h5/savecard", function(req, res) {
           card.diff_endtime=parseInt((new Date(card.end_time).getTime()-new Date().getTime())/1000);
           card.diff_warningtime=parseInt((new Date(card.warning_time).getTime()-new Date().getTime())/1000);
         }
+        if(card.card_type == "card32") {
+          var item = cardsJSON.getCardData(card.card_type);
+          card.rate=item.rate;
+          card.update_url=item.update_url;
+          card.update_url_freq=item.update_url_freq;
+          card.count=item.count;
+        }
         if(card.card_type == "card33") {
           var item = cardsJSON.getCardData(card.card_type);
           item.title=card.title;

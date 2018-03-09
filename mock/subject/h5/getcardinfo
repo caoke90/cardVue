@@ -2,52 +2,6 @@
   "status": 1,
   "message": "ok",
   "data": {
-    "cards": [
-      {
-        "card_group": [
-          {
-            "card_type": "card3",
-            "defaultIndex": 0,
-            "height": "1.68rem",
-            "pic_items": [
-              {
-                "src": "https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/operation/focusphoto/d113439950455a333801337c33243af5.jpg",
-                "openurl": "sinaweibo://userinfo?uid=1252397723"
-              },
-              {
-                "src": "https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/operation/focusphoto/4871eeb931119a827760931d2dce21d6.jpg",
-                "openurl": "sinaweibo://userinfo?uid=1252397723"
-              },
-              {
-                "src": "https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/operation/focusphoto/4871eeb931119a827760931d2dce21d6.jpg",
-                "openurl": "sinaweibo://userinfo?uid=1252397723"
-              },
-              {
-                "src": "https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/operation/focusphoto/4871eeb931119a827760931d2dce21d6.jpg",
-                "openurl": "sinaweibo://userinfo?uid=1252397723"
-              }
-            ]
-          },
-          {
-            "card_type": 33,
-            "title": "投票征集徐州地铁样式啦！",
-            "desc": "为展现徐州城市人文特色，以下的美工设计方案，在充分吸收外地地铁车辆外观及内饰设计方案经验的基础上，结合徐州传统曲艺、汉朝龙文化、紫薇花、音乐厅等元素，遴选出7套外观和5套内饰设计方案。请您投出自己最喜欢的那一套哦!",
-            "is_pic": "1",
-            "width": "1rem",
-            "height": "1rem",
-            "button_vote_text": "投票",
-            "button_have_vote_text": "已投票",
-            "themeid": "",
-            "sort_type": "desc",
-            "launch_uid": ""
-          }
-        ],
-        "type": "box",
-        "card_type": 10,
-        "card_id": 0,
-        "title": "",
-        "mbottom": "0.18rem"
-      }
-    ]
+    "cards": []
   }
 }

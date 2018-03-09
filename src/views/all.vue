@@ -1,14 +1,17 @@
 <template>
   <!--http://ting.weibo.com/admin/mobile_page/edit?id=6225-->
-  <drag id="dragbox">
+
     <div class="g-bd5 f-cb">
       <div class="g-sd51" style="z-index: 100;position:fixed;">
+
         <leftedit :children="children"></leftedit>
 
       </div>
       <div class="g-mn5" contain="card_group">
         <div class="g-mn5c" >
-          <mainedit :children="card_group" :key="cardId"></mainedit>
+          <drag id="dragbox">
+            <mainedit :children="card_group" :key="cardId"></mainedit>
+          </drag>
         </div>
       </div>
       <div class="g-sd52">
@@ -25,7 +28,7 @@
         </div>
       </div>
     </div>
-  </drag>
+
 </template>
 
 <script>
@@ -35,9 +38,7 @@
 
   import Bus from '../marvel/bus';
   import Vue from 'vue';
-  import Mint from 'mint-ui';
-  import 'mint-ui/lib/style.css';
-  Vue.use(Mint);
+
 
   import querystring from 'vux/src/tools/querystring'
   Bus.params={
@@ -48,6 +49,7 @@
   const app={
     data:function () {
       return {
+        mod:"",
         children:[{
           "title":"容器",
           "col":"2",
@@ -117,7 +119,7 @@
         var the=this
         this.$http.get("/subject/h5/publishpage?page_id="+Bus.params.id).then(function (rst) {
           if (rst.data && rst.data.status==1) {
-            the.$toast({
+            the.$message({
               message: '发布成功！'
             })
           }
@@ -154,7 +156,7 @@
 //            cardlist:JSON.stringify(obj2)
         }).then(function (rst) {
           if (rst.data && rst.data.status==1) {
-            the.$toast({
+            the.$message({
               message: '已保存！'
             })
           }

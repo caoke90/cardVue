@@ -27,7 +27,7 @@
       }
     },
     components: {
-      'mod': require('../admin/modDev.vue'),
+      'mod': require('./modDev.vue'),
     },
 
     computed:{

@@ -4,7 +4,9 @@
  */
 import 'es6-promise/auto';
 import Vue from 'vue';
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI, { size: 'small' });
 //750兼容方案
 (function(doc, win) {
   var docEl = doc.documentElement,

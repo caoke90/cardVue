@@ -1,6 +1,6 @@
 <template>
   <!--http://ting.weibo.com/admin/mobile_page/edit?id=6225-->
-  <drag id="dragbox">
+
     <div class="g-bd5 f-cb">
       <div class="g-sd51" style="z-index: 100;position:fixed;">
         <leftedit :children="children"></leftedit>
@@ -8,24 +8,26 @@
       </div>
       <div class="g-mn5" contain="card_group">
         <div class="g-mn5c" >
-          <mainedit :children="card_group" :key="cardId"></mainedit>
+          <drag id="dragbox">
+            <mainedit :children="card_group" :key="cardId"></mainedit>
+          </drag>
         </div>
       </div>
       <div class="g-sd52">
 
         <div class="right">
-          <div style="margin-bottom: 10px;">
-            <mt-button size="small" style="cursor: pointer" v-on:click="fabu">发布</mt-button>
-            <mt-button size="small" style="cursor: pointer" v-on:click="show">预览</mt-button>
-            <mt-button size="small" style="cursor: pointer" v-on:click="save">保存</mt-button>
-          </div>
+          <el-col style="margin-bottom: 10px;">
+            <el-button plain @click="fabu">发布</el-button>
+            <el-button plain @click="show">预览</el-button>
+            <el-button plain @click="save">保存</el-button>
+          </el-col>
           <div style="">
             <editor :card="editCardData"></editor>
           </div>
         </div>
       </div>
     </div>
-  </drag>
+
 </template>
 
 <script>
@@ -35,9 +37,7 @@
 
   import Bus from '../marvel/bus';
   import Vue from 'vue';
-  import Mint from 'mint-ui';
-  import 'mint-ui/lib/style.css';
-  Vue.use(Mint);
+
 
   import querystring from 'vux/src/tools/querystring'
   Bus.params={
@@ -111,7 +111,7 @@
         var the=this
         this.$http.get("/subject/h5/publishpage?page_id="+Bus.params.id).then(function (rst) {
           if (rst.data && rst.data.status==1) {
-            the.$toast({
+            the.$message({
               message: '发布成功！'
             })
           }
@@ -154,7 +154,7 @@
 //            cardlist:JSON.stringify(obj2)
         }).then(function (rst) {
           if (rst.data && rst.data.status==1) {
-            the.$toast({
+            the.$message({
               message: '已保存！'
             })
           }

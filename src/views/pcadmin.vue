@@ -35,9 +35,7 @@
 
   import Bus from '../marvel/bus';
   import Vue from 'vue';
-  import Mint from 'mint-ui';
-  import 'mint-ui/lib/style.css';
-  Vue.use(Mint);
+
 
   import querystring from 'vux/src/tools/querystring'
   Bus.params={
@@ -105,7 +103,7 @@
       'drag': require('../components/admin/drag.vue'),
 
       'leftedit': require('../components/admin/leftEdit.vue'),
-      'mainedit': require('../components/pcadmin/mainEdit.vue'),
+      'mainedit': require('../components/admin/pcmainEdit.vue'),
       'editor': require('../components/admin/editor.vue')
     },
     methods:{
@@ -114,7 +112,7 @@
         var the=this
         this.$http.get("/subject/h5/publishpage?page_id="+Bus.params.id).then(function (rst) {
           if (rst.data && rst.data.status==1) {
-            the.$toast({
+            the.$message({
               message: '发布成功！'
             })
           }
@@ -151,7 +149,7 @@
 //            cardlist:JSON.stringify(obj2)
         }).then(function (rst) {
           if (rst.data && rst.data.status==1) {
-            the.$toast({
+            the.$message({
               message: '已保存！'
             })
           }

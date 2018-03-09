@@ -49,6 +49,7 @@ module.exports={
       "items.pic":"imgUrl",
       "items.scheme":"Url",
     },
+
   },
   "card3":{
     "help": "card3:高度可调的轮播图",
@@ -72,8 +73,8 @@ module.exports={
       "defaultIndex":"Number",
       "height":"Rem",
       "pic_items.src":"imgUrl",
-      "pic_items.src":"imgUrl",
     },
+
   },
   "card8":{
     "help":"card8:图文",
@@ -114,7 +115,12 @@ module.exports={
     },
     "editHelp":{
       "url":"该微博的url地址"
-    }
+    },
+    rules:{
+      url: [
+        { required: true,message:"需填入微博的url地址", trigger: 'change' }
+      ],
+    },
   },
   "card10":{
     "help":"card10:一个空的容器，可以在里面放入卡片",
@@ -148,7 +154,7 @@ module.exports={
     //属性类型
     "propsType":{
       "src":"imgUrl",
-      "duration":"Number",
+      "duration":"plusInt",
       "openurl":"Url",
     },
   },
@@ -178,7 +184,7 @@ module.exports={
       // "top":"距离上面",
     },
     "watch":{
-      "style.position":function(nval,oval,editVue){
+      "position":function(nval,oval,editVue){
         var style=JSON.parse(JSON.stringify(editVue.card.style))
 
         if(nval=="fixed"){
@@ -235,7 +241,8 @@ module.exports={
       "left_bottom_text":"left_bottom_text",
       "right_bottom_pic_url":"right_bottom_pic_url",
       "right_bottom_text":"right_bottom_text",
-
+    },
+    "watch":{
 
     },
     "editHelp":{
@@ -281,8 +288,8 @@ module.exports={
       "left_themeid":"Selector",
       "right_themeid":"Selector",
       "sort_type":"Selector",
-      "vote_item_start":"Number",
-      "vote_item_end":"Number",
+      "vote_item_start":"plusInt",
+      "vote_item_end":"plusInt",
 
       "left_themeidOptions":["异步获取的"],
       "right_themeidOptions":["异步获取的"],
@@ -401,11 +408,11 @@ module.exports={
         {key: "m-btn-blue", value: '蓝按钮'},
         {key: "m-btn-ltgreen", value: '绿按钮'},
         {key: "m-btn-ltred", value: '红按钮'},
-        {key: "default_desc", value: '按选项倒序'},
       ],
     }
   },
   "card24":{
+    "labelWidth":"80px",
     "help":"card24: 纯文本",
     "demo_url":require("../assets/demoimg/card24.png"),
     "dataMap":{
@@ -422,7 +429,8 @@ module.exports={
     },
     //属性类型
     "propsType":{
-      "scheme":"Url"
+      "scheme":"Url",
+      "desc":"Textarea",
     }
   },
   "card25":{
@@ -433,6 +441,11 @@ module.exports={
     },
     "editHelp":{
       "uid":"用户uid",
+    },
+    "rules":{
+      uid: [
+        { required: true,message:"需填入用户的uid", trigger: 'blur' }
+      ],
     },
     //属性类型
     "propsType":{
@@ -558,14 +571,26 @@ module.exports={
       "themeid":"themeid",
       "sort_type":"sort_type",
     },
+    "rules":{
+      title: [
+        { required: true,message:"不能为空", trigger: 'change' }
+      ],
+      launch_uid: [
+        { required: true,message:"需填入发起人的uid", trigger: 'change' }
+      ],
+    },
+    "hide":{
+      width:true,
+      height:true,
+    },
     "watch":{
       "is_pic":function (nval,oval,editVue) {
         if(nval==0){
-          this.propsType["widthHide"]=true;
-          this.propsType["heightHide"]=true;
+          this.hide["width"]=true;
+          this.hide["height"]=true;
         }else{
-          this.propsType["widthHide"]=false;
-          this.propsType["heightHide"]=false;
+          this.hide["width"]=false;
+          this.hide["height"]=false;
         }
 
       }
@@ -602,6 +627,7 @@ module.exports={
       "widthHide":true,
       "height":"Rem",
       "heightHide":true,
+      "desc":"Textarea",
       "themeid":"Selector",
       "themeidOptions":[],
       "is_pic":"Selector",
@@ -620,7 +646,7 @@ module.exports={
     },
   },
   "card31":{
-    "help":"card31: 倒计时card，仅能投票一次",
+    "help":"card31: 倒计时card",
     "demo_url":require("../assets/demoimg/card31.jpg"),
     "dataMap":{
       "title":"title",
@@ -631,30 +657,51 @@ module.exports={
       "unit_color":"unit_color",
       "number_warning_color":"number_warning_color",
     },
-    "watch":{
-      "end_time":function (nval,oval,editVue) {
-        if(!nval){
-          return;
+    rules:{
+      end_time: [
+        {
+          validator: function (rule, value, callback) {
+            if(!value){
+              callback(new Error('请输入结束时间'));
+            }else{
+              if(Bus.editVue.cardShow.warning_time){
+                Bus.editVue.$refs.ruleForm.validateField("warning_time")
+              }
+              callback()
+            }
+
+          }, trigger: 'blur'
         }
-        if(new Date(nval)<new Date()){
-          Toast("结束时间不能小于当前时间");
-          editVue.cardShow.end_time=oval;
+      ],
+      warning_time: [
+        {
+          validator:  (rule, value, callback)=> {
+
+            if(Bus.editVue.cardShow.end_time&&new Date(value)>new Date(Bus.editVue.cardShow.end_time)){
+              callback(new Error('警告时间不能大于结束时间'));
+            }else{
+              callback()
+            }
+
+          }, trigger: 'blur'
         }
-      },
-      "warning_time":function (nval,oval,editVue) {
-        if(!nval){
-          return;
-        }
-        if(!editVue.cardShow.end_time){
-          Toast("结束时间不存在");
-          editVue.cardShow.warning_time=oval;
-        }
-        if(new Date(nval)>new Date(editVue.cardShow.end_time)){
-          Toast("警告时间不能大于结束时间");
-          editVue.cardShow.warning_time=oval;
-        }
-      }
+      ],
     },
+    // "watch":{
+    //   "warning_time":function (nval,oval,editVue) {
+    //     if(!nval){
+    //       return;
+    //     }
+    //     if(!editVue.cardShow.end_time){
+    //       Toast("结束时间不存在");
+    //       editVue.cardShow.warning_time=oval;
+    //     }
+    //     if(new Date(nval)>new Date(editVue.cardShow.end_time)){
+    //       Toast("警告时间不能大于结束时间");
+    //       editVue.cardShow.warning_time=oval;
+    //     }
+    //   }
+    // },
     "editHelp":{
       "title":"标题",
       "scheme":"点击跳转地址",
@@ -669,6 +716,9 @@ module.exports={
     "propsType":{
       "scheme":"Url",
       "end_time":"Time",
+      "number_color":"Color",
+      "unit_color":"Color",
+      "number_warning_color":"Color",
       "warning_time":"Time",
 
     },
@@ -681,31 +731,25 @@ module.exports={
       "scheme":"scheme",
       "total":"total",
       "number_color":"number_color",
-      "auto_add_number":"auto_add_number",
-      "auto_add_number_freq":"auto_add_number_freq",
-      "auto_max_min":"auto_max_min",
+      // "auto_add_number":"auto_add_number",
+      // "auto_add_number_freq":"auto_add_number_freq",
+      // "auto_max_min":"auto_max_min",
       "update_url":"update_url",
       "update_url_freq":"update_url_freq",
       "isshow_rate":"isshow_rate",
     },
-    "watch":{
-      "end_time":function (nval,oval,editVue) {
 
-      },
-      "warning_time":function (nval,oval,editVue) {
 
-      }
-    },
     "editHelp":{
       "title":"标题",
       "scheme":"点击跳转地址",
       "total":"总目标值",
       "number_color":"数字颜色编码",
-      "auto_add_number":"自动更新时 每次增加的数值,可以为负整数",
-      "auto_add_number_freq":"自动更新的更新频率，单位:s",
-      "auto_max_min":"自动更新值为正时为最大值，自动更新值为负时最小值",
+      // "auto_add_number":"自动更新时 每次增加的数值,可以为负整数",
+      // "auto_add_number_freq":"自动更新的更新频率，单位:s",
+      // "auto_max_min":"自动更新值为正时为最大值，自动更新值为负时最小值",
       "update_url":"数据更新地址",
-      "update_url_freq":"请求更新方式时的更新频率，单位:s",
+      "update_url_freq":"请求更新方式时的更新频率",
       "isshow_rate":"是否展示完成比例",
     },
 
@@ -713,7 +757,11 @@ module.exports={
     "propsType":{
       "scheme":"Url",
       "update_url":"Url",
+      "total":"plusInt",
+      "number_color":"Color",
       "end_time":"Time",
+      "update_url_freq":"plusInt",
+      "update_url_freqUnit":"秒",
       "isshow_rate":"Selector",
       "isshow_rateOptions":[
         {key: "0", value: '不展示'},
@@ -738,6 +786,11 @@ module.exports={
         {key: "2", value: '购票'}
       ],
     },
+   rules:{
+     film_id: [
+       { required: true,message:"需填入电影id", trigger: 'change' }
+     ],
+   },
     "editHelp":{
     	  "film_id":"电影ID",
       "button_type":"按钮类型"
@@ -818,7 +871,7 @@ module.exports={
     }
     for(var k in this){
       if(name==k){
-        return this[k];
+        return Object.create(this[k]);
       }
     }
   }

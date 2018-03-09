@@ -92,6 +92,9 @@
   //编辑card
   Bus.editCard=function (card) {
     var helpItem=helpJSON.getCardData(card.card_type);
+
+    Bus.root.helpItem=helpItem;
+
     //存在异步数据
     if(helpItem.sync){
       Bus.root.editCardData=card;

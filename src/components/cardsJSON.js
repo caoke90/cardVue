@@ -1,5 +1,26 @@
 
 module.exports={
+  "animate":{
+    "card_type":1,
+    "card_group":[
+      {
+        "card_type":2,
+        "opacity":"1",
+        "effect":"fadeInDown",
+        "duration":"0.5",
+        "delay":"0.5",
+
+        "style":{
+          "position":"",
+          "top":"",
+          "left":"",
+        }
+      }
+    ],
+    "options":{
+
+    }
+  },
   "card100":[
     {
       "card_type": 100,
@@ -76,6 +97,18 @@ module.exports={
       params: "http://weibo.com",
     },
 
+  },
+  "card32":{
+    "card_type":32,
+    "title":"标题",
+    "scheme":"#",
+    "total":"8",
+    "count":"3",
+    "number_color":"#333",
+    "launch_user_url":"#",
+    "update_url":"/addfollow",
+    "update_url_freq":"60",
+    "rate":"1%",
   },
   "card33":{
     "card_type":33,

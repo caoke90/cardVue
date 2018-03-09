@@ -1,5 +1,5 @@
 <template>
-  <div class="card card33">
+  <div class="card card33 m-panel">
     <div class="mod">
       <div class="mod_list">
         <div class="vote_block line-around">
@@ -18,7 +18,7 @@
 
           </div>
           <div class="layout-box v_syno">
-            <div class="box-col content-text txt-s">{{card.desc}}</div>
+            <div class="box-col content-text txt-s" v-text="card.desc"></div>
           </div>
         </div>
       </div>
@@ -121,7 +121,7 @@
 </template>
 <script>
   import Bus from '../../marvel/bus';
-
+  import { Button, Select } from 'element-ui';
   export default {
     data() {
       return {
@@ -220,10 +220,15 @@
             callback_type:"vote",
           }).then(function (rst) {
             if (rst.data && rst.data.status==1) {
-
               the.card.is_vote=1;
               the.card.items=rst.data.data.items;
-              console.log(the.card)
+            }else{
+              if(rst.data.data&&rst.data.data.msg){
+                Toast(rst.data.data.msg);
+              }else{
+                Toast("投票失败，请重试！");
+              }
+
             }
           })
         }
@@ -452,10 +457,8 @@
   .vote_block .v_syno{
     /*line-height: 1.063em;*/
     overflow: hidden;
-    display: -webkit-box;
     -webkit-line-clamp: 7;
     text-overflow: ellipsis;
-    -webkit-box-orient: vertical;
     padding: 0px 0.22rem 0.2rem;
   }
   .vote_block .tit_box{
