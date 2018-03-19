@@ -48,9 +48,12 @@
 		},
 		mounted: function() {
 			var the = this;
-			this.$refs.img.onload = function() {
-				the.load()
-			}
+			if(this.card.status){
+        this.$refs.img.onload = function() {
+          the.load()
+        }
+      }
+
 		}
 	};
 </script>

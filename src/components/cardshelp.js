@@ -1,6 +1,40 @@
 import Bus from '../marvel/bus';
 import Toast from 'mint-ui/lib/toast';
 module.exports={
+  "page":{
+    "help":"页面属性",
+    "dataMap":{
+      "openurl":"openurl",
+      "duration":"duration",
+      "src":"src",
+    },
+    "editHelp":{
+      "src":"图片的地址",
+      "openurl":"跳转地址",
+      "duration":"多少毫秒消失"
+    },
+    //属性类型
+    "propsType":{
+      "src":"imgUrl",
+      "duration":"plusInt",
+      "openurl":"Url",
+    },
+  },
+  "card7":{
+    "help":"card7:动画容器",
+    "showDom":true,
+    "dataMap":{
+      "title":"title",
+      "mbottom":"mbottom",
+    },
+    "editHelp":{
+      "title":"标题",
+      "mbottom":"下边距离",
+    },
+    //属性类型
+    "propsType":{
+    },
+  },
   "animate":{
     "opacity":"1",
     "effect":"fadeInDown",
@@ -123,7 +157,8 @@ module.exports={
     },
   },
   "card10":{
-    "help":"card10:一个空的容器，可以在里面放入卡片",
+    "help":"card10:卡片容器",
+    "showDom":true,
     "dataMap":{
       "title":"title",
       "mbottom":"mbottom",
@@ -138,34 +173,54 @@ module.exports={
     },
   },
   "card11":{
-    "help":"card11,全屏动画，默认3秒后消失",
+    "help":"页面设置",
     "demo_url":require("../assets/demoimg/card11.png"),
     //数据映射
     "dataMap":{
+      "status":"status",
       "src":"src",
       "openurl":"openurl",
       "duration":"duration",
     },
     "editHelp":{
+      "status":"全屏动画",
       "src":"图片的地址",
       "openurl":"跳转地址",
       "duration":"多少毫秒消失"
     },
+    "hide":{
+      src:false,
+      openurl:false,
+      duration:false,
+    },
+    "watch":{
+      "status":function (nval,oval,editVue) {
+        if(!nval){
+          this.hide["src"]=true;
+          this.hide["openurl"]=true;
+          this.hide["duration"]=true;
+        }else{
+          this.hide["src"]=false;
+          this.hide["openurl"]=false;
+          this.hide["duration"]=false;
+        }
+      }
+    },
     //属性类型
     "propsType":{
+      "status":"Switch",
       "src":"imgUrl",
       "duration":"plusInt",
       "openurl":"Url",
     },
   },
-
-  "card13":{
-    "help":"card13:可移动、可调整大小的图片",
+  "card14":{
+    "help":"card14:图片动画",
     "demo_url":require("../assets/demoimg/card13.png"),
-
+    "showDom":true,
     //数据映射
     "dataMap":{
-      "style.position":"position",
+      "style.zIndex":"zIndex",
       "src":"src",
       "openurl":"openurl",
       "width":"width",
@@ -180,6 +235,43 @@ module.exports={
       "openurl":"跳转",
       "width":"宽度",
       "height":"高度",
+      // "left":"距离左边",
+      // "top":"距离上面",
+    },
+    //属性类型
+    "propsType":{
+      "src":"imgUrl",
+      "width":"Rem",
+      "height":"Rem",
+      "zIndex":"Number",
+      // "top":"Rem",
+      // "left":"Rem",
+      "openurl":"Url",
+    },
+  },
+  "card13":{
+    "help":"card13:可移动、可调整大小的图片",
+    "demo_url":require("../assets/demoimg/card13.png"),
+    "showDom":true,
+    //数据映射
+    "dataMap":{
+      "style.position":"position",
+      "src":"src",
+      "openurl":"openurl",
+      "width":"width",
+      "height":"height",
+      "style.zIndex":"zIndex",
+      // "style.left":"left",
+      // "style.top":"top",
+
+    },
+    "editHelp":{
+      "position":"定位方式",
+      "src":"图片",
+      "openurl":"跳转",
+      "width":"宽度",
+      "height":"高度",
+      "zIndex":"z轴",
       // "left":"距离左边",
       // "top":"距离上面",
     },
@@ -211,6 +303,7 @@ module.exports={
       "src":"imgUrl",
       "width":"Rem",
       "height":"Rem",
+      "zIndex":"plusInt",
       // "top":"Rem",
       // "left":"Rem",
       "openurl":"Url",

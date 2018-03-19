@@ -11,6 +11,12 @@
         </el-col>
         <el-button type="primary" round @click="uploadFile">图片上传</el-button>
       </div>
+      <div v-else-if="helpItem.propsType[k]=='Switch'">
+        <el-switch
+          v-model="curv"
+          active-color="#13ce66">
+        </el-switch>
+      </div>
 
       <div v-else-if="['Number','plusInt','plusNumber'].indexOf(helpItem.propsType[k])>-1">
         <el-input-number @change="elechange" controls-position="right" v-model="curv"></el-input-number> {{helpItem.propsType[k+'Unit']}}
@@ -34,7 +40,6 @@
 <script>
 
   import Bus from '../../marvel/bus';
-  import $ from 'jquery';
   import File from '@/utils/file';
   export default{
     components: {

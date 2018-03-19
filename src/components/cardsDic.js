@@ -1,5 +1,12 @@
 var cardsDic=[
   {
+    "card_type": "page",
+    "card_id": 0,
+    "openurl": "",
+    "duration": 3000,
+    "src":"http://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/h5_subject/6225_461ae3.png",
+  },
+  {
     "card_type":"card100",
     "user_id":"",
     "task_id":"",
@@ -177,6 +184,21 @@ var cardsDic=[
   },
   //可移动、可调整大小的图片
   {
+    "card_type": "card14",
+    "style":{
+      "position":"absolute",
+      "top":"0rem",
+      "left":"0rem",
+      "zIndex":10,
+    },
+    "width":"1rem",
+    "height":"1rem",
+    "card_id": 0,
+    "src":"https://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/movie_game/1517809788560.jpg",
+    "openurl": ""
+  },
+  //可移动、可调整大小的图片
+  {
     "card_type": "card13",
     "type": "ui",
     "style":{
@@ -195,12 +217,19 @@ var cardsDic=[
   //开屏动画，3秒后消失
   {
     "card_type": "card11",
-    "type": "ui",
+    "type": "page",
     "card_id": 0,
+    "status": 0,
     "openurl": "",
     "duration": 3000,
     "src":"http://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/h5_subject/6225_461ae3.png",
 
+  },
+  {
+    card_group:[],
+    "type": "box",
+    "card_type": "card7",
+    "card_id": 0,
   },
   //一个空的容器，可以在里面放入卡片
   {

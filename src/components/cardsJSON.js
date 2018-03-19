@@ -742,7 +742,7 @@ module.exports={
   },
   "card11":  {
     "card_type": "card11",
-    "type": "ui",
+    "type": "page",
     "card_id": 0,
     "openurl": "",
     "duration": 3000,

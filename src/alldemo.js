@@ -27,14 +27,14 @@ Bus.addModalComponent=function (model) {
   }
 }
 //公用的card
-Vue.component('card', require("./components/card.vue"));
-const component = require.context('./components/cards', false, /\.vue$/);
+Vue.component('card', require("@/components/card.vue"));
+const component = require.context('@/components/cards', false, /\.vue$/);
 const requireAll = context => context.keys().map(context);
 requireAll(component).forEach((card) => {
   const name = (card.name || /(\S+\/)(\S+)\.vue/.exec(item.hotID)[2]).toLowerCase();
   Vue.component(name, card);
 });
-Vue.component("mvImg", require('././marvel/components/img.vue'));
+Vue.component("mvImg", require('@/marvel/components/img.vue'));
 
 
 const app = new Vue({

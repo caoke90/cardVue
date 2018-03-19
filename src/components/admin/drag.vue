@@ -21,10 +21,15 @@
   Bus.addCard=function (cardname) {
     var card=cardsDic.getCardData(cardname)
     card.cardId=Bus.index++
+    if(card.type=="page"){
+      Bus.root.pageset=true;
+    }else{
+      Bus.root.pageset=false;
+    }
     if(card.type=="box"||card.card_group){
       Bus.root.card_group.push(card)
       Bus.editCard(card)
-    }else if(card.type=="ui"){
+    }else if(card.type=="ui"||card.type=="page"){
       Bus.root.card_group.push(card)
       Bus.editCard(card)
     }else{
@@ -34,7 +39,7 @@
         //插入到容器
         if(Bus.root.editCardData.type=='box'&&Array.isArray(Bus.root.editCardData.card_group)){
           Bus.root.editCardData.card_group.push(card)
-        }else if(Bus.root.editCardData.type=='ui'){
+        }else if(Bus.root.editCardData.type=='ui'||Bus.root.editCardData.type=='page'){
           var card10=cardsDic.getCardData("card10")
           card10.card_group.push(card)
           Bus.root.card_group.push(card10)
@@ -234,7 +239,26 @@
         }
       },
       mousedown:function (e) {
-
+        if(e.target.classList.contains("leftdrag")){
+          Bus.downTarget1=e.target;
+          Bus.leftWidth=Bus.root.leftWidth;
+          Bus.downP={
+            x:e.x,
+            y:e.y,
+          }
+          e.preventDefault()
+          return;
+        }
+        if(e.target.classList.contains("rightdrag")){
+          Bus.downTarget2=e.target;
+          Bus.rightWidth=Bus.root.rightWidth;
+          Bus.downP={
+            x:e.x,
+            y:e.y,
+          }
+          e.preventDefault()
+          return;
+        }
         Bus.dContain=$(e.target).parents("[contain]").attr("contain")
         if(!Bus.dContain){
           return;
@@ -282,6 +306,24 @@
         e.preventDefault()
       },
       mousemove:function (e) {
+        if(Bus.downTarget1){
+          Bus.root.leftWidth=Bus.leftWidth+(e.x-Bus.downP.x);
+          if(Bus.root.leftWidth<0){
+            Bus.root.leftWidth=0;
+            Bus.downTarget1=null;
+          }
+          e.preventDefault()
+          return;
+        }
+        if(Bus.downTarget2){
+          Bus.root.rightWidth=Bus.rightWidth-(e.x-Bus.downP.x);
+          if(Bus.root.rightWidth<0){
+            Bus.root.rightWidth=0;
+            Bus.downTarget2=null;
+          }
+          e.preventDefault()
+          return;
+        }
         if(Bus.clone){
           Bus.clone.css({
             transform:"translate("+[(e.x-Bus.downP.x)+"px",(e.y-Bus.downP.y)+"px"].join(",")+")"
@@ -290,7 +332,16 @@
 
       },
       mouseup:function (e) {
-
+        if(Bus.downTarget1){
+          Bus.downTarget1=null;
+          e.preventDefault()
+          return;
+        }
+        if(Bus.downTarget2){
+          Bus.downTarget2=null;
+          e.preventDefault()
+          return;
+        }
         if(Bus.clone){
 
           Bus.clone.remove();

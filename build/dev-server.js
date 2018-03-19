@@ -155,6 +155,10 @@ app.post("/subject/h5/savecard", function(req, res) {
           var item = cardsJSON.getCardData(card.card_type);
 					arr.card_group[i] = item;
 				}
+        if(card.card_type == "card3001") {
+          var item = cardsJSON.getCardData(card.card_type);
+          arr.card_group[i] = item;
+        }
 			}
 		}
 	})

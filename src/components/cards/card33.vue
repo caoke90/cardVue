@@ -121,7 +121,6 @@
 </template>
 <script>
   import Bus from '../../marvel/bus';
-  import { Button, Select } from 'element-ui';
   export default {
     data() {
       return {

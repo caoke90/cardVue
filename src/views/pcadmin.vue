@@ -31,7 +31,6 @@
 <script>
   require("../common/marvel.css");
 
-  var $ = require('jquery');
 
   import Bus from '../marvel/bus';
   import Vue from 'vue';

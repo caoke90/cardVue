@@ -1,33 +1,34 @@
 <template>
-  <div class="leftEdit">
+  <div class="leftEdit" >
     <div class="active" v-if="hoverE" :style="{'top':top+'px'}">
       <mv-img :needlazy="true" :src="helpJSON[hoverE].demo_url"></mv-img>
     </div>
-    <div v-for="card in children" class="card10">
-      <div class="card">
-        <h2 class="card-title" v-if="card.title">{{card.title}}</h2>
-      </div>
-      <div class="card m-panel card28" :class="['m-col-'+card.col]">
-        <div class="card-wrap">
-          <div class="card-main">
-            <div class="m-item-box" v-if="helpJSON[item]" v-for="item in card.items" @mouseover="mouseover($event,item)" @mouseleave="mouseleave" @click="addCard(item)">
-              <div class="m-diy-btn m-box-col m-box-center m-box-center-a">
-                <h4>{{helpJSON[item].help}} <i class="m-font m-font-plus"></i></h4>
+    <div>
+      <div v-for="card in children" class="card10">
+        <div class="card">
+          <h2 class="card-title" v-if="card.title">{{card.title}}</h2>
+        </div>
+        <div class="card m-panel card28" :class="['m-col-'+card.col]">
+          <div class="card-wrap">
+            <div class="card-main">
+              <div class="m-item-box" v-if="helpJSON[item]" v-for="item in card.items" @mouseover="mouseover($event,item)" @mouseleave="mouseleave" @click="addCard(item)">
+                <div class="m-diy-btn m-box-col m-box-center m-box-center-a">
+                  <h4>{{helpJSON[item].help}} <i class="m-font m-font-plus"></i></h4>
+                </div>
               </div>
+              <div class="m-item-box" v-else></div>
             </div>
-            <div class="m-item-box" v-else></div>
           </div>
         </div>
       </div>
-  </div>
 
-  </div>
+    </div>
+    </div>
 
 </template>
 
 <script>
 
-  import $ from 'jquery';
   import Bus from '../../marvel/bus';
   export default{
     props:['children'],

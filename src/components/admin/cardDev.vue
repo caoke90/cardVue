@@ -5,7 +5,9 @@
       <div @click.stop="upCard(card)" class="item up" title="可按键盘↑操作">↑</div>
       <div @click.stop="downCard(card)" class="item down" title="可按键盘↓操作">↓</div>
     </div>
-    <div v-if="helpJSON[page_type].demo_url" class="card" style="overflow: hidden;" :style="{height:helpJSON[page_type].height||card.height}">
+    <!--在中间显示的样子-->
+    <component v-if="helpJSON[page_type]&&helpJSON[page_type].showDom" :is="page_type" :card="card" onclick="return false;"></component>
+    <div v-else-if="helpJSON[page_type].demo_url" class="card" style="overflow: hidden;" :style="{height:helpJSON[page_type].height||card.height}">
        <img :src="helpJSON[page_type].demo_url" width="100%"  onclick="return false;" />
     </div>
     <component v-else :is="page_type" :card="card" ></component>

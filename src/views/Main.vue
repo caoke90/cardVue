@@ -1,43 +1,42 @@
 <template>
   <!--http://ting.weibo.com/admin/mobile_page/edit?id=6225-->
-
+  <drag id="dragbox">
     <div class="g-bd5 f-cb">
-      <div class="g-sd51" style="z-index: 100;position:fixed;">
+      <div class="g-sd51" :style="{width:leftWidth+'px',marginRight:-leftWidth+'px'}" style="z-index: 100;position:fixed;">
+        <div class="leftdrag"></div>
         <leftedit :children="children"></leftedit>
 
       </div>
       <div class="g-mn5" contain="card_group">
-        <div class="g-mn5c" >
-          <drag id="dragbox">
-            <mainedit :children="card_group" :key="cardId"></mainedit>
-          </drag>
+        <div class="g-mn5c" :style="{marginRight:(rightWidth+10)+'px',marginLeft:(leftWidth+10)+'px'}">
+            <mainedit :children="card_group2" :key="cardId"></mainedit>
         </div>
       </div>
-      <div class="g-sd52">
-
+      <div class="g-sd52" :style="{width:rightWidth+'px',marginLeft:-rightWidth+'px'}">
+        <div class="rightdrag"></div>
         <div class="right">
           <el-col style="margin-bottom: 10px;">
             <el-button plain @click="fabu">发布</el-button>
             <el-button plain @click="show">预览</el-button>
             <el-button plain @click="save">保存</el-button>
+            <el-button plain @click="set">设置</el-button>
           </el-col>
-          <div style="">
+          <div>
             <editor :card="editCardData"></editor>
           </div>
         </div>
       </div>
     </div>
-
+  </drag>
 </template>
 
 <script>
   require("../common/marvel.css");
 
-  var $ = require('jquery');
 
   import Bus from '../marvel/bus';
   import Vue from 'vue';
-
+  var cardsDic = require('../components/cardsDic');
 
   import querystring from 'vux/src/tools/querystring'
   Bus.params={
@@ -48,6 +47,9 @@
   const app={
     data:function () {
       return {
+        page:{},
+        leftWidth:300,
+        rightWidth:300,
         children:[{
           "title":"容器",
           "col":"2",
@@ -59,7 +61,6 @@
           "title":"ui挂件",
           "col":"2",
           "items":[
-            "card11",
             "card13",
 
           ],
@@ -94,9 +95,14 @@
         }],
         cardId:Bus.index++,
         card_group:[],
+        card_group2:[],
+        card_group3:[],
 //        editPageData:null,
         editCardData:null
       };
+    },
+    computed:{
+
     },
     components: {
       'drag': require('../components/admin/drag.vue'),
@@ -124,6 +130,11 @@
         }else{
           window.open("http://movie.weibo.com/subject/h5/index?page_id="+Bus.params.id+"&preview=1")
         }
+
+      },
+      //设置
+      set:function () {
+        Bus.editCard(this.card_group3[0])
 
       },
       //点击保存
@@ -170,6 +181,14 @@
 
       this.$http.get("/subject/h5/getcardinfo?page_id="+Bus.params.id+"&preview=1").then(function (rst) {
         the.card_group=rst.data.data.cards.map(function (item) {
+          if(item.card_type=="11"||item.card_type=="card11"){
+            item.type=="page"
+          }
+          if(item.type!="page"){
+            the.card_group2.push(item)
+          }else{
+            the.card_group3.push(item)
+          }
           item.cardId=Bus.index++
           if(item.card_group){
             item.card_group.map(function (item2) {
@@ -177,9 +196,16 @@
               return item2;
             })
           }
-
           return item;
         });
+        if(the.card_group3.length==0){
+          var item=cardsDic.getCardData(11);
+          the.card_group3.push(item)
+          the.card_group.push(item)
+          Bus.editCard(item)
+        }else{
+          Bus.editCard(the.card_group3[0])
+        }
 
       })
 
@@ -203,7 +229,26 @@
   .g-mn5{float:left;width:100%;}
   .g-mn5c{margin:0 310px 0 375px;}
 
-
+  .leftdrag{
+    width: 20px;
+    background: #0bb20c;
+    height: 30px;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: ew-resize;
+    right: -30px;
+  }
+  .rightdrag{
+    width: 20px;
+    background: #0bb20c;
+    height: 30px;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: ew-resize;
+    left: -30px;
+  }
   .right{
     overflow: scroll;height: 100vh;
   }

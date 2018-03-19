@@ -1,13 +1,17 @@
 <template>
   <div style="margin:0 auto;max-width: 750px;position: relative;">
+    <div v-for="(v,k) in card_group" v-if="v.type=='page'" :key="k">
+      <card :card="v"></card>
+    </div>
     <div v-for="(v,k) in card_group" v-if="v.type=='ui'" :key="k">
       <card :card="v"></card>
     </div>
     <mv-loadmore :top-method="pull_refresh">
-      <div v-for="(v,k) in card_group" v-if="v.type!='ui'" :key="k">
+      <div v-for="(v,k) in card_group" v-if="v.type=='box'" :key="k">
         <card :card="v"></card>
       </div>
     </mv-loadmore>
+
   </div>
 </template>
 
@@ -15,16 +19,6 @@
   import Bus from '../marvel/bus';
   require("../common/marvel.css");
 
-  //获取url参数
-  //  function GetQueryString(name)
-  //  {
-  //    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-  //    var r = window.location.search.substr(1).match(reg);
-  //    if(r!=null)return  unescape(r[2]); return null;
-  //  }
-  //  Bus.params={
-  //    page_id:GetQueryString("page_id")||6225
-  //  }
 
   const app={
     data:function () {

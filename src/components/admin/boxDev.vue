@@ -8,7 +8,7 @@
       <div @click.stop="downCard(card)" v-if="card.type=='box'" class="item down" title="可按键盘↓操作">↓</div>
     </div>
     <!--在中间显示的样子-->
-    <component v-if="page_type=='card13'" :is="page_type" :card="card" ></component>
+    <component v-if="helpItem&&helpItem.showDom" :is="page_type" :card="card" ></component>
     <div @click.stop="editCard(card)" v-else-if="helpItem&&helpItem.demo_url" style="max-height: 100px;overflow: scroll;margin-bottom: 0.18rem;">
       <img :src="helpItem.demo_url" onclick="return false;" />
     </div>
@@ -23,6 +23,7 @@
   export default{
     data:()=>{
       return {
+
         helpItem:null
       }
     },
@@ -69,6 +70,13 @@
       }
     },
     computed: {
+      height:function () {
+        if(this.page_type=="card7"){
+          return (window.innerHeight-100)+"px";
+        }else{
+          return this.card.height;
+        }
+      },
       editting:function () {
         return this.card===Bus.root.editCardData
       },
@@ -100,6 +108,7 @@
   .boxDev{
     border: 1px solid hsla(0,0,0,0);
     box-sizing: border-box;
+    background: #f2f2f2;
   }
   .editting{
     border: 1px solid #ef4f4f;

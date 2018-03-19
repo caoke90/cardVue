@@ -44,6 +44,7 @@
        Bus.$emit("getFile",function (file) {
          var formData = new FormData();
          formData.append("file", file)
+         formData.append("dat", "sdsdsd")
          let config = {
            headers: {
              'Content-Type': 'multipart/form-data'

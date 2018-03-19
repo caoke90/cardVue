@@ -1,34 +1,34 @@
 <template>
   <!--http://ting.weibo.com/admin/mobile_page/edit?id=6225-->
-
+  <drag id="dragbox">
     <div class="g-bd5 f-cb">
-      <div class="g-sd51" style="z-index: 100;position:fixed;">
-
+      <div class="g-sd51" :style="{width:leftWidth+'px',marginRight:-leftWidth+'px'}" style="z-index: 100;position:fixed;">
+        <div class="leftdrag"></div>
         <leftedit :children="children"></leftedit>
 
       </div>
       <div class="g-mn5" contain="card_group">
-        <div class="g-mn5c" >
-          <drag id="dragbox">
-            <mainedit :children="card_group" :key="cardId"></mainedit>
-          </drag>
+        <div class="g-mn5c" :style="{marginRight:(rightWidth+10)+'px',marginLeft:(leftWidth+10)+'px'}">
+
+          <mainedit :children="card_group" :key="cardId"></mainedit>
+
         </div>
       </div>
-      <div class="g-sd52">
-
+      <div class="g-sd52" :style="{width:rightWidth+'px',marginLeft:-rightWidth+'px'}">
+        <div class="rightdrag"></div>
         <div class="right">
-          <div style="margin-bottom: 10px;">
-            <mt-button size="small" style="cursor: pointer" v-on:click="fabu">发布</mt-button>
-            <mt-button size="small" style="cursor: pointer" v-on:click="show">预览</mt-button>
-            <mt-button size="small" style="cursor: pointer" v-on:click="save">保存</mt-button>
-          </div>
+          <el-col style="margin-bottom: 10px;">
+            <el-button plain @click="fabu">发布</el-button>
+            <el-button plain @click="show">预览</el-button>
+            <el-button plain @click="save">保存</el-button>
+          </el-col>
           <div style="">
             <editor :card="editCardData"></editor>
           </div>
         </div>
       </div>
     </div>
-
+  </drag>
 </template>
 
 <script>
@@ -49,13 +49,14 @@
   const app={
     data:function () {
       return {
+        leftWidth:300,
+        rightWidth:300,
         mod:"",
         children:[{
           "title":"容器",
           "col":"2",
           "items":[
             "card10",
-
           ],
         },{
           "title":"ui挂件",
@@ -98,6 +99,7 @@
           "col":"2",
           "items":[
             "card100",
+            "card200",
           ],
         }],
         cardId:Bus.index++,
@@ -203,9 +205,28 @@
   .g-sd51,.g-sd52{position:relative;float:left;width:300px;margin:0 -300px 0 0;}
   .g-sd52{float:right;width:300px;margin:0 0 0 -300px;}
   .g-mn5{float:left;width:100%;}
-  .g-mn5c{margin:0 310px 0 375px;}
+  .g-mn5c{margin:0 310px 0 310px;}
 
-
+  .leftdrag{
+    width: 20px;
+    background: #0bb20c;
+    height: 30px;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: ew-resize;
+    right: -30px;
+  }
+  .rightdrag{
+    width: 20px;
+    background: #0bb20c;
+    height: 30px;
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    cursor: ew-resize;
+    left: -30px;
+  }
   .right{
     overflow: scroll;height: 100vh;
   }

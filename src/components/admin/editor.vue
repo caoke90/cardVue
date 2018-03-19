@@ -94,7 +94,6 @@
     return result;
   }
   import Bus from '../../marvel/bus';
-  import $ from 'jquery';
   import File from '@/utils/file';
   Bus.editVue;
   export default{

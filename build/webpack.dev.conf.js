@@ -76,6 +76,7 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
       chunks:["pcadmin"],
       chunksSortMode: 'dependency'
     }),
+
     // https://github.com/ampedandwired/html-webpack-plugin
     new BundleAnalyzerPlugin(),
     new FriendlyErrorsPlugin()
