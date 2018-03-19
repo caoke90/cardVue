@@ -101,8 +101,11 @@
       edititem:require("./editorItem.vue")
     },
     computed:{
-      rules:()=>{
-        return Bus.root.helpItem.rules;
+      rules:function(){
+        if(this.helpItem&&this.helpItem.rules){
+          return this.helpItem.rules;
+        }
+
       }
     },
     data() {

@@ -7,11 +7,11 @@
         "card_group": [
           {
             "card_type": 2,
-            "col": 4,
+            "col": "5",
             "items": [
               {
                 "pic": "http://ww2.sinaimg.cn/thumb150/64b384f6jw1endrotx73qj20ha0pxq98.jpg",
-                "scheme": "",
+                "scheme": "21",
                 "desc1": "宫格文字1",
                 "desc2": ""
               },
@@ -34,6 +34,43 @@
                 "desc2": ""
               }
             ]
+          },
+          {
+            "card_type": 2008,
+            "film_id": "",
+            "object_type": "2",
+            "button_type": "0"
+          },
+          {
+            "card_type": 8,
+            "card_id": 0,
+            "pic": "https://mu1.sinaimg.cn/frame.150x200/weiyinyue.music.sina.com.cn/movie_poster/183380_vertical.jpg",
+            "title_sub": "标题",
+            "desc1": "购票",
+            "desc2": "测试",
+            "scheme": "http://weibo.com",
+            "button": {
+              "name": "购票",
+              "pic": "https://mu1.sinaimg.cn/frame.150x200/weiyinyue.music.sina.com.cn/movie_poster/183380_vertical.jpg",
+              "type": "link",
+              "params": {
+                "scheme": "http://weibo.com"
+              }
+            }
+          },
+          {
+            "card_type": 9,
+            "card_id": 0,
+            "weibo_info": {
+              "url": ""
+            }
+          },
+          {
+            "card_type": 9,
+            "card_id": 0,
+            "weibo_info": {
+              "url": ""
+            }
           },
           {
             "card_type": 3,
@@ -222,7 +259,7 @@
         "openurl": "",
         "duration": 3000,
         "src": "http://mu1.sinaimg.cn/original/weiyinyue.music.sina.com.cn/h5_subject/6225_461ae3.png",
-        "status": false
+        "status": true
       },
       {
         "card_group": [

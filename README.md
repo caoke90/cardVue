@@ -51,6 +51,9 @@ cnpm install
 | :----------- | :------| :------------ | :----------- |:----------- | :------ | 
 | card_type       | int  | 是        |  | card标识符      |    | 
 | item_id       | string  | 是        |  | 这个card的标识id（用以标识唯一的card，进下一级页面时，会将该id带入下级页面做日志）     |    | 
+| is_asyn       | int | 否       | 0 | 是否为异步获取，0:不异步，1:异步|  | 
+| asyn_url       | string | 否       |  | 异步获取数据的接口url|  | 
+| action_log       | object | 否       |  | 用于后台统计使用，用户进行操作时会将其数据上传服务器做用户行为统计 ,第一期暂不支持|  | 
 
 ### 1.3 card属性
 
@@ -58,8 +61,18 @@ cnpm install
 | :----------- | :------| :------------ | :----------- |:----------- | :------ | 
 | card_type       | int  | 是        |  | card标识符      |    | 
 | item_id       | string  | 是        |  | 这个card的标识id（用以标识唯一的card，进下一级页面时，会将该id带入下级页面做日志）     |    | 
+| is_asyn       | int | 否       | 0 | 是否为异步获取，0:不异步，1:异步|  | 
+| asyn_url       | string | 否       |  | 异步获取数据的接口url|  | 
+| action_log       | object | 否       |  | 用于后台统计使用，用户进行操作时会将其数据上传服务器做用户行为统计 ,第一期暂不支持|  | 
 
 ### 1.4 card数据结构
+
+### 异步请求接口客户端处理逻辑
+
+数据结构中下发的字段是 需要客户端异步请求的接口， 客户端需要根据html 域名 自动拼接成完整url ，例如：
+html：http://movie.weibo.com/h5/subject/index?page_id=6225
+数据接口下发的字段有 接口： /subject/h5/callbackoperator
+那么客户端请求改接口时 完整的url是 http://movie.weibo.com/subject/h5/callbackoperator 
 
 ### 统一的button结构
 
@@ -255,7 +268,7 @@ ue样例：
 
 | 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
 | :----------- | :------| :------------ | :----------- |:----------- | :------ |
-| card_type      | int    | 是       | 9| 容器或卡片类型|  | 
+| card_type      | int    | 是       | 21| 容器或卡片类型|  | 
 | pic_width     | int  | 是       | 100 | 投票项图片宽度,单位:px     |    |
 | pic_height     | int  | 是       | 100 | 投票项图片高度,单位:px     |    |
 | themeid     | int  | 是       |  | 投票主题ID，服务端提供接口返回数据,同双图投票card    |    |
@@ -391,17 +404,167 @@ ue样例:http://image2.sina.com.cn/music/web/ting2013/backend/img93.jpg
 
 | 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
 | :----------- | :------| :------------ | :----------- |:----------- | :------ | 
-| card_type      | int    | 是       | 30| 容器或卡片类型|  | 
+| card_type      | int    | 是       | 30| 卡片类型|  | 
 | name          | string | 是       |  | 文案|  | 
 | scheme          | string | 否       |  |跳转地址 |  | 
 
 ue样例:http://image2.sina.com.cn/music/web/ting2013/backend/img100.jpg
 
+### card31 倒计时card（卡片）
+   支持的字段
+
+| 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
+| :----------- | :------| :------------ | :----------- |:----------- | :------ | 
+| card_type      | int    | 是       | 31| 卡片类型|  | 
+| title          | string | 否       |  | 标题|  | 
+| scheme          | string | 否       |  |点击跳转地址 |  | 
+| diff_endtime          | string | 是       | 0 | 距离结束的时间(单位:s)|  | 
+| diff_warningtime          | string | 是       | 0 |距离警告开始的时间(单位:s) |  | 
+| number_color          | string | 否       | #333333 |数字颜色编码 |  | 
+| unit_color          | string | 否       | #333333 |时间单位字体颜色编码 |  | 
+| number_warning_color          | string | 否       | #FF8200 |数字警告时颜色编码 |  | 
+
+ 专题后台需要填写的字段
+
+| 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
+| :----------- | :------| :------------ | :----------- |:----------- | :------ | 
+| card_type      | int    | 是       | 31| 卡片类型|  | 
+| title          | string | 否       |  | 标题|  | 
+| scheme          | string | 否       |  |点击跳转地址 |  | 
+| end_time          | string | 是       | 0 | 结束时间戳|  | 
+| warning_time          | string | 是       | 0 |警告时间戳,应小于结束时间戳|  | 
+| number_color          | string | 否       | #333333 |数字颜色编码 |  | 
+| unit_color          | string | 否       | #333333 |时间单位字体颜色编码 |  | 
+| number_warning_color          | string | 否       | #FF8200 |数字警告时颜色编码 |  | 
+
+ue样例:
+
+![time](/uploads/2b6963f1db8efe05700ba3cc17e9fa79/time.jpeg)
+
+### card32 计数card（卡片）
+   支持的字段
+
+| 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
+| :----------- | :------| :------------ | :----------- |:----------- | :------ | 
+| card_type      | int    | 是       | 32| 卡片类型|  | 
+| title          | string | 否       |  | 标题|  | 
+| scheme          | string | 否       |  |点击跳转地址 |  | 
+| total          | int | 是       | 0 | 总目标值|   | 
+| count          | int | 是       | 0 | 当前数据值| 卡片编辑后台不需要填写  | 
+| number_color          | string | 否       | #333333 |数字颜色编码 |  | 
+| auto_add_number          | int | 否       | 1 |自动更新时 每次增加的数值,可以为负整数 |  | 
+| auto_add_number_freq          | int | 否       | 1 |自动更新的更新频率，单位:s |  | 
+| auto_max_min          | int | 否       | 1000 |自动更新值为正时为最大值，自动更新值为负时最小值 |  | 
+| update_url            | string | 否       |  |数据更新地址,必须是movie.weibo.com域名下 | 要求返回的数据格式,json串：{'count':1000} | 
+| update_url_freq          | int | 否       | 60 |请求更新方式时的更新频率，update_url和此项有值时，自动更新无效 |  | 
+| isshow_rate          | int | 是       | 0 |是否展示完成比例,0:不展示，1:展示 |  |
+| rate_decimals          | int | 是       | 0 |百分比小数位数 |  |
+| rate          | string | 否       |  |完成比例值（百分比）,展示时需要高亮，如果isshow_rate=0，该值无意义 | 卡片编辑后台不需要填写  |
+
+ue样例:
+
+![计数card](/uploads/1a5345e49648297fe199de5cbb164900/计数card.png)
+
+### card33 投票card（仅能投票一次）
+   支持的字段
+
+| 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
+| :----------- | :------| :------------ | :----------- |:----------- | :------ |
+| card_type      | int    | 是       | 33| 容器或卡片类型|  | 
+| title     | string  | 是       |  | 标题    |    |
+| desc     | string  | 否      |  | 投票详情描述    |    |
+| all_vote_users     | int  | 是       |  | 参与人数    |    |
+| launch_user     | string  | 是       |  | 发起人    |    |
+| launch_user_url     | string  | 是       |  | 发起人链接地址    |    |
+| left_time     | int  | 是       |  | 剩余时间    |    |
+| max_select_num     | int  | 是       |  | 能投的选项数，不小于 1    |    |
+| is_pic     | int  | 否       |  | 选项是否包含图片   |    |
+| width     | string  | 是       | 1rem | 图片宽度,单位:rem     |  is_pic=1时有效  |
+| height     | string  | 是       | 1rem | 图片高度,单位:rem     |  is_pic=1时有效  |
+| is_vote     | int  | 是       | 1 | 是否投过票  |  投过票时，展示投票结果  |
+| act_status     | int  | 是       | 1 | 投票活动状态  |  0:投票尚未开始，不能进行投票，1:可以投票，2:投票结束  |
+| button_vote_text     | string  | 否       |  | 底部投票文案，默认:投票  |    |
+| button_have_vote_text     | string  | 否       |  | 底部已完成投票文案，默认:已投票  |    |
+| sort_type     | string  | 是       | 'desc' |  投票项展示顺序，当前一共五种,同双图投票card   |    |
+| theme_id     | int  | 是       |  |  投票主题ID   |    |
+| items     | array  | 是       |  | 投票项详情    |    |
+
+items 字段说明
+
+| 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
+| :----------- | :------| :------------ | :----------- |:----------- | :------ |
+| pic      | string    | 是       | | 图片url|  | 
+| scheme     | string  | 否       |  | 点击投票项区域跳转地址    |    |
+| title     | string  | 是       |  | 投票项标题    |    |
+| option_id     | int  | 是       |  | 选项ID    |  用于投票接口参数  |
+| is_vote     | int  | 否       |  | 当前用户是否对该选项投过票    |    |
+| vote_num     | int  | 否       |  | 得票数    |    |
+| vote_num_rate     | string  | 否       |  | 得票百分比    |    |
+
+后台编辑保存时的数据结构:
+
+| 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
+| :----------- | :------| :------------ | :----------- |:----------- | :------ |
+| card_type      | int    | 是       | 21| 容器或卡片类型|  | 
+| title     | string  | 是       |  | 标题    |    |
+| launch_uid     | int  | 是       |  | 发起人uid    |    |
+| desc     | string  | 否      |  | 投票详情描述    |   
+| is_pic     | int  | 否       |  | 选项是否包含图片   |    |
+| width     | string  | 是       | 1rem | 图片宽度,单位:rem     |  is_pic=1时有效  |
+| height     | string  | 是       | 1rem | 图片高度,单位:rem     |  is_pic=1时有效  |
+| button_vote_text     | string  | 否       | 1 | 底部投票文案，默认:投票  |    |
+| button_have_vote_text     | string  | 否       | 1 | 底部已完成投票文案，默认:已投票  |    |
+| themeid     | int  | 是       |  | 投票主题ID，服务端提供接口返回数据,同双图投票card    |    |
+| sort_type     | string  | 是       | 'desc' |  投票项展示顺序，当前一共五种,同双图投票card   |    |
+
+投票接口信息  
+
+| 字段名 | 数值 |
+| :----------- | :------|
+| 接口url      | /subject/h5/callbackoperator    | 
+| 请求类型     | post  | 
+| 请求参数     | option_ids:选项ID列表(json形式)，theme_id:投票主题ID,sort_type:排序顺序, callback_type:vote  |  
+
+返回样例：
+{'status' : 1,'message' : 'ok','data':{'items':array()}}
+
+status: 1,表示成功，其他表示失败
+
+message:说明
+
+data: 返回结果, items 选项数据
+
+点击投票后，投票接口会返回 投票结果
+
+ue样例：
+
+纯文字版
+
+投票前
+
+![投票前](/uploads/59e714b112f59b386b0c5716ba6a8b2d/投票前.png)
+
+![投票前2](/uploads/ea5ed9c5bd1d9c9e456aa8e78848f86c/投票前2.png)
+
+投票后
+
+![toupianhou](/uploads/196f022810a1d538cf165a628971e48c/toupianhou.png)
+
+图片版
+
+投票前
+
+![tupiantoupqian](/uploads/f629ec015c7da5586d88f67ce28ac20c/tupiantoupqian.png)
+
+投票后
+
+![tupiantoupian2](/uploads/49582575d78811c7c2c5e30dc0592af6/tupiantoupian2.png)
+
 ### 二、电影类业务card
 
 业务类card，必须传 object_type,相应业务的object_type如下：
 
-| 业务名 | value |
+| 业务名 | value | 
 | :----------- | :------| 
 | 音乐     | 1  | 
 | 电影      | 2    | 
@@ -413,7 +576,7 @@ ue样例:http://image2.sina.com.cn/music/web/ting2013/backend/img100.jpg
 
 | 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
 | :----------- | :------| :------------ | :----------- |:----------- | :------ |
-| card_type      | int    | 是       | 8| 卡片类型|  | 
+| card_type      | int    | 是       | 2008| 卡片类型|  | 
 | film_id     | int  | 是       | |  电影ID   |    |
 | object_type     | int  | 是       | |  h5专题电影业务编号：2  |    |
 | button_type     | int  | 是       | |  按钮类型:0,不配置,1:点评,2:购票   |    |
@@ -426,7 +589,7 @@ ue样例:http://image2.sina.com.cn/music/web/ting2013/backend/img100.jpg
 
 | 字段名 | 数据类型 | 是否必须 | 默认值 |字段说明 | 备注 | 
 | :----------- | :------| :------------ | :----------- |:----------- | :------ |
-| card_type      | int    | 是       | 1| 卡片类型|  | 
+| card_type      | int    | 是       | 3001| 卡片类型|  | 
 | topic_name     | string| 是       | |  话题词   |    |
 | sort_type     | string| 是       | time|  排序类型   |    |
 | num    | int| 是       | | 展示数量    |    |
