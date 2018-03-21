@@ -1,3 +1,4 @@
+<script src="../../../../../sina/build/dev-server.js"></script>
 <template>
   <!--http://ting.weibo.com/admin/mobile_page/edit?id=6225-->
   <drag id="dragbox">
@@ -9,9 +10,7 @@
       </div>
       <div class="g-mn5" contain="card_group">
         <div class="g-mn5c" :style="{marginRight:(rightWidth+10)+'px',marginLeft:(leftWidth+10)+'px'}">
-
-          <mainedit :children="card_group" :key="cardId"></mainedit>
-
+          <mainedit :children="card_group2" :key="cardId"></mainedit>
         </div>
       </div>
       <div class="g-sd52" :style="{width:rightWidth+'px',marginLeft:-rightWidth+'px'}">
@@ -21,8 +20,9 @@
             <el-button plain @click="fabu">发布</el-button>
             <el-button plain @click="show">预览</el-button>
             <el-button plain @click="save">保存</el-button>
+            <el-button plain @click="set">设置</el-button>
           </el-col>
-          <div style="">
+          <div>
             <editor :card="editCardData"></editor>
           </div>
         </div>
@@ -34,11 +34,10 @@
 <script>
   require("../common/marvel.css");
 
-  var $ = require('jquery');
 
   import Bus from '../marvel/bus';
   import Vue from 'vue';
-
+  var cardsDic = require('../components/cardsDic');
 
   import querystring from 'vux/src/tools/querystring'
   Bus.params={
@@ -49,20 +48,20 @@
   const app={
     data:function () {
       return {
+        page:{},
         leftWidth:300,
         rightWidth:300,
-        mod:"",
         children:[{
           "title":"容器",
           "col":"2",
           "items":[
             "card10",
+
           ],
         },{
           "title":"ui挂件",
           "col":"2",
           "items":[
-            "card11",
             "card13",
 
           ],
@@ -104,9 +103,14 @@
         }],
         cardId:Bus.index++,
         card_group:[],
+        card_group2:[],
+        card_group3:[],
 //        editPageData:null,
         editCardData:null
       };
+    },
+    computed:{
+
     },
     components: {
       'drag': require('../components/admin/drag.vue'),
@@ -129,11 +133,12 @@
       },
       //点击预览
       show:function () {
-        if(process.env.NODE_ENV=="development"){
-          window.open("/cardVue/alldemo.html?preview=1")
-        }else{
-          window.open("http://movie.weibo.com/subject/h5/index?page_id="+Bus.params.id+"&preview=1")
-        }
+        window.open("/cardVue/alldemo.html?page_id="+Bus.params.id+"&preview=1")
+
+      },
+      //设置
+      set:function () {
+        Bus.editCard(this.card_group3[0])
 
       },
       //点击保存
@@ -141,9 +146,15 @@
         var obj=JSON.parse(JSON.stringify(this.card_group))
         obj.map(function (item,k) {
           delete item.cardId
+          if(typeof item.card_type=="string") {
+            item.card_type = parseInt(item.card_type.replace(/\D+/g, ""))
+          }
           if(item.card_group&&item.card_group.length>0){
             item.card_group.forEach(function (witem) {
               delete witem.cardId
+              if(typeof witem.card_type=="string"){
+                witem.card_type=parseInt(witem.card_type.replace(/\D+/g,""))
+              }
 
             })
           }
@@ -174,6 +185,14 @@
 
       this.$http.get("/subject/h5/getcardinfo?page_id="+Bus.params.id+"&preview=1").then(function (rst) {
         the.card_group=rst.data.data.cards.map(function (item) {
+          if(item.card_type=="11"||item.card_type=="card11"){
+            item.type=="page"
+          }
+          if(item.type!="page"){
+            the.card_group2.push(item)
+          }else{
+            the.card_group3.push(item)
+          }
           item.cardId=Bus.index++
           if(item.card_group){
             item.card_group.map(function (item2) {
@@ -181,9 +200,16 @@
               return item2;
             })
           }
-
           return item;
         });
+        if(the.card_group3.length==0){
+          var item=cardsDic.getCardData(11);
+          the.card_group3.push(item)
+          the.card_group.push(item)
+          Bus.editCard(item)
+        }else{
+          Bus.editCard(the.card_group3[0])
+        }
 
       })
 
@@ -205,7 +231,7 @@
   .g-sd51,.g-sd52{position:relative;float:left;width:300px;margin:0 -300px 0 0;}
   .g-sd52{float:right;width:300px;margin:0 0 0 -300px;}
   .g-mn5{float:left;width:100%;}
-  .g-mn5c{margin:0 310px 0 310px;}
+  .g-mn5c{margin:0 310px 0 375px;}
 
   .leftdrag{
     width: 20px;

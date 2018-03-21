@@ -81,6 +81,22 @@ const webpackConfig = merge.smart(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency'
     }),
+    new HtmlWebpackPlugin({
+      filename: 'cardVue/alldemo.html',
+      template: 'index.html',
+      inject: true,
+      hash: true,
+      chunks:["alldemo"],
+      chunksSortMode: 'dependency'
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'cardVue/all.html',
+      template: 'index.html',
+      inject: true,
+      hash: true,
+      chunks:["all"],
+      chunksSortMode: 'dependency'
+    }),
     // split vendor js into its own file
     // new webpack.optimize.CommonsChunkPlugin({
     //   names: ['vendor', 'manifest'],

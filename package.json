@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=1 minify=1 node build/build.js",
+    "build": "cross-env assetsPublicPath=/ md5=1 minify=1 node build/build.js",
     "predeploydev": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=1 minify=1 node build/build.js",
     "deploydev": "node build/deploy.js",
     "predeploy": "cross-env assetsPublicPath=//conchfairy.sinajs.cn/ md5=1 minify=1 node build/build.js",

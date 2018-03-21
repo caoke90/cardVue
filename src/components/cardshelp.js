@@ -173,7 +173,7 @@ module.exports={
     },
   },
   "card11":{
-    "help":"页面设置",
+    "help":"card11:页面设置",
     "demo_url":require("../assets/demoimg/card11.png"),
     //数据映射
     "dataMap":{

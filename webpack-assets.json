@@ -1,11 +1,19 @@
 {
+  "all": {
+    "js": "/cardVue/js/all.13a4be08.js",
+    "css": "/cardVue/css/all.7a24214e.css"
+  },
   "main": {
-    "js": "//conchfairy.sinajs.cn/cardVue/js/main.66add745.js",
-    "css": "//conchfairy.sinajs.cn/cardVue/css/main.e1227379.css"
+    "js": "/cardVue/js/main.640f804a.js",
+    "css": "/cardVue/css/main.93d60416.css"
+  },
+  "alldemo": {
+    "js": "/cardVue/js/alldemo.b395a4c3.js",
+    "css": "/cardVue/css/alldemo.f91b6c05.css"
   },
   "demo": {
-    "js": "//conchfairy.sinajs.cn/cardVue/js/demo.31be0030.js",
-    "css": "//conchfairy.sinajs.cn/cardVue/css/demo.8cafc79c.css"
+    "js": "/cardVue/js/demo.c20425f2.js",
+    "css": "/cardVue/css/demo.08360a07.css"
   },
   "metadata": {
     "version": ""
