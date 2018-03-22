@@ -9,7 +9,7 @@
       </div>
       <div class="g-mn5" contain="card_group">
         <div class="g-mn5c" :style="{marginRight:(rightWidth+10)+'px',marginLeft:(leftWidth+10)+'px'}">
-            <mainedit :children="card_group2" :key="cardId"></mainedit>
+            <mainedit :children="card_group" :key="cardId"></mainedit>
         </div>
       </div>
       <div class="g-sd52" :style="{width:rightWidth+'px',marginLeft:-rightWidth+'px'}">
@@ -184,9 +184,7 @@
           if(item.card_type=="11"||item.card_type=="card11"){
             item.type=="page"
           }
-          if(item.type!="page"){
-            the.card_group2.push(item)
-          }else{
+          if(item.type=="page"){
             the.card_group3.push(item)
           }
           item.cardId=Bus.index++

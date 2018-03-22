@@ -5,7 +5,7 @@
       <!--<el-button round @click="set">页面设置</el-button>-->
     </div>
     <div class="page" id="mainEdit">
-      <div class="boxcenter" :style="{height:height}" ref="center" :key="Bus.key">
+      <div class="boxcenter" :style="{height:height}" ref="center" :key="children.length">
         <div v-for="(v,k) in children" v-if="v.type=='page'" :key="v.cardId">
           <mod :card="v" contain="card_group"></mod>
         </div>

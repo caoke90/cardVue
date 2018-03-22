@@ -1,7 +1,6 @@
 <template>
   <div :style="style">
-    <box v-if="card.type=='ui'||card.type=='box'||card.type=='page'" :mid="_uid" :card="card" :contain="contain"></box>
-    <card v-else :mid="_uid" :card="card" :contain="contain"></card>
+    <box v-if="card.type=='ui'||card.type=='box'" :mid="_uid" :card="card" :contain="contain"></box>
   </div>
 
 </template>

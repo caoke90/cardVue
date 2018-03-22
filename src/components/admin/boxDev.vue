@@ -48,6 +48,7 @@
         if(!this.editting){
           return;
         }
+        console.log(card.cardId)
         Bus.delCard(card)
       },
       upCard:function (card) {
